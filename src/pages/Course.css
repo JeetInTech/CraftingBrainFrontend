@@ -224,3 +224,9 @@
     padding: 1rem;
   }
 }
+.card-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px;
+}

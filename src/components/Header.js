@@ -12,7 +12,7 @@ function Header() {
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const craftingBrainText = "Crafting Brain".split("");
+
 
   // Scroll handler for auto-hide header
   useEffect(() => {
@@ -66,11 +66,11 @@ function Header() {
       <div className="header-container">
         {/* Logo */}
         <Link to="/" className="logo" onClick={() => handleLinkClick("/")}>
-          {craftingBrainText.map((char, index) => (
-            <span key={index} style={{ animationDelay: `${index * 0.1}s` }}>
-              {char}
-            </span>
-          ))}
+        
+          <video className="video-logo" autoPlay loop muted playsInline>
+        <source src={require("../assets/CB.mp4")} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
         </Link>
 
         {/* Desktop Navigation */}

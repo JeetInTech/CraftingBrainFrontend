@@ -12,8 +12,6 @@ function Header() {
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-
-
   // Scroll handler for auto-hide header
   useEffect(() => {
     const handleScroll = () => {
@@ -62,118 +60,124 @@ function Header() {
   };
 
   return (
-    <header className={`header ${isHeaderHidden ? 'hidden' : ''}`}>
-      <div className="header-container">
-        {/* Logo */}
-        <Link to="/" className="logo" onClick={() => handleLinkClick("/")}>
-        
+    <>
+      {/* Floating Logo - Always visible */}
+      <div className="floating-logo">
+        <Link to="/" onClick={() => handleLinkClick("/")}>
           <video className="video-logo" autoPlay loop muted playsInline>
-        <source src={require("../assets/CB.mp4")} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+            <source src={require("../assets/CB.mp4")} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="desktop-nav">
-          <Link 
-            to="/" 
-            className={`nav-link ${pathname === '/' ? 'active' : ''}`}
-            onClick={() => handleLinkClick("/")}
-          >
-            Home
-          </Link>
-          <Link 
-            to="/courses" 
-            className={`nav-link ${pathname === '/courses' ? 'active' : ''}`}
-            onClick={() => handleLinkClick("/courses")}
-          >
-            Courses
-          </Link>
-          <Link 
-            to="/about" 
-            className={`nav-link ${pathname === '/about' ? 'active' : ''}`}
-            onClick={() => handleLinkClick("/about")}
-          >
-            About
-          </Link>
-          <Link 
-            to="/contact" 
-            className={`nav-link ${pathname === '/contact' ? 'active' : ''}`}
-            onClick={() => handleLinkClick("/contact")}
-          >
-            Contact
-          </Link>
-        </nav>
-
-        {/* Header Actions */}
-        <div className="header-actions">
-          {/* Search Bar */}
-          <div className={`search-container ${isSearchOpen ? 'open' : ''}`}>
-            <form onSubmit={handleSearchSubmit} className="search-form">
-              <button 
-                type="button" 
-                className="search-toggle"
-                onClick={toggleSearch}
-                aria-label="Toggle search"
-              >
-                {isSearchOpen ? <FiX /> : <FiSearch />}
-              </button>
-              <input
-                type="text"
-                placeholder="Search courses..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="search-input"
-                autoFocus={isSearchOpen}
-              />
-            </form>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button 
-            className="mobile-menu-toggle"
-            onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <FiX /> : <FiMenu />}
-          </button>
-        </div>
       </div>
 
-      {/* Mobile Menu */}
-      <nav className={`mobile-nav ${isMenuOpen ? 'open' : ''}`}>
-        <div className="mobile-nav-content">
-          <Link 
-            to="/" 
-            className={`mobile-nav-link ${pathname === '/' ? 'active' : ''}`}
-            onClick={() => handleLinkClick("/")}
-          >
-            Home
-          </Link>
-          <Link 
-            to="/courses" 
-            className={`mobile-nav-link ${pathname === '/courses' ? 'active' : ''}`}
-            onClick={() => handleLinkClick("/courses")}
-          >
-            Courses
-          </Link>
-          <Link 
-            to="/about" 
-            className={`mobile-nav-link ${pathname === '/about' ? 'active' : ''}`}
-            onClick={() => handleLinkClick("/about")}
-          >
-            About
-          </Link>
-          <Link 
-            to="/contact" 
-            className={`mobile-nav-link ${pathname === '/contact' ? 'active' : ''}`}
-            onClick={() => handleLinkClick("/contact")}
-          >
-            Contact
-          </Link>
+      {/* Header - Now smaller without logo */}
+      <header className={`header ${isHeaderHidden ? 'hidden' : ''}`}>
+        <div className="header-container">
+          {/* Logo removed from here - now floating independently */}
+
+          {/* Desktop Navigation */}
+          <nav className="desktop-nav">
+            <Link 
+              to="/" 
+              className={`nav-link ${pathname === '/' ? 'active' : ''}`}
+              onClick={() => handleLinkClick("/")}
+            >
+              Home
+            </Link>
+            <Link 
+              to="/courses" 
+              className={`nav-link ${pathname === '/courses' ? 'active' : ''}`}
+              onClick={() => handleLinkClick("/courses")}
+            >
+              Courses
+            </Link>
+            <Link 
+              to="/about" 
+              className={`nav-link ${pathname === '/about' ? 'active' : ''}`}
+              onClick={() => handleLinkClick("/about")}
+            >
+              About
+            </Link>
+            <Link 
+              to="/contact" 
+              className={`nav-link ${pathname === '/contact' ? 'active' : ''}`}
+              onClick={() => handleLinkClick("/contact")}
+            >
+              Contact
+            </Link>
+          </nav>
+
+          {/* Header Actions */}
+          <div className="header-actions">
+            {/* Search Bar */}
+            <div className={`search-container ${isSearchOpen ? 'open' : ''}`}>
+              <form onSubmit={handleSearchSubmit} className="search-form">
+                <button 
+                  type="button" 
+                  className="search-toggle"
+                  onClick={toggleSearch}
+                  aria-label="Toggle search"
+                >
+                  {isSearchOpen ? <FiX /> : <FiSearch />}
+                </button>
+                <input
+                  type="text"
+                  placeholder="Search courses..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="search-input"
+                  autoFocus={isSearchOpen}
+                />
+              </form>
+            </div>
+
+            {/* Mobile Menu Toggle */}
+            <button 
+              className="mobile-menu-toggle"
+              onClick={toggleMobileMenu}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <FiX /> : <FiMenu />}
+            </button>
+          </div>
         </div>
-      </nav>
-    </header>
+
+        {/* Mobile Menu */}
+        <nav className={`mobile-nav ${isMenuOpen ? 'open' : ''}`}>
+          <div className="mobile-nav-content">
+            <Link 
+              to="/" 
+              className={`mobile-nav-link ${pathname === '/' ? 'active' : ''}`}
+              onClick={() => handleLinkClick("/")}
+            >
+              Home
+            </Link>
+            <Link 
+              to="/courses" 
+              className={`mobile-nav-link ${pathname === '/courses' ? 'active' : ''}`}
+              onClick={() => handleLinkClick("/courses")}
+            >
+              Courses
+            </Link>
+            <Link 
+              to="/about" 
+              className={`mobile-nav-link ${pathname === '/about' ? 'active' : ''}`}
+              onClick={() => handleLinkClick("/about")}
+            >
+              About
+            </Link>
+            <Link 
+              to="/contact" 
+              className={`mobile-nav-link ${pathname === '/contact' ? 'active' : ''}`}
+              onClick={() => handleLinkClick("/contact")}
+            >
+              Contact
+            </Link>
+          </div>
+        </nav>
+      </header>
+    </>
   );
 }
 

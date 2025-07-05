@@ -24,6 +24,14 @@ function Course({ showFooter = true }) {
 
   return (
     <div className="page-wrapper">
+      
+      {/* New title div above the existing page-header */}
+
+      <div className="page-header">
+        <h1 className="page-title">🚀 Featured Courses</h1>
+        <p className="page-subtitle">Master new skills with our expert-led courses</p>
+      </div>
+
 
       <div className="card-container">
       <BlogCard

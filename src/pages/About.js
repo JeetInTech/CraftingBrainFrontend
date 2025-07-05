@@ -5,7 +5,7 @@ import Footer from '../components/Footer'; // Import the Footer component
 
 // Theme colors and gradients consistent with Course.js
 const colors = {
-  background: '#0a0a0a',
+  background: '#0a0a00',
   primaryText: '#ffffff',
   secondaryText: '#a0c4ff',
   highlight: '#ffe600',

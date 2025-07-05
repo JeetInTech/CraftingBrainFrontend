@@ -188,6 +188,7 @@ function Hero() {
       <div className="entrance-overlay"></div>
     </section>
   );
+  
 }
 
 export default Hero;

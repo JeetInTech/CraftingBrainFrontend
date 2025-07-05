@@ -162,7 +162,7 @@ function Hero() {
               We Craft <span className="highlight-word">Intelligent Minds!</span>
             </span>
             <span className="title-line">
-              Become the <span className="highlight-word">mind</span> behind
+              Become the <span className="highlight-word">Mind</span> behind
               tomorrow's <span className="highlight-word">AI</span>
             </span>
           </h1>

@@ -4,12 +4,14 @@ import styled, { keyframes } from 'styled-components';
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-// Colors and Animations
+// Updated Colors to match your theme
 const colors = {
-  background: '#0a0a0a',
+  background: '#000000',
   primaryText: '#ffffff',
-  accent: '#54a0ff',
-  secondaryText: '#a0c4ff',
+  accent: '#ff6b35',
+  secondaryText: '#ffab91',
+  warmYellow: '#ffa726',
+  brandGold: '#f7931e',
 };
 
 const fadeIn = keyframes`
@@ -27,6 +29,8 @@ const FooterContainer = styled.footer`
   align-items: center;
   text-align: center;
   animation: ${fadeIn} 1s ease-out;
+
+   box-shadow: 0px -10px 30px rgba(255, 107, 53, 0.2);
 
   @media (min-width: 768px) {
     padding: 4rem 3rem;
@@ -55,12 +59,13 @@ const CompanyInfo = styled.div`
 
   h2 {
     font-size: 1.8rem;
-    color: ${colors.accent};
+    color: ${colors.warmYellow};
     margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(255, 167, 38, 0.6);
   }
 
   p {
-    color: ${colors.secondaryText};
+    color: ${colors.primaryText};
     font-size: 0.95rem;
     line-height: 1.6;
   }
@@ -74,8 +79,9 @@ const NavLinks = styled.div`
 
   h3 {
     font-size: 1.5rem;
-    color: ${colors.accent};
+    color: ${colors.warmYellow};
     margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(255, 167, 38, 0.6);
   }
 
   a {
@@ -99,8 +105,9 @@ const SocialMedia = styled.div`
 
   h3 {
     font-size: 1.5rem;
-    color: ${colors.accent};
+    color: ${colors.warmYellow};
     margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(255, 167, 38, 0.6);
   }
 
   div {
@@ -113,52 +120,41 @@ const SocialMedia = styled.div`
       transition: color 0.3s;
 
       &:hover {
-        color: ${colors.secondaryText};
+        color: ${colors.accent};
       }
     }
   }
 `;
 
-// Newsletter Signup Form
-const Newsletter = styled.div`
-  max-width: 300px;
-  text-align: left;
+// Privacy Policy Button
+const PrivacyPolicy = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 
   h3 {
     font-size: 1.5rem;
-    color: ${colors.accent};
+    color: ${colors.warmYellow};
     margin-bottom: 1rem;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    text-shadow: 0 0 20px rgba(255, 167, 38, 0.6);
   }
 `;
 
-const Input = styled.input`
-  padding: 0.8rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  outline: none;
-  background: #333;
+const PrivacyButton = styled(Link)`
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffcc02 100%);
   color: ${colors.primaryText};
-`;
-
-const Button = styled.button`
-  padding: 0.8rem;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  text-decoration: none;
   font-size: 1rem;
-  color: ${colors.primaryText};
-  background: ${colors.accent};
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(255, 107, 53, 0.3);
 
   &:hover {
-    background: ${colors.secondaryText};
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.5);
   }
 `;
 
@@ -169,7 +165,7 @@ const FooterBottom = styled.div`
   border-top: 1px solid #333;
   padding-top: 1rem;
   font-size: 0.85rem;
-  color: #a0a0a0;
+  color: ${colors.primaryText};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -220,22 +216,20 @@ function Footer() {
           </div>
         </SocialMedia>
 
-        {/* Newsletter Signup */}
-        <Newsletter>
-          <h3>Subscribe</h3>
-          <form>
-            <Input type="email" placeholder="Your email" required />
-            <Button type="submit">Subscribe</Button>
-          </form>
-        </Newsletter>
+        {/* Privacy Policy Button */}
+        <PrivacyPolicy>
+          <h3>Legal</h3>
+          <PrivacyButton to="/privacypolicy">
+            Privacy Policy
+          </PrivacyButton>
+        </PrivacyPolicy>
       </FooterContent>
 
       {/* Footer Bottom */}
       <FooterBottom>
         <p>&copy; 2024 Crafting Brain. All rights reserved.</p>
         <p>
-          <Link to="/privacy-policy" style={{ color: '#a0c4ff', textDecoration: 'none' }}>Privacy Policy</Link> | 
-          <Link to="/terms-of-service" style={{ color: '#a0c4ff', textDecoration: 'none' }}> Terms of Service</Link>
+          <Link to="/terms-of-service" style={{ color: '#ffab91', textDecoration: 'none' }}>Terms of Service</Link>
         </p>
       </FooterBottom>
     </FooterContainer>

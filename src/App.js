@@ -12,6 +12,7 @@ import ScrollToTop from './components/ScrollToTop';
 import ScanAndPayPage from './pages/payment';
 import RecordingsV2 from './pages/RecordingV2';
 import Workshop from './pages/workshop';
+import PrivacyPolicy from './components/privacypolicy';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/payment" element={<ScanAndPayPage />} />
         <Route path="/recordings" element={<RecordingsV2 />} />
         <Route path="/workshop" element={<Workshop />} />
+         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
       </Routes>
     </Router>
   );

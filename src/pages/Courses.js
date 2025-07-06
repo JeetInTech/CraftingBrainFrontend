@@ -1,21 +1,23 @@
-// src/pages/Course.js
-import React, { useState } from "react";
+// src/pages/Courses.js
+import React, {  } from "react";
 import "./Course.css";
+import "./cards.css";
+import "./popup.css";
+import CourseCard from "../components/cards";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
-import BlogCard from "../components/cards";
 
-function Course({ showFooter = true }) {
-  const [expandedModules, setExpandedModules] = useState([]);
+function Courses({ showFooter = true }) {
+  // const [expandedModules, setExpandedModules] = useState([]);
   const navigate = useNavigate();
 
-  const toggleModule = (index) => {
-    setExpandedModules((prevExpanded) =>
-      prevExpanded.includes(index)
-        ? prevExpanded.filter((i) => i !== index)
-        : [...prevExpanded, index]
-    );
-  };
+  // const toggleModule = (index) => {
+  //   setExpandedModules((prevExpanded) =>
+  //     prevExpanded.includes(index)
+  //       ? prevExpanded.filter((i) => i !== index)
+  //       : [...prevExpanded, index]
+  //   );
+  // };
 
   const handleEnrollNow = () => {
     navigate("/payment");
@@ -23,351 +25,104 @@ function Course({ showFooter = true }) {
 
   return (
     <div className="page-wrapper">
-      {/* New title div above the existing page-header */}
+      <div className="courses-page">
+        <div className="page-header">
+          <h1 className="page-title">🚀 Featured Courses</h1>
+          <p className="page-subtitle">
+            Master new skills with our expert-led courses
+          </p>
+        </div>
 
-      <div className="page-header">
-        <h1 className="page-title">🚀 Featured Courses</h1>
-        <p className="page-subtitle">
-          Master new skills with our expert-led courses
-        </p>
+        <div className="courses-grid">
+          <CourseCard
+            image="https://img.freepik.com/premium-vector/vector-illustration-cute-green-python-coding-laptop_831490-4587.jpg"
+            title="Module 1: Python Foundations"
+            description="Master Python basics and dive into advanced topics like OOP, list comprehensions, and lambda functions for data applications."
+            author="Aman Kasaudhan"
+            role="Python Developer"
+            videoUrl="https://www.youtube.com/embed/DRpts89ecPQ"
+            
+          />
+
+          <CourseCard
+            image="https://www.techslang.com/wp-content/uploads/2021/10/thinking-ai-humanoid-robot-analyzing-screen-mathematics-formula-science-e1634742458866.jpg"
+            title="Module 2: Mathematics for Machine Learning"
+            description="Cover linear algebra, calculus, and probability/statistics essential for machine learning foundations."
+            author="Aman Kasaudhan"
+            role="Mathematics Professor"
+            videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          />
+
+          <CourseCard
+            image="https://media.licdn.com/dms/image/v2/D4D12AQHY5lUTWzltLA/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1701542064078?e=2147483647&v=beta&t=LsVnNAZgOAPzoQhazX9dY_l5sUO40-DYjUntMF1JZwc"
+            title="Module 3: Statistics for Data Science"
+            description="Learn descriptive and inferential statistics, regression analysis, and ANOVA to support data-driven insights."
+            author="Aman Kasaudhan"
+            role="Data Analyst"
+            videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          />
+
+          <CourseCard
+            image="https://www.simplilearn.com/ice9/free_resources_article_thumb/machine_learning_terms.jpg"
+            title="Module 4: Machine Learning Essentials"
+            description="Explore supervised/unsupervised learning algorithms, model evaluation, and performance metrics like F1-score."
+            author="Aman Kasaudhan"
+            role="ML Engineer"
+            videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          />
+
+          <CourseCard
+            image="https://www.devprojournal.com/wp-content/uploads/2021/04/cloud-computing-data-696x392.jpg"
+            title="Module 5: Databases and Cloud Computing"
+            description="Master SQL, NoSQL databases, and cloud platforms for scalable data storage and processing solutions."
+            author="Aman Kasaudhan"
+            role="Cloud Architect"
+            videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          />
+
+          <CourseCard
+            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyhAVN1lexbzD4n7WyoNtpgxIZauHAAdGUyw&s"
+            title="Module 6: Deep Learning and NLP"
+            description="Build neural networks, understand deep learning architectures, and implement natural language processing models."
+            author="Aman Kasaudhan"
+            role="AI Researcher"
+            videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          />
+
+          <CourseCard
+            image="https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-0e78-622f-b34a-b514044526e6/raw?se=2025-07-06T11%3A12%3A19Z&sp=r&sv=2024-08-04&sr=b&scid=1d0568ca-f000-516d-9300-fd4b40e4aeb1&skoid=f28c0102-4d9d-4950-baf0-4a8e5f6cf9d4&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-05T12%3A10%3A42Z&ske=2025-07-06T12%3A10%3A42Z&sks=b&skv=2024-08-04&sig=l3XXn06xazu1y8PQ10L6fzSPj9486jPySLmDMrDHv6M%3D"
+            title="Module 7: Transformers, GPT Models, and RAG"
+            description="Master modern AI architectures including transformer models, GPT implementations, and retrieval-augmented generation."
+            author="Aman Kasaudhan"
+            role="AI Specialist"
+            videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          />
+
+          <CourseCard
+            image="https://skaftenicki.github.io/dtu_mlops/figures/mlops_cycle.png"
+            title="Module 8: MLOps and Model Deployment"
+            description="Learn to deploy, monitor, and maintain machine learning models in production environments at scale."
+            author="Aman Kasaudhan"
+            role="DevOps Engineer"
+            videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          />
+
+          <CourseCard
+            image="https://www.solulab.com/wp-content/uploads/2024/03/GenAI-Automation.jpg"
+            title="Module 9: AI Automation Project"
+            description="Leverage AI to automate real-world tasks by integrating machine learning, NLP, and APIs into a functional pipeline."
+            author="Aman Kasaudhan"
+            role="Senior AI Engineer"
+            videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          />
+        </div>
       </div>
+    
+      
+      
+      
 
-      <div className="card-container">
-        <BlogCard
-          image=""
-          title="Module 1: Python Foundations"
-          description="Master Python basics and dive into advanced topics like OOP, list comprehensions, and lambda functions for data applications."
-          author=""
-          role=""
-          date=""
-          authorImage=""
-        />
-
-        <BlogCard
-          image=""
-          title="Module 2: Mathematics for Machine Learning"
-          description="Cover linear algebra, calculus, and probability/statistics essential for machine learning foundations."
-          author=""
-          role=""
-          date=""
-          authorImage=""
-        />
-
-        <BlogCard
-          image=""
-          title="Module 3: Statistics for Data Science"
-          description="Learn descriptive and inferential statistics, regression analysis, and ANOVA to support data-driven insights."
-          author=""
-          role=""
-          date=""
-          authorImage=""
-        />
-
-        <BlogCard
-          image=""
-          title="Module 4: Machine Learning Essentials"
-          description="Explore supervised/unsupervised learning algorithms, model evaluation, and performance metrics like F1-score."
-          author=""
-          role=""
-          date=""
-          authorImage=""
-        />
-      </div>
-
-      <div className="card-container">
-        <BlogCard
-          image=""
-          title="Module 5: Databases and Cloud Computing"
-          description="Understand SQL, NoSQL, and cloud platforms (AWS, GCP, Azure) for scalable data storage and deployment."
-          author=""
-          role=""
-          date=""
-          authorImage=""
-        />
-
-        <BlogCard
-          image=""
-          title="Module 6: Deep Learning and NLP"
-          description="Master CNNs, RNNs, and NLP fundamentals like tokenization, embeddings, and sentiment analysis."
-          author=""
-          role=""
-          date=""
-          authorImage=""
-        />
-
-        <BlogCard
-          image=""
-          title="Module 7: Transformers, GPT Models, and RAG"
-          description="Study BERT, GPT, and learn how RAG and LangChain enhance AI with retrieval and generation."
-          author=""
-          role=""
-          date=""
-          authorImage=""
-        />
-
-        <BlogCard
-          image=""
-          title="Module 8: MLOps and Model Deployment"
-          description="Implement MLOps practices, CI/CD, and deploy models using APIs and cloud services for real-world use."
-          author=""
-          role=""
-          date=""
-          authorImage=""
-        />
-      </div>
-
-      {/* YouTube Video Embed */}
-      <div className="youtube-video">
-        <iframe
-          src="https://www.youtube.com/embed/yX8gOO_VLbk"
-          title="YouTube Video"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
-      </div>
-
-      <section className="section">
-        <h2 className="section-title">Course Overview</h2>
-        <p>
-          Step into the future of AI and Data Science with our exclusive program
-          in collaboration with Inikola. This hands-on internship includes
-          intensive projects, expert mentorship, and 100% placement assurance
-          starting by the end of the second month.
-        </p>
-      </section>
-
-      <section className="section">
-        <h2 className="section-title">Key Highlights and Features</h2>
-        <ul className="highlights-list">
-          <li>Practical Projects with real-world data</li>
-          <li>Mentorship from AI expert Aman Kasaudhan</li>
-          <li>100% Placement Assurance beginning from the second month</li>
-          <li>Guaranteed Stipend of ₹10,000/month</li>
-          <li>Internship Experience Letter from Inikola</li>
-        </ul>
-      </section>
-
-      <section className="section">
-        <h2 className="section-title">Curriculum</h2>
-
-        {[
-          {
-            title: "Module 1: Python Foundations",
-            content: (
-              <>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">Python Programming</h4>
-                  <p>
-                    Master Python basics, including data types, control
-                    structures, functions, and libraries such as Pandas and
-                    NumPy for data manipulation.
-                  </p>
-                </div>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">
-                    Advanced Python for Data Science
-                  </h4>
-                  <p>
-                    Dive into advanced topics like list comprehensions, lambda
-                    functions, and object-oriented programming (OOP) to build
-                    complex data applications.
-                  </p>
-                </div>
-              </>
-            ),
-          },
-          {
-            title: "Module 2: Mathematics for Machine Learning",
-            content: (
-              <>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">Linear Algebra</h4>
-                  <p>
-                    Learn about vectors, matrices, and matrix operations,
-                    crucial for understanding transformations in machine
-                    learning algorithms.
-                  </p>
-                </div>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">Calculus</h4>
-                  <p>
-                    Understand derivatives and integrals, which are used to
-                    optimize machine learning models.
-                  </p>
-                </div>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">
-                    Probability and Statistics
-                  </h4>
-                  <p>
-                    Explore concepts like random variables, probability
-                    distributions, and statistical inference to support model
-                    development and evaluation.
-                  </p>
-                </div>
-              </>
-            ),
-          },
-          {
-            title: "Module 3: Statistics for Data Science",
-            content: (
-              <>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">Descriptive Statistics</h4>
-                  <p>
-                    Summarize data using measures of central tendency (mean,
-                    median, mode) and dispersion (variance, standard deviation).
-                  </p>
-                </div>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">Inferential Statistics</h4>
-                  <p>
-                    Learn hypothesis testing, confidence intervals, and p-values
-                    to make data-driven decisions.
-                  </p>
-                </div>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">Statistical Modeling</h4>
-                  <p>
-                    Develop skills in correlation, regression analysis, and
-                    ANOVA for predicting and interpreting data trends.
-                  </p>
-                </div>
-              </>
-            ),
-          },
-          {
-            title: "Module 4: Machine Learning Essentials",
-            content: (
-              <>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">Supervised Learning</h4>
-                  <p>
-                    Explore algorithms for regression and classification,
-                    including linear regression, logistic regression, decision
-                    trees, and SVMs.
-                  </p>
-                </div>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">Unsupervised Learning</h4>
-                  <p>
-                    Uncover patterns in data using clustering techniques like
-                    K-means and hierarchical clustering.
-                  </p>
-                </div>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">Model Evaluation</h4>
-                  <p>
-                    Learn metrics like accuracy, precision, recall, and F1-score
-                    to assess model performance.
-                  </p>
-                </div>
-              </>
-            ),
-          },
-          {
-            title: "Module 5: Databases and Cloud Computing",
-            content: (
-              <>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">SQL & NoSQL Databases</h4>
-                  <p>
-                    Gain proficiency in SQL for structured data management and
-                    NoSQL for handling unstructured data.
-                  </p>
-                </div>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">Cloud Services</h4>
-                  <p>
-                    Introduction to AWS, Google Cloud, and Azure for scalable
-                    data storage and machine learning deployment.
-                  </p>
-                </div>
-              </>
-            ),
-          },
-          {
-            title: "Module 6: Deep Learning and NLP",
-            content: (
-              <>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">Neural Networks</h4>
-                  <p>
-                    Understand CNNs and RNNs, foundational deep learning models
-                    for image and sequential data processing.
-                  </p>
-                </div>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">NLP Fundamentals</h4>
-                  <p>
-                    Explore tokenization, embeddings, and sentiment analysis to
-                    interpret text data.
-                  </p>
-                </div>
-              </>
-            ),
-          },
-          {
-            title: "Module 7: Transformers, GPT Models, and RAG",
-            content: (
-              <>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">Transformers</h4>
-                  <p>
-                    Study transformer models like BERT and GPT, focusing on
-                    architecture and applications in NLP.
-                  </p>
-                </div>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">RAG & LangChain</h4>
-                  <p>
-                    Learn how Retrieval-Augmented Generation and LangChain
-                    improve AI by combining retrieval with generation.
-                  </p>
-                </div>
-              </>
-            ),
-          },
-          {
-            title: "Module 8: MLOps and Model Deployment",
-            content: (
-              <>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">MLOps Practices</h4>
-                  <p>
-                    Implement CI/CD pipelines, model versioning, and monitoring
-                    for reliable ML model management.
-                  </p>
-                </div>
-                <div className="sub-module">
-                  <h4 className="sub-module-title">Deployment Strategies</h4>
-                  <p>
-                    Deploy models using APIs and cloud services for real-world
-                    applications.
-                  </p>
-                </div>
-              </>
-            ),
-          },
-        ].map((module, index) => (
-          <div key={index} className="accordion">
-            <div
-              className="accordion-header"
-              onClick={() => toggleModule(index)}
-            >
-              {module.title}
-              <span>{expandedModules.includes(index) ? "-" : "+"}</span>
-            </div>
-            <div
-              className={`accordion-content ${
-                expandedModules.includes(index) ? "expanded" : ""
-              }`}
-            >
-              {module.content}
-            </div>
-          </div>
-        ))}
-      </section>
+      
 
       <section className="section">
         <h2 className="section-title">Instructor Bio</h2>
@@ -384,32 +139,7 @@ function Course({ showFooter = true }) {
         </p>
       </section>
 
-      <section className="section">
-        <h2 className="section-title">Eligibility and Requirements</h2>
-        <p>
-          <strong>Ideal for:</strong> Graduates, engineers, and tech enthusiasts
-          looking to break into AI and data science.
-          <br />
-          <strong>Requirements:</strong> Basic familiarity with Python and a
-          commitment to learning and problem-solving. This program is accessible
-          to beginners and career changers alike.
-        </p>
-      </section>
-
-      <section className="section">
-        <h2 className="section-title">Course Duration and Schedule</h2>
-        <p>
-          <strong>Duration:</strong> 6 months, with placement starting by the
-          end of the second month.
-          <br />
-          <strong>Weekly Live Sessions:</strong> Five sessions each week, 2.5
-          hours each (3 by Crafting Brain, 2 by Inikola).
-          <br />
-          <strong>Flexible Learning:</strong> Recorded sessions, on-demand
-          resources, and additional support to accommodate various schedules.
-        </p>
-      </section>
-
+      
       <button className="cta-button" onClick={handleEnrollNow}>
         Enroll Now – Limited Spots Available!
       </button>
@@ -419,4 +149,4 @@ function Course({ showFooter = true }) {
   );
 }
 
-export default Course;
+export default Courses;

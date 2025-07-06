@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-// import "./cards.css";
-import "../pages/popup.css"; // Import the popup styles
+import "./cards.css";
+import "./popup.css"; // Import the popup styles
 
 const CourseCard = ({ 
   image, 

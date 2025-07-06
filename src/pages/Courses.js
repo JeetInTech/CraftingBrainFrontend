@@ -5,11 +5,11 @@ import "./cards.css";
 import "./popup.css";
 import CourseCard from "../components/cards";
 import Footer from "../components/Footer";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 function Courses({ showFooter = true }) {
   // const [expandedModules, setExpandedModules] = useState([]);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // const toggleModule = (index) => {
   //   setExpandedModules((prevExpanded) =>
@@ -19,9 +19,7 @@ function Courses({ showFooter = true }) {
   //   );
   // };
 
-  const handleEnrollNow = () => {
-    navigate("/payment");
-  };
+  
 
   return (
     <div className="page-wrapper">
@@ -124,25 +122,9 @@ function Courses({ showFooter = true }) {
 
       
 
-      <section className="section">
-        <h2 className="section-title">Instructor Bio</h2>
-        <p>
-          <strong>Instructor:</strong> Aman Kasaudhan <br />
-          <strong>Bio:</strong> Aman Kasaudhan is a data science and AI expert
-          with a wealth of experience in machine learning, data analysis, and
-          deep learning applications. Known for his approachable teaching style
-          and hands-on guidance, Aman has mentored hundreds of students to
-          successful careers in tech. With extensive experience in building
-          real-world AI solutions, he brings both theory and practice to life in
-          each session, ensuring every student is fully equipped for their
-          career.
-        </p>
-      </section>
 
       
-      <button className="cta-button" onClick={handleEnrollNow}>
-        Enroll Now – Limited Spots Available!
-      </button>
+      
 
       {showFooter && <Footer />}
     </div>

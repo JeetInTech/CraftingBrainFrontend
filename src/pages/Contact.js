@@ -1,232 +1,302 @@
 import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
-import Footer from '../components/Footer';
+import './Contact.css';
 
-// Theme colors
-const colors = {
-  background: '#0a0a0a',
-  sectionBackground: '#181818',
-  accent: '#54a0ff',
-  primaryText: '#ffffff',
-  secondaryText: '#a0c4ff',
-};
-
-// Animations
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-`;
-
-const glowEffect = keyframes`
-  0% { box-shadow: 0 0 5px ${colors.accent}; }
-  50% { box-shadow: 0 0 15px ${colors.accent}; }
-  100% { box-shadow: 0 0 5px ${colors.accent}; }
-`;
-
-// Styled Components
-const PageWrapper = styled.div`
-  min-height: 100vh;
-  background-color: ${colors.background};
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-family: 'Poppins', sans-serif;
-  padding: 1rem;
-`;
-
-const Container = styled.div`
-  width: 90%;
-  max-width: 500px;
-  margin: 2rem auto; // Center container vertically and horizontally
-  padding: 2rem;
-  background: ${colors.sectionBackground};
-  color: ${colors.primaryText};
-  border-radius: 12px;
-  box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.7);
-  animation: ${fadeIn} 0.8s ease-out;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center; // Center align form content horizontally
-  justify-content: center; // Center content vertically within the container
-
-  @media (max-width: 768px) {
-    padding: 1.5rem;
-  }
-
-  @media (max-width: 480px) {
-    padding: 1rem;
-  }
-`;
-
-const Title = styled.h1`
-  text-align: center;
-  color: ${colors.accent};
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  animation: ${fadeIn} 1s ease-out forwards;
-
-  @media (max-width: 768px) {
-    font-size: 1.8rem;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 1.5rem;
-  }
-`;
-
-const Form = styled.form`
-  width: 100%; // Ensure the form spans the container width
-  display: flex;
-  flex-direction: column;
-  gap: 1rem; // Add spacing between form fields
-
-  /* Remove default padding/margins to ensure proper alignment */
-  margin: 0;
-  padding: 0;
-`;
-
-const Input = styled.input`
-  width: calc(100% - 20px); // Fix alignment issues
-  margin: 0 auto; // Center horizontally
-  padding: 0.9rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  border: 1px solid #333;
-  outline: none;
-  background: #2c2c2c;
-  color: ${colors.primaryText};
-  transition: box-shadow 0.3s ease;
-
-  &:focus {
-    animation: ${glowEffect} 1.5s infinite;
-  }
-
-  @media (max-width: 480px) {
-    padding: 0.7rem;
-    font-size: 0.9rem;
-  }
-`;
-
-const TextArea = styled.textarea`
-  width: calc(100% - 20px); // Fix alignment issues
-  margin: 0 auto; // Center horizontally
-  padding: 0.9rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  border: 1px solid #333;
-  outline: none;
-  background: #2c2c2c;
-  color: ${colors.primaryText};
-  resize: vertical;
-  transition: box-shadow 0.3s ease;
-
-  &:focus {
-    animation: ${glowEffect} 1.5s infinite;
-  }
-
-  @media (max-width: 480px) {
-    padding: 0.7rem;
-    font-size: 0.9rem;
-  }
-`;
-
-const Button = styled.button`
-  width: calc(100% - 20px); // Fix alignment issues
-  margin: 0 auto; // Center horizontally
-  padding: 0.9rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: ${colors.background};
-  background: ${colors.accent};
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
-  animation: ${fadeIn} 1.2s ease forwards;
-
-  &:hover {
-    background: #3b82d1;
-    transform: scale(1.05);
-    box-shadow: 0px 4px 10px rgba(84, 160, 255, 0.6);
-  }
-
-  @media (max-width: 480px) {
-    padding: 0.8rem;
-    font-size: 1rem;
-  }
-`;
-
-const ResponseMessage = styled.p`
-  margin-top: 1.5rem;
-  font-size: 1rem;
-  text-align: center;
-  color: ${(props) => (props.success ? '#4CAF50' : '#f44336')};
-  animation: ${fadeIn} 0.8s ease-out forwards;
-`;
-
-// Component
-function Contact({ showFooter = true }) {
+const ContactUs = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
+    subject: '',
     message: '',
+    inquiryType: 'general'
   });
-  const [responseMessage, setResponseMessage] = useState('');
-  const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    // Clear any previous error when user starts typing
+    if (errorMessage) setErrorMessage('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setResponseMessage("Thank you! We'll get back to you soon.");
-    setIsSuccess(true);
-    setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(true);
+    setErrorMessage('');
+    
+    try {
+      // Replace with your actual backend URL
+      const response = await fetch('http://localhost:3001/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus('success');
+        console.log('Form submitted successfully:', result);
+        
+        // Reset form after successful submission
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: '',
+          inquiryType: 'general'
+        });
+        
+        // Clear success message after 5 seconds
+        setTimeout(() => setSubmitStatus(''), 5000);
+      } else {
+        throw new Error(result.error || 'Failed to submit form');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setErrorMessage(error.message || 'Failed to send message. Please try again.');
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <PageWrapper>
-      <Container>
-        <Title>Contact Us</Title>
-        <Form onSubmit={handleSubmit}>
-          <Input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-          <Input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          <TextArea
-            name="message"
-            rows="5"
-            placeholder="Your Message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-          ></TextArea>
-          <Button type="submit">Send Message</Button>
-        </Form>
-        {responseMessage && (
-          <ResponseMessage success={isSuccess}>{responseMessage}</ResponseMessage>
-        )}
-      </Container>
-      {showFooter && <Footer />}
-    </PageWrapper>
-  );
-}
+    <div className="contact-page-wrapper">
+      <div className="contact-container">
+        
+        {/* Header Section */}
+        <div className="contact-header">
+          <h1 className="contact-title">Get In Touch</h1>
+          <p className="contact-subtitle">
+            Have questions about our AI & Data Science program? We're here to help you start your journey.
+          </p>
+        </div>
 
-export default Contact;
+        <div className="contact-content">
+          
+          {/* Left Side - Contact Information */}
+          <div className="contact-info-section">
+            {/* Contact Methods Grid */}
+            <div className="contact-methods">
+              <div className="contact-method">
+                <div className="contact-icon">
+                  <span>📧</span>
+                </div>
+                <div className="contact-details">
+                  <h3>Email Us</h3>
+                  <p>contact@craftingbrain.com</p>
+                  <span>We'll respond within 24 hours</span>
+                </div>
+              </div>
+
+              <div className="contact-method">
+                <div className="contact-icon">
+                  <span>📞</span>
+                </div>
+                <div className="contact-details">
+                  <h3>Call Us</h3>
+                  <p>+91 98765 43210</p>
+                  <span>Mon-Fri, 9:00 AM - 6:00 PM IST</span>
+                </div>
+              </div>
+
+              <div className="contact-method">
+                <div className="contact-icon">
+                  <span>📍</span>
+                </div>
+                <div className="contact-details">
+                  <h3>Location</h3>
+                  <p>Hyderabad, Telangana</p>
+                  <span>Visit us by appointment</span>
+                </div>
+              </div>
+
+              <div className="contact-method">
+                <div className="contact-icon">
+                  <span>💬</span>
+                </div>
+                <div className="contact-details">
+                  <h3>Quick Contact</h3>
+                  <p>Available 24/7</p>
+                  <span>Instant support</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side - Contact Form */}
+          <div className="contact-form-section">
+            <div className="form-container">
+              <h2>Send us a Message</h2>
+              <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+
+              <form onSubmit={handleSubmit} className="contact-form">
+                
+                {/* Inquiry Type */}
+                <div className="form-group">
+                  <label htmlFor="inquiryType">What can we help you with?</label>
+                  <select
+                    id="inquiryType"
+                    name="inquiryType"
+                    value={formData.inquiryType}
+                    onChange={handleInputChange}
+                    className="form-select"
+                    required
+                  >
+                    <option value="general">General Inquiry</option>
+                    <option value="course">Course Information</option>
+                    <option value="enrollment">Enrollment Support</option>
+                    <option value="technical">Technical Support</option>
+                    <option value="partnership">Partnership</option>
+                    <option value="career">Career Guidance</option>
+                  </select>
+                </div>
+
+                {/* Name and Email Row */}
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="name">Full Name *</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="form-input"
+                      placeholder="Enter your full name"
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="email">Email Address *</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="form-input"
+                      placeholder="your.email@example.com"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Phone and Subject Row */}
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="phone">Phone Number</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="form-input"
+                      placeholder="+91 98765 43210"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="subject">Subject *</label>
+                    <input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      className="form-input"
+                      placeholder="Brief subject line"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Message */}
+                <div className="form-group">
+                  <label htmlFor="message">Message *</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    className="form-textarea"
+                    placeholder="Tell us more about your inquiry or how we can help you..."
+                    rows="5"
+                    required
+                  ></textarea>
+                </div>
+
+                {/* Submit Button */}
+                <button 
+                  type="submit" 
+                  className={`submit-btn ${isSubmitting ? 'submitting' : ''}`}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span className="loading-spinner"></span>
+                      Sending Message...
+                    </>
+                  ) : (
+                    'Send Message'
+                  )}
+                </button>
+
+                {/* Success Message */}
+                {submitStatus === 'success' && (
+                  <div className="success-message">
+                    <span>✅</span>
+                    <p>Thank you! Your message has been sent successfully. We'll get back to you soon.</p>
+                  </div>
+                )}
+
+                {/* Error Message */}
+                {submitStatus === 'error' && (
+                  <div className="error-message">
+                    <span>❌</span>
+                    <p>{errorMessage}</p>
+                  </div>
+                )}
+              </form>
+            </div>
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="faq-section">
+          <h2>Frequently Asked Questions</h2>
+          <div className="faq-grid">
+            <div className="faq-item">
+              <h3>How long is the course?</h3>
+              <p>Our comprehensive AI & Data Science program is 6 months long with placement support starting from the 2nd month.</p>
+            </div>
+            <div className="faq-item">
+              <h3>Do I need prior experience?</h3>
+              <p>Basic familiarity with programming is helpful but not required. We start from fundamentals and build up gradually.</p>
+            </div>
+            <div className="faq-item">
+              <h3>What's the class schedule?</h3>
+              <p>We have 5 sessions per week, 2.5 hours each, with flexible timing options to accommodate working professionals.</p>
+            </div>
+            <div className="faq-item">
+              <h3>Is placement guaranteed?</h3>
+              <p>Yes! We provide 100% placement assurance with a guaranteed stipend starting from the end of the 2nd month.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ContactUs;

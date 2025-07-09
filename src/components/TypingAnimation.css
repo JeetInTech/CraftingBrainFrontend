@@ -2,14 +2,15 @@
 
 .typing-animation-container {
   text-align: center;
-  padding: 2rem;
-  max-width: 1200px;
+  padding: 10rem; /* Increased padding */
+  max-width: 100%; /* Remove width constraint */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
+  min-height: 100vh; /* Add minimum height */
 }
 
 /* Main hero title - Each line separate */

@@ -1,7 +1,21 @@
 import React, { useState } from 'react';
 import { useDynamicCSS } from '../hooks/DynamicCSSLoader';
+import { useScrollAnimation, useStaggeredAnimation } from '../hooks/ScrollAnimation';
+import '../styles/ScrollAnimations.css';
+
 const ContactUs = () => {
   useDynamicCSS('contact');
+
+  // Animation hooks
+  const headerAnimation = useScrollAnimation({ threshold: 0.3 });
+  const contactMethodsAnimation = useStaggeredAnimation(4, { 
+    threshold: 0.2, 
+    staggerDelay: 150,
+    rootMargin: '0px 0px -50px 0px'
+  });
+  const formAnimation = useScrollAnimation({ threshold: 0.3, delay: 200 });
+  const faqAnimation = useScrollAnimation({ threshold: 0.3, delay: 300 });
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -70,12 +84,61 @@ const ContactUs = () => {
     }
   };
 
+  const contactMethods = [
+    {
+      icon: "📧",
+      title: "Email Us",
+      info: "contact@craftingbrain.com",
+      subtext: "We'll respond within 24 hours"
+    },
+    {
+      icon: "📞",
+      title: "Call Us",
+      info: "+91 98765 43210",
+      subtext: "Mon-Fri, 9:00 AM - 6:00 PM IST"
+    },
+    {
+      icon: "📍",
+      title: "Location",
+      info: "Hyderabad, Telangana",
+      subtext: "Visit us by appointment"
+    },
+    {
+      icon: "💬",
+      title: "Quick Contact",
+      info: "Available 24/7",
+      subtext: "Instant support"
+    }
+  ];
+
+  const faqItems = [
+    {
+      question: "How long is the course?",
+      answer: "Our comprehensive AI & Data Science program is 6 months long with placement support starting from the 2nd month."
+    },
+    {
+      question: "Do I need prior experience?",
+      answer: "Basic familiarity with programming is helpful but not required. We start from fundamentals and build up gradually."
+    },
+    {
+      question: "What's the class schedule?",
+      answer: "We have 5 sessions per week, 2.5 hours each, with flexible timing options to accommodate working professionals."
+    },
+    {
+      question: "Is placement guaranteed?",
+      answer: "Yes! We provide 100% placement assurance with a guaranteed stipend starting from the end of the 2nd month."
+    }
+  ];
+
   return (
     <div className="contact-page-wrapper">
       <div className="contact-container">
         
         {/* Header Section */}
-        <div className="contact-header">
+        <div 
+          ref={headerAnimation.elementRef}
+          className={`contact-header section-title-animate ${headerAnimation.animationClass}`}
+        >
           <h1 className="contact-title">Get In Touch</h1>
           <p className="contact-subtitle">
             Have questions about our AI & Data Science program? We're here to help you start your journey.
@@ -87,56 +150,34 @@ const ContactUs = () => {
           {/* Left Side - Contact Information */}
           <div className="contact-info-section">
             {/* Contact Methods Grid */}
-            <div className="contact-methods">
-              <div className="contact-method">
-                <div className="contact-icon">
-                  <span>📧</span>
+            <div 
+              ref={contactMethodsAnimation.containerRef}
+              className="contact-methods stagger-container"
+            >
+              {contactMethods.map((method, index) => (
+                <div 
+                  key={index}
+                  className={`contact-method info-card-animate ${contactMethodsAnimation.getItemAnimationClass(index)}`}
+                >
+                  <div className="contact-icon">
+                    <span>{method.icon}</span>
+                  </div>
+                  <div className="contact-details">
+                    <h3>{method.title}</h3>
+                    <p>{method.info}</p>
+                    <span>{method.subtext}</span>
+                  </div>
                 </div>
-                <div className="contact-details">
-                  <h3>Email Us</h3>
-                  <p>contact@craftingbrain.com</p>
-                  <span>We'll respond within 24 hours</span>
-                </div>
-              </div>
-
-              <div className="contact-method">
-                <div className="contact-icon">
-                  <span>📞</span>
-                </div>
-                <div className="contact-details">
-                  <h3>Call Us</h3>
-                  <p>+91 98765 43210</p>
-                  <span>Mon-Fri, 9:00 AM - 6:00 PM IST</span>
-                </div>
-              </div>
-
-              <div className="contact-method">
-                <div className="contact-icon">
-                  <span>📍</span>
-                </div>
-                <div className="contact-details">
-                  <h3>Location</h3>
-                  <p>Hyderabad, Telangana</p>
-                  <span>Visit us by appointment</span>
-                </div>
-              </div>
-
-              <div className="contact-method">
-                <div className="contact-icon">
-                  <span>💬</span>
-                </div>
-                <div className="contact-details">
-                  <h3>Quick Contact</h3>
-                  <p>Available 24/7</p>
-                  <span>Instant support</span>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
           {/* Right Side - Contact Form */}
           <div className="contact-form-section">
-            <div className="form-container">
+            <div 
+              ref={formAnimation.elementRef}
+              className={`form-container form-animate ${formAnimation.animationClass}`}
+            >
               <h2>Send us a Message</h2>
               <p>Fill out the form below and we'll get back to you as soon as possible.</p>
 
@@ -273,25 +314,18 @@ const ContactUs = () => {
         </div>
 
         {/* FAQ Section */}
-        <div className="faq-section">
+        <div 
+          ref={faqAnimation.elementRef}
+          className={`faq-section educational-fade ${faqAnimation.animationClass}`}
+        >
           <h2>Frequently Asked Questions</h2>
           <div className="faq-grid">
-            <div className="faq-item">
-              <h3>How long is the course?</h3>
-              <p>Our comprehensive AI & Data Science program is 6 months long with placement support starting from the 2nd month.</p>
-            </div>
-            <div className="faq-item">
-              <h3>Do I need prior experience?</h3>
-              <p>Basic familiarity with programming is helpful but not required. We start from fundamentals and build up gradually.</p>
-            </div>
-            <div className="faq-item">
-              <h3>What's the class schedule?</h3>
-              <p>We have 5 sessions per week, 2.5 hours each, with flexible timing options to accommodate working professionals.</p>
-            </div>
-            <div className="faq-item">
-              <h3>Is placement guaranteed?</h3>
-              <p>Yes! We provide 100% placement assurance with a guaranteed stipend starting from the end of the 2nd month.</p>
-            </div>
+            {faqItems.map((item, index) => (
+              <div key={index} className="faq-item">
+                <h3>{item.question}</h3>
+                <p>{item.answer}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

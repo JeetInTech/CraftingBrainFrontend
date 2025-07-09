@@ -242,9 +242,9 @@ const AnimatedHeroBackground = ({ children }) => {
       </div>
       
       {/* Content Overlay */}
-      <div className="hero-content-overlay">
+     
         {children}
-      </div>
+      
     </div>
   );
 };

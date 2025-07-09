@@ -1,11 +1,23 @@
 import React from "react";
 import { useDynamicCSS } from '../hooks/DynamicCSSLoader';
-
-  
+import { useScrollAnimation, useStaggeredAnimation } from '../hooks/ScrollAnimation';
+import '../styles/ScrollAnimations.css';
 
 const AboutCraftingBrain = () => {
   useDynamicCSS('about');
-  // Removed parallax scroll effect
+
+  // Animation hooks for different sections
+  const heroAnimation = useScrollAnimation({ threshold: 0.3 });
+  const missionAnimation = useScrollAnimation({ threshold: 0.3, delay: 200 });
+  const partnershipAnimation = useScrollAnimation({ threshold: 0.3, delay: 300 });
+  const valuesAnimation = useScrollAnimation({ threshold: 0.3, delay: 400 });
+  const teamTitleAnimation = useScrollAnimation({ threshold: 0.3, delay: 100 });
+  const founderAnimation = useScrollAnimation({ threshold: 0.3, delay: 200 });
+  const teamMembersAnimation = useStaggeredAnimation(3, { 
+    threshold: 0.2, 
+    staggerDelay: 200,
+    rootMargin: '0px 0px -50px 0px'
+  });
 
   const teamMembers = [
     {
@@ -35,7 +47,6 @@ const AboutCraftingBrain = () => {
         "Educational specialist ensuring our programs meet industry standards and student success metrics.",
       position: "bottom-left",
     },
-    
   ];
 
   const founder = {
@@ -57,7 +68,10 @@ const AboutCraftingBrain = () => {
             alt="AI Background"
           />
         </div>
-        <div className="hero1-content">
+        <div 
+          ref={heroAnimation.elementRef}
+          className={`hero1-content slide-up ${heroAnimation.animationClass}`}
+        >
           <h1 className="hero1-title">About Crafting Brain</h1>
           <p className="hero1-subtitle">
             Empowering the next generation of AI and Data Science professionals
@@ -69,7 +83,10 @@ const AboutCraftingBrain = () => {
       {/* Mission Section */}
       <section className="mission-section">
         <div className="container">
-          <div className="mission-content">
+          <div 
+            ref={missionAnimation.elementRef}
+            className={`mission-content slide-right ${missionAnimation.animationClass}`}
+          >
             <div className="mission-text">
               <h2>Our Mission</h2>
               <p>
@@ -97,7 +114,10 @@ const AboutCraftingBrain = () => {
       {/* Partnership Section */}
       <section className="partnership-section">
         <div className="container">
-          <div className="partnership-content">
+          <div 
+            ref={partnershipAnimation.elementRef}
+            className={`partnership-content slide-left ${partnershipAnimation.animationClass}`}
+          >
             <div className="partnership-image">
               <img
                 src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=400&fit=crop"
@@ -134,7 +154,10 @@ const AboutCraftingBrain = () => {
       {/* Values Section */}
       <section className="values-section">
         <div className="container">
-          <div className="values-content">
+          <div 
+            ref={valuesAnimation.elementRef}
+            className={`values-content fade-in ${valuesAnimation.animationClass}`}
+          >
             <div className="values-text">
               <h2>Our Core Values</h2>
               <div className="values-list">
@@ -189,17 +212,26 @@ const AboutCraftingBrain = () => {
           </div>
         </div>
       </section>
+
       {/* Team Section with Semi-Circle Layout */}
       <section className="team-section">
         <div className="container">
-          <h2 className="section-title">Meet Our Leadership Team</h2>
-          <p className="section-subtitle">
-            Experienced professionals dedicated to your success
-          </p>
+          <div 
+            ref={teamTitleAnimation.elementRef}
+            className={`section-title-animate ${teamTitleAnimation.animationClass}`}
+          >
+            <h2 className="section-title">Meet Our Leadership Team</h2>
+            <p className="section-subtitle">
+              Experienced professionals dedicated to your success
+            </p>
+          </div>
 
           <div className="team-layout">
             {/* Founder in Center */}
-            <div className="founder-card">
+            <div 
+              ref={founderAnimation.elementRef}
+              className={`founder-card scale-up ${founderAnimation.animationClass}`}
+            >
               <div className="member-circle founder-circle">
                 <img src={founder.image} alt={founder.name} />
               </div>
@@ -210,11 +242,14 @@ const AboutCraftingBrain = () => {
             </div>
 
             {/* Team Members in Horizontal Row */}
-            <div className="team-members-row">
+            <div 
+              ref={teamMembersAnimation.containerRef}
+              className="team-members-row stagger-container"
+            >
               {teamMembers.map((member, index) => (
                 <div
                   key={index}
-                  className="team-member"
+                  className={`team-member team-member-animate ${teamMembersAnimation.getItemAnimationClass(index)}`}
                   style={{
                     animationDelay: `${index * 0.2}s`,
                   }}

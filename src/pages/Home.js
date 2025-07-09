@@ -6,6 +6,7 @@ import Contact from '../pages/Contact';
 import Footer from '../components/Footer';
 import About from './About';
 
+
 function Home() {
   return (
     <div>

@@ -1,0 +1,564 @@
+/* popup-light.css - Course Detail Page Layout Light Theme */
+
+:root {
+  --background: #F9FAFB;
+  --primary-text: #1F2937;
+  --secondary-text: #6B7280;
+  --accent: #2563EB;
+  --accent-gradient: linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #1E40AF 100%);
+  --brand-gold: #F59E0B;
+  --success-green: #22C55E;
+  --glow-color: rgba(37, 99, 235, 0.3);
+  --card-background: #FFFFFF;
+  --border-color: #E5E7EB;
+  --hover-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Main course detail container */
+.course-detail-container {
+  display: flex;
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: 80vh;
+}
+
+/* Left side - Course details */
+.course-details-left {
+  flex: 2;
+  background: var(--card-background);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced text visibility for light theme */
+.course-details-left h1,
+.course-details-left h2,
+.course-details-left h3 {
+  color: var(--primary-text);
+  margin-bottom: 20px;
+}
+
+.course-details-left h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: var(--accent-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.course-details-left h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.course-details-left h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--brand-gold);
+}
+
+.course-details-left p,
+.course-details-left li {
+  color: var(--secondary-text);
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.course-details-left ul {
+  padding-left: 20px;
+}
+
+.course-details-left ul li:before {
+  content: '▶ ';
+  color: var(--accent);
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+/* Right side - Pricing and enrollment */
+.course-enrollment-right {
+  flex: 1;
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 30px;
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Course preview video */
+.course-preview-video {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+}
+
+.course-preview-video iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Course info cards */
+.course-info-card {
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.course-info-card:hover {
+  background: rgba(37, 99, 235, 0.05);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--hover-shadow);
+}
+
+.info-label {
+  font-size: 0.9rem;
+  color: var(--secondary-text);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.info-value {
+  font-size: 1.3rem;
+  color: var(--primary-text);
+  font-weight: 700;
+}
+
+.price-value {
+  font-size: 2rem;
+  background: var(--accent-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+.original-price {
+  font-size: 1rem;
+  color: #9CA3AF;
+  text-decoration: line-through;
+  margin-left: 10px;
+}
+
+/* Referral input section */
+.referral-section {
+  margin: 25px 0;
+}
+
+.referral-label {
+  font-size: 1rem;
+  color: var(--primary-text);
+  margin-bottom: 10px;
+  display: block;
+  font-weight: 600;
+}
+
+.referral-input {
+  width: 100%;
+  padding: 12px 15px;
+  background: var(--background);
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--primary-text);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.referral-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--card-background);
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.2);
+}
+
+.referral-input::placeholder {
+  color: var(--secondary-text);
+}
+
+/* Enroll button */
+.enroll-main-btn {
+  width: 100%;
+  background: var(--accent-gradient);
+  color: #FFFFFF;
+  border: none;
+  padding: 18px 25px;
+  border-radius: 15px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 20px;
+}
+
+.enroll-main-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.4);
+  background: linear-gradient(135deg, #1D4ED8 0%, #1E40AF 50%, #1E3A8A 100%);
+}
+
+.enroll-main-btn:active {
+  transform: translateY(-1px);
+}
+
+/* Benefits list */
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.benefits-list li {
+  color: var(--secondary-text);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.benefits-list li:before {
+  content: '✓';
+  color: var(--success-green);
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-right: 10px;
+  background: rgba(34, 197, 94, 0.1);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Additional styles for the course detail popup modal */
+
+/* Popup modal container */
+.course-detail-popup {
+  position: relative;
+  width: 95%;
+  max-width: 1200px;
+  max-height: 90vh;
+  background: var(--background);
+  border-radius: 20px;
+  overflow-y: auto;
+  animation: videoSlideIn 0.4s ease;
+  border: 2px solid var(--accent);
+  box-shadow: var(--hover-shadow);
+  padding: 0;
+}
+
+/* Close button positioning for popup */
+.course-detail-popup .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1002;
+  background: var(--accent-gradient);
+  border: none;
+  color: #FFFFFF;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+}
+
+.course-detail-popup .close-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+/* Adjust course detail container for popup */
+.course-detail-popup .course-detail-container {
+  padding: 30px;
+  gap: 30px;
+  min-height: auto;
+}
+
+/* Adjust left side for popup */
+.course-detail-popup .course-details-left {
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  background: var(--card-background);
+}
+
+.course-detail-popup .course-details-left h1 {
+  font-size: 2rem;
+  margin-top: 20px; /* Space for close button */
+}
+
+.course-detail-popup .course-details-left h2 {
+  font-size: 1.5rem;
+}
+
+.course-detail-popup .course-details-left h3 {
+  font-size: 1.2rem;
+}
+
+/* Adjust right side for popup */
+.course-detail-popup .course-enrollment-right {
+  position: static;
+  top: auto;
+  max-width: none;
+  padding: 20px;
+}
+
+/* Responsive adjustments for popup */
+@media (max-width: 1024px) {
+  .course-detail-popup {
+    width: 98%;
+    max-height: 95vh;
+  }
+  
+  .course-detail-popup .course-detail-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .course-detail-popup {
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+  
+  .course-detail-popup .course-detail-container {
+    padding: 15px;
+  }
+  
+  .course-detail-popup .course-details-left,
+  .course-detail-popup .course-enrollment-right {
+    padding: 15px;
+  }
+  
+  .course-detail-popup .course-details-left h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Smooth scrolling for popup content */
+.course-detail-popup {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+}
+
+.course-detail-popup::-webkit-scrollbar {
+  width: 8px;
+}
+
+.course-detail-popup::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.course-detail-popup::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+.course-detail-popup::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-gold);
+}
+
+/* Detailed video container for the popup */
+.video-container-detailed {
+  position: relative;
+  width: 95%;
+  max-width: 1400px;
+  max-height: 90vh;
+  background: var(--background);
+  border-radius: 20px;
+  overflow-y: auto;
+  animation: videoSlideIn 0.4s ease;
+  border: 2px solid var(--accent);
+  box-shadow: var(--hover-shadow);
+  padding: 0;
+}
+
+/* Close button for detailed popup */
+.video-container-detailed .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1002;
+  background: var(--accent-gradient);
+  border: none;
+  color: #FFFFFF;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+}
+
+.video-container-detailed .close-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+/* Adjust course detail container inside popup */
+.video-container-detailed .course-detail-container {
+  padding: 30px;
+  gap: 30px;
+  min-height: auto;
+}
+
+/* Adjust left side for popup */
+.video-container-detailed .course-details-left {
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  background: var(--card-background);
+}
+
+.video-container-detailed .course-details-left h1 {
+  font-size: 2rem;
+  margin-top: 20px; /* Space for close button */
+}
+
+.video-container-detailed .course-details-left h2 {
+  font-size: 1.5rem;
+}
+
+.video-container-detailed .course-details-left h3 {
+  font-size: 1.2rem;
+}
+
+/* Adjust right side for popup */
+.video-container-detailed .course-enrollment-right {
+  position: static;
+  top: auto;
+  max-width: none;
+  padding: 20px;
+}
+
+/* Responsive adjustments for detailed popup */
+@media (max-width: 1024px) {
+  .video-container-detailed {
+    width: 98%;
+    max-height: 95vh;
+  }
+  
+  .video-container-detailed .course-detail-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .video-container-detailed {
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+  
+  .video-container-detailed .course-detail-container {
+    padding: 15px;
+  }
+  
+  .video-container-detailed .course-details-left,
+  .video-container-detailed .course-enrollment-right {
+    padding: 15px;
+  }
+  
+  .video-container-detailed .course-details-left h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Smooth scrolling for detailed popup content */
+.video-container-detailed {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+}
+
+.video-container-detailed::-webkit-scrollbar {
+  width: 8px;
+}
+
+.video-container-detailed::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.video-container-detailed::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+.video-container-detailed::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-gold);
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .course-detail-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .course-enrollment-right {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .course-detail-container {
+    padding: 20px 15px;
+  }
+  
+  .course-details-left,
+  .course-enrollment-right {
+    padding: 20px;
+  }
+  
+  .course-details-left h1 {
+    font-size: 2rem;
+  }
+  
+  .course-details-left h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Additional animation for light theme */
+@keyframes videoSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

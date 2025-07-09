@@ -1,0 +1,278 @@
+/* src/components/TypingAnimation.css */
+
+.typing-animation-container {
+  text-align: center;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Main hero title - Each line separate */
+.hero-main-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  color: #1F2937;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+
+/* Dark theme text colors */
+[data-theme="dark"] .hero-main-title {
+  color: #ffffff;
+}
+
+/* Typing text with animation - INLINE STYLING */
+.typing-text {
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #1E40AF 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline;
+  font-weight: 800;
+}
+
+/* Dark theme typing text */
+[data-theme="dark"] .typing-text {
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffcc02 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Blinking cursor */
+.cursor {
+  background-clip: initial;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
+  color: #2563EB;
+  animation: blink 1s infinite;
+  font-weight: 300;
+}
+
+[data-theme="dark"] .cursor {
+  color: #ffa726;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Highlight text - Blue colored text */
+.highlight-text {
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #1E40AF 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+[data-theme="dark"] .highlight-text {
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffcc02 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Secondary title - smaller size */
+.hero-secondary-title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin: 2rem 0;
+  color: #374151;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: unset;
+  display: block;
+}
+
+
+[data-theme="dark"] .hero-secondary-title {
+  color: #ffffff;
+}
+
+.typing-text-secondary {
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #1E40AF 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .typing-text-secondary {
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffcc02 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Description text */
+.hero-description {
+  font-size: 1.3rem;
+  color: #6B7280;
+  margin-bottom: 3rem;
+  font-weight: 400;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+
+[data-theme="dark"] .hero-description {
+  color: #ffab91;
+}
+
+/* Animated CTA Button */
+.cta-button-animated {
+  position: relative;
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #1E40AF 100%);
+  color: #ffffff;
+  border: none;
+  padding: 1.2rem 3rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(37, 99, 235, 0.3);
+  z-index: 1;
+  margin: 0 auto;
+  display: block;
+  width: fit-content;
+}
+
+[data-theme="dark"] .cta-button-animated {
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffcc02 100%);
+  box-shadow: 0 8px 32px rgba(255, 107, 53, 0.3);
+}
+
+.button-text {
+  position: relative;
+  z-index: 2;
+}
+
+/* Hover effect */
+.button-hover-effect {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.cta-button-animated:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4);
+}
+
+[data-theme="dark"] .cta-button-animated:hover {
+  box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+}
+
+.cta-button-animated:hover .button-hover-effect {
+  left: 100%;
+}
+
+.cta-button-animated:active {
+  transform: translateY(-2px) scale(0.98);
+}
+
+/* Floating animation for the container */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.typing-animation-container {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Entrance animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-main-title:nth-child(1) {
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.hero-main-title:nth-child(2) {
+  animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.hero-main-title:nth-child(3) {
+  animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.hero-secondary-title {
+  animation: fadeInUp 1s ease-out 0.8s both;
+}
+
+.hero-description {
+  animation: fadeInUp 1s ease-out 1.0s both;
+}
+
+.cta-button-animated {
+  animation: fadeInUp 1s ease-out 1.2s both;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .hero-main-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-secondary-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-description {
+    font-size: 1.1rem;
+    padding: 0 1rem;
+  }
+  
+  .cta-button-animated {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-main-title {
+    font-size: 2rem;
+  }
+  
+  .hero-secondary-title {
+    font-size: 1.5rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+}

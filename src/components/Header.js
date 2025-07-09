@@ -2,9 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FiSearch, FiMenu, FiX } from 'react-icons/fi';
-import './Header.css';
+import { useDynamicCSS } from '../hooks/DynamicCSSLoader';
+import ThemeToggle from './ThemeToggle';
 
 function Header() {
+  useDynamicCSS('header');
   const { pathname } = useLocation();
   const [isSearchOpen, setSearchOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -110,6 +112,9 @@ function Header() {
 
           {/* Header Actions */}
           <div className="header-actions">
+            {/* Theme Toggle */}
+            <ThemeToggle />
+
             {/* Search Bar */}
             <div className={`search-container ${isSearchOpen ? 'open' : ''}`}>
               <form onSubmit={handleSearchSubmit} className="search-form">
@@ -174,6 +179,11 @@ function Header() {
             >
               Contact
             </Link>
+            
+            {/* Theme Toggle in Mobile Menu */}
+            <div className="mobile-theme-toggle">
+              <ThemeToggle />
+            </div>
           </div>
         </nav>
       </header>

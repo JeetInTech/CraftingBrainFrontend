@@ -1,7 +1,10 @@
 import React from "react";
-import "./About.css";
+import { useDynamicCSS } from '../hooks/DynamicCSSLoader';
+
+  
 
 const AboutCraftingBrain = () => {
+  useDynamicCSS('about');
   // Removed parallax scroll effect
 
   const teamMembers = [
@@ -32,15 +35,7 @@ const AboutCraftingBrain = () => {
         "Educational specialist ensuring our programs meet industry standards and student success metrics.",
       position: "bottom-left",
     },
-    {
-      name: "Manager",
-      role: "Operations Manager",
-      image:
-        "https://img.freepik.com/premium-photo/3d-cartoon-avatar-man-minimal-3d-character-avatar-profile_652053-2067.jpg",
-      description:
-        "Operations expert ensuring smooth delivery of all programs and student support services.",
-      position: "bottom-right",
-    },
+    
   ];
 
   const founder = {

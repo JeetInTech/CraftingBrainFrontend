@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './Contact.css';
-
+import { useDynamicCSS } from '../hooks/DynamicCSSLoader';
 const ContactUs = () => {
+  useDynamicCSS('contact');
   const [formData, setFormData] = useState({
     name: '',
     email: '',

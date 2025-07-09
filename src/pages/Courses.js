@@ -1,13 +1,15 @@
 // src/pages/Courses.js
 import React, {  } from "react";
-import "./Course.css";
-import "./cards.css";
-import "./popup.css";
+
 import CourseCard from "../components/cards";
 import Footer from "../components/Footer";
+import { useDynamicCSS } from '../hooks/DynamicCSSLoader';
 // import { useNavigate } from "react-router-dom";
 
 function Courses({ showFooter = true }) {
+  useDynamicCSS('course');
+  useDynamicCSS('cards'); 
+  useDynamicCSS('popup');
   // const [expandedModules, setExpandedModules] = useState([]);
   // const navigate = useNavigate();
 

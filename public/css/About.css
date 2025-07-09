@@ -32,7 +32,7 @@
 
 /* Hero1 Section with Parallax */
 .hero1-section {
-  height: 100vh;
+  height: 30vh;
   position: relative;
   display: flex;
   align-items: center;

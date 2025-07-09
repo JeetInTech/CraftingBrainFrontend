@@ -1,0 +1,375 @@
+/* Footer-light.css - Light Theme */
+
+:root {
+  --footer-background: #F9FAFB;
+  --footer-primary-text: #1F2937;
+  --footer-secondary-text: #6B7280;
+  --footer-accent: #2563EB;
+  --footer-warm-yellow: #3B82F6;
+  --footer-brand-gold: #F59E0B;
+  --footer-border: #E5E7EB;
+  --footer-card-background: #FFFFFF;
+  --footer-hover-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+  --footer-box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+/* Footer Container */
+.footer-container {
+  background: var(--footer-background);
+  color: var(--footer-primary-text);
+  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: fadeIn 1s ease-out;
+  box-shadow: var(--footer-box-shadow);
+  transition: all 0.3s ease;
+  border-top: 1px solid var(--footer-border);
+}
+
+@media (min-width: 768px) {
+  .footer-container {
+    padding: 4rem 3rem;
+  }
+}
+
+/* Footer Content Layout */
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+/* Company Info Section */
+.footer-company-info {
+  max-width: 300px;
+  text-align: left;
+  background: var(--footer-card-background);
+  padding: 2rem;
+  border-radius: 15px;
+  border: 1px solid var(--footer-border);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.footer-company-info:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--footer-hover-shadow);
+  border-color: var(--footer-accent);
+}
+
+.footer-company-info h2 {
+  font-size: 1.8rem;
+  color: var(--footer-accent);
+  margin-bottom: 1rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+}
+
+.footer-company-info p {
+  color: var(--footer-secondary-text);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Navigation Links Section */
+.footer-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--footer-card-background);
+  padding: 2rem;
+  border-radius: 15px;
+  border: 1px solid var(--footer-border);
+  transition: all 0.3s ease;
+  min-width: 200px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.footer-nav-links:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--footer-hover-shadow);
+  border-color: var(--footer-accent);
+}
+
+.footer-nav-links h3 {
+  font-size: 1.5rem;
+  color: var(--footer-accent);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+}
+
+.footer-nav-links a {
+  color: var(--footer-primary-text);
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  display: block;
+}
+
+.footer-nav-links a:hover {
+  color: var(--footer-accent);
+  background: rgba(37, 99, 235, 0.1);
+  transform: translateX(5px);
+}
+
+/* Social Media Section */
+.footer-social-media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background: var(--footer-card-background);
+  padding: 2rem;
+  border-radius: 15px;
+  border: 1px solid var(--footer-border);
+  transition: all 0.3s ease;
+  min-width: 200px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.footer-social-media:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--footer-hover-shadow);
+  border-color: var(--footer-accent);
+}
+
+.footer-social-media h3 {
+  font-size: 1.5rem;
+  color: var(--footer-accent);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+}
+
+.footer-social-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-social-icons a {
+  color: var(--footer-primary-text);
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  padding: 0.8rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--footer-border);
+  background: var(--footer-background);
+}
+
+.footer-social-icons a:hover {
+  color: #FFFFFF;
+  background: var(--footer-accent);
+  transform: translateY(-3px) scale(1.1);
+  border-color: var(--footer-accent);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* Specific social media platform colors */
+.footer-social-icons a:nth-child(1):hover {
+  background: #1877F2; /* Facebook Blue */
+}
+
+.footer-social-icons a:nth-child(2):hover {
+  background: #1DA1F2; /* Twitter Blue */
+}
+
+.footer-social-icons a:nth-child(3):hover {
+  background: #0A66C2; /* LinkedIn Blue */
+}
+
+.footer-social-icons a:nth-child(4):hover {
+  background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4); /* Instagram Gradient */
+}
+
+/* Privacy Policy Section */
+.footer-privacy-policy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background: var(--footer-card-background);
+  padding: 2rem;
+  border-radius: 15px;
+  border: 1px solid var(--footer-border);
+  transition: all 0.3s ease;
+  min-width: 200px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.footer-privacy-policy:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--footer-hover-shadow);
+  border-color: var(--footer-accent);
+}
+
+.footer-privacy-policy h3 {
+  font-size: 1.5rem;
+  color: var(--footer-accent);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+}
+
+/* Privacy Button */
+.footer-privacy-button {
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #1E40AF 100%);
+  color: #FFFFFF;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+}
+
+.footer-privacy-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.4);
+  background: linear-gradient(135deg, #1D4ED8 0%, #1E40AF 50%, #1E3A8A 100%);
+}
+
+.footer-privacy-button:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Footer Bottom Section */
+.footer-bottom {
+  margin-top: 3rem;
+  width: 100%;
+  border-top: 1px solid var(--footer-border);
+  padding-top: 2rem;
+  font-size: 0.9rem;
+  color: var(--footer-secondary-text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background: var(--footer-card-background);
+  border-radius: 15px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.footer-bottom a {
+  color: var(--footer-accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.footer-bottom a:hover {
+  color: var(--footer-warm-yellow);
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer-content {
+    gap: 2rem;
+  }
+  
+  .footer-company-info,
+  .footer-nav-links,
+  .footer-social-media,
+  .footer-privacy-policy {
+    min-width: auto;
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  .footer-social-icons {
+    justify-content: center;
+  }
+  
+  .footer-social-icons a {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-container {
+    padding: 2rem 1rem;
+  }
+  
+  .footer-company-info,
+  .footer-nav-links,
+  .footer-social-media,
+  .footer-privacy-policy {
+    padding: 1.5rem;
+  }
+  
+  .footer-company-info h2,
+  .footer-nav-links h3,
+  .footer-social-media h3,
+  .footer-privacy-policy h3 {
+    font-size: 1.3rem;
+  }
+  
+  .footer-privacy-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .footer-bottom {
+    padding: 1.5rem;
+    font-size: 0.8rem;
+  }
+}

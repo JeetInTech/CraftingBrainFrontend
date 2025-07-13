@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import "./cards.css";
 import { useDynamicCSS } from "../hooks/DynamicCSSLoader";
-
+import { useNavigate } from "react-router-dom";
 const CourseCard = ({
   image,
   title,
@@ -22,9 +22,11 @@ const CourseCard = ({
   const closeVideo = () => {
     setShowVideo(false);
   };
+  const navigate = useNavigate();
 
   const handleEnrollClick = () => {
     console.log("Enrolling with referral code:", referralCode);
+    navigate('/courseEnroll')
     // Handle enrollment logic here
     // Navigate to payment page or show enrollment modal
   };

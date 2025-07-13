@@ -124,10 +124,19 @@
   border-radius: 12px;
   padding: 2.5rem;
   margin-bottom: 2.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(239, 219, 219, 0.1);
   border: 1px solid var(--border-color);
   transition: all 0.3s ease-in-out;
   animation: fadeIn 1s ease-out forwards;
+}
+
+  .timeline-content {
+  margin-left: 50px;
+  background: #f8f7f7;
+  padding: 1rem;
+  border-radius: 8px;
+  color: var(--text);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .section:hover {

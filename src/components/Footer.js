@@ -25,7 +25,7 @@ function Footer() {
           <Link to="/about">About Us</Link>
           <Link to="/contact">Contact Us</Link>
           <Link to="/workshop">Workshop</Link>
-          <Link to="/recordings">Recordings</Link>
+          {/* <Link to="/recordings">Recordings</Link> */}
         </div>
 
         {/* Social Media Links */}

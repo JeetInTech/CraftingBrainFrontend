@@ -48,6 +48,8 @@ export const ThemeProvider = ({ children }) => {
       course: "/css/Course.css",
       popup: "/css/popup.css",
       footer: "/css/Footer.css",
+      courseOverview:"/css/CourseOverview.css",
+      workshop:"/css/workshop.css",
     },
     light: {
       // CSS file mappings for light theme
@@ -59,6 +61,8 @@ export const ThemeProvider = ({ children }) => {
       course: "/css/Course-light.css", 
       popup: "/css/popup-light.css", 
       footer: "/css/Footer-light.css", 
+      courseOverview:"/css/CourseOverview-light.css",
+      workshop:"/css/workshop-light.css",
     },
   };
 

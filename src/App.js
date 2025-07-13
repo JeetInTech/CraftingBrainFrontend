@@ -20,6 +20,7 @@ import ScanAndPayPage from './pages/payment';
 import RecordingsV2 from './pages/RecordingV2';
 import Workshop from './pages/workshop';
 import PrivacyPolicy from './components/privacypolicy';
+import CourseOverview from './pages/CourseOverview.js'
 
 // Wrapper component for pages that need specific CSS
 const ThemedPage = ({ cssKey, children }) => {
@@ -129,7 +130,7 @@ const AppContent = () => {
           <Route 
             path="/workshop" 
             element={
-              <ThemedPage cssKey="cards">
+              <ThemedPage cssKey="workshop">
                 <Workshop />
               </ThemedPage>
             } 
@@ -144,7 +145,17 @@ const AppContent = () => {
               </ThemedPage>
             } 
           />
-        </Routes>
+        
+
+        <Route
+            path="/courseEnroll" 
+            element={
+              <ThemedPage cssKey="course">
+                <CourseOverview />
+              </ThemedPage>
+            } 
+          />
+</Routes>
 
         {/* Footer with dynamic theme CSS - if you have a footer component */}
         {/* Uncomment when you add Footer component

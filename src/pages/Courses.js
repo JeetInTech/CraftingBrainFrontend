@@ -7,7 +7,7 @@ import { useDynamicCSS } from '../hooks/DynamicCSSLoader';
 // import { useNavigate } from "react-router-dom";
 
 function Courses({ showFooter = true }) {
-  useDynamicCSS('course');
+  useDynamicCSS('course'); 
   useDynamicCSS('cards'); 
   useDynamicCSS('popup');
   // const [expandedModules, setExpandedModules] = useState([]);

@@ -49,7 +49,7 @@ export const ThemeProvider = ({ children }) => {
       popup: "/css/popup.css",
       footer: "/css/Footer.css",
       courseOverview:"/css/CourseOverview.css",
-      workshop:"/css/workshop.css",
+      workshop:"/css/workshop-dark.css",
     },
     light: {
       // CSS file mappings for light theme

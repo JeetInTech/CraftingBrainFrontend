@@ -1,0 +1,268 @@
+/* Dark Theme Styles */
+.workshop-page.dark {
+  --primary-color: #5dade2;
+  --secondary-color: #f4d03f;
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-gradient-start: #1a1a1a;
+  --bg-gradient-end: #2d2d2d;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --card-bg: #2d2d2d;
+  --border-color: #404040;
+  --shadow-light: rgba(0, 0, 0, 0.3);
+  --shadow-medium: rgba(0, 0, 0, 0.4);
+  --shadow-heavy: rgba(0, 0, 0, 0.6);
+}
+
+/* Dark Theme Specific Overrides */
+.workshop-page.dark {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.workshop-page.dark .hero {
+  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+}
+
+.workshop-page.dark .social-icon {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+.workshop-page.dark .social-icon:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.workshop-page.dark .instructor-photo {
+  border: 8px solid var(--card-bg);
+  box-shadow: 0 20px 40px var(--shadow-light);
+}
+
+.workshop-page.dark .instructor-badge {
+  background: rgba(45, 45, 45, 0.9);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px var(--shadow-light);
+}
+
+.workshop-page.dark .highlight-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px var(--shadow-light);
+}
+
+.workshop-page.dark .highlight-card:hover {
+  box-shadow: 0 20px 40px var(--shadow-medium);
+  border-color: var(--primary-color);
+}
+
+.workshop-page.dark .workshop-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px var(--shadow-light);
+}
+
+.workshop-page.dark .workshop-card:hover {
+  box-shadow: 0 20px 40px var(--shadow-medium);
+  border-color: var(--primary-color);
+}
+
+.workshop-page.dark .modal {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 20px 40px var(--shadow-heavy);
+}
+
+.workshop-page.dark .modal-header {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.workshop-page.dark .close-btn:hover {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.workshop-page.dark .form-group input,
+.workshop-page.dark .form-group select {
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.workshop-page.dark .form-group input:focus,
+.workshop-page.dark .form-group select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.1);
+}
+
+.workshop-page.dark .form-group input::placeholder {
+  color: var(--text-secondary);
+}
+
+.workshop-page.dark .footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+}
+
+.workshop-page.dark .footer-bottom {
+  border-top: 1px solid var(--border-color);
+}
+
+/* Dark Theme Specific Enhancements */
+.workshop-page.dark .workshop-badge {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  box-shadow: 0 4px 12px rgba(93, 173, 226, 0.3);
+}
+
+.workshop-page.dark .register-btn {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  box-shadow: 0 4px 12px rgba(93, 173, 226, 0.3);
+}
+
+.workshop-page.dark .register-btn:hover {
+  box-shadow: 0 8px 25px rgba(93, 173, 226, 0.4);
+}
+
+.workshop-page.dark .submit-btn {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  box-shadow: 0 4px 12px rgba(93, 173, 226, 0.3);
+}
+
+.workshop-page.dark .submit-btn:hover {
+  box-shadow: 0 8px 25px rgba(93, 173, 226, 0.4);
+}
+
+/* Dark Theme Shape Adjustments */
+.workshop-page.dark .shape-1 {
+  background: linear-gradient(135deg, var(--primary-color), transparent);
+  opacity: 0.05;
+}
+
+.workshop-page.dark .shape-2 {
+  background: linear-gradient(135deg, var(--secondary-color), transparent);
+  opacity: 0.05;
+}
+
+.workshop-page.dark .shape-3 {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  opacity: 0.03;
+}
+
+/* Dark Theme Text Improvements */
+.workshop-page.dark .hero-title-main {
+  color: var(--primary-color);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.workshop-page.dark .hero-title-sub {
+  color: var(--text-primary);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.workshop-page.dark .highlights h2,
+.workshop-page.dark .previous-workshops h2 {
+  color: var(--text-primary);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark Theme Scrollbar */
+.workshop-page.dark ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.workshop-page.dark ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+.workshop-page.dark ::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.workshop-page.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+/* Dark Theme Selection */
+.workshop-page.dark ::selection {
+  background: var(--primary-color);
+  color: white;
+}
+
+.workshop-page.dark ::-moz-selection {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* Dark Theme Animation Enhancements */
+.workshop-page.dark .workshop-card.animate-in {
+  animation: slideInDark 0.6s ease-out forwards;
+}
+
+@keyframes slideInDark {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dark Theme Modal Overlay */
+.workshop-page.dark .modal-overlay {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+/* Dark Theme Button Hover Effects */
+.workshop-page.dark .register-btn:hover,
+.workshop-page.dark .submit-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+/* Dark Theme Card Glow Effects */
+.workshop-page.dark .highlight-card:hover {
+  box-shadow: 0 20px 40px var(--shadow-medium), 0 0 20px rgba(93, 173, 226, 0.1);
+}
+
+.workshop-page.dark .workshop-card:hover {
+  box-shadow: 0 20px 40px var(--shadow-medium), 0 0 20px rgba(93, 173, 226, 0.1);
+}
+
+/* Dark Theme Play Icon */
+.workshop-page.dark .play-icon {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  box-shadow: 0 4px 12px rgba(93, 173, 226, 0.3);
+}
+
+/* Dark Theme Form Focus States */
+.workshop-page.dark .form-group input:focus,
+.workshop-page.dark .form-group select:focus {
+  box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.2);
+}
+
+/* Dark Theme Link Hover Effects */
+.workshop-page.dark .footer-section a:hover {
+  color: var(--primary-color);
+  text-shadow: 0 0 8px rgba(93, 173, 226, 0.3);
+}
+
+/* Dark Theme Responsive Adjustments */
+@media (max-width: 768px) {
+  .workshop-page.dark .hero {
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  }
+  
+  .workshop-page.dark .instructor-photo {
+    border: 6px solid var(--card-bg);
+  }
+  
+  .workshop-page.dark .highlight-card,
+  .workshop-page.dark .workshop-card {
+    border: 1px solid var(--border-color);
+  }
+}

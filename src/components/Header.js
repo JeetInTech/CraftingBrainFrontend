@@ -105,8 +105,15 @@ function Header() {
               to="/contact" 
               className={`nav-link ${pathname === '/contact' ? 'active' : ''}`}
               onClick={() => handleLinkClick("/contact")}
-            >
+             >
               Contact
+            </Link>
+             <Link 
+              to="/Workshop" 
+              className={`nav-link ${pathname === '/Workshop' ? 'active' : ''}`}
+              onClick={() => handleLinkClick("/Workshop")}
+             >
+              Workshop
             </Link>
           </nav>
 

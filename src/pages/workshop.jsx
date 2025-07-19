@@ -50,7 +50,7 @@ const WorkshopPage = () => {
   // Mock current workshop data
   const [featuredWorkshop, setFeaturedWorkshop] = useState({
     id: 1,
-    title: "Advanced React",
+    title: "ADVANCED AGENTIC AI Techniques",
     subtitle: "WORKSHOP",
     date: "Sunday 28 July 2024",
     time: "2 - 6 PM",
@@ -59,7 +59,7 @@ const WorkshopPage = () => {
     instructorImage:
       "https://upload.wikimedia.org/wikipedia/en/d/d5/Professor_%28Money_Heist%29.jpg",
     description:
-      "Join our comprehensive React workshop and master modern web development techniques",
+      "Join our comprehensive Ai workshop and master modern web development techniques",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     liveVideoUrl: "https://www.youtube.com/embed/live_stream_id",
     isLive: false,
@@ -69,7 +69,7 @@ const WorkshopPage = () => {
   const previousWorkshops = [
     {
       id: 1,
-      title: "Advanced React Patterns",
+      title: "Advanced Ai Patterns",
       date: "June 15, 2024",
       participants: 150,
       rating: 4.8,
@@ -79,7 +79,7 @@ const WorkshopPage = () => {
     },
     {
       id: 2,
-      title: "Modern CSS Techniques",
+      title: "Modern Dl Techniques",
       date: "May 20, 2024",
       participants: 120,
       rating: 4.9,
@@ -89,7 +89,7 @@ const WorkshopPage = () => {
     },
     {
       id: 3,
-      title: "JavaScript Fundamentals",
+      title: "Machine learning  Fundamentals",
       date: "April 10, 2024",
       participants: 200,
       rating: 4.7,
@@ -210,7 +210,7 @@ const WorkshopPage = () => {
               <div className="hero-text">
                 <div className="workshop-badge">
                   <span>Online</span>
-                  <span className="badge-type">REACT MASTERY</span>
+                  <span className="badge-type">AGENTIC AI</span>
                 </div>
                 <h1>
                   <span className="hero-title-main">
@@ -323,7 +323,7 @@ const WorkshopPage = () => {
             <div className="highlights-grid">
               <div className="highlight-card">
                 <BookOpen className="highlight-icon" />
-                <h3>Modern React Patterns</h3>
+                <h3>Modern Ai Patterns</h3>
                 <p>
                   Learn advanced patterns including hooks, context, and state
                   management
@@ -703,8 +703,8 @@ const WorkshopPage = () => {
             <div className="footer-content">
               <div className="footer-section">
                 <h4>Contact Us</h4>
-                <p>Email: workshops@techcraft.com</p>
-                <p>Phone: +1 (555) 123-4567</p>
+                <p>Email: workshops@crafingbrain.com</p>
+                <p>Phone: 90########</p>
               </div>
               <div className="footer-section">
                 <h4>Follow Us</h4>
@@ -716,7 +716,7 @@ const WorkshopPage = () => {
               </div>
             </div>
             <div className="footer-bottom">
-              <p>&copy; 2024 TechCraft. All rights reserved.</p>
+              <p>&copy; 2025 Crafting Brain. All rights reserved.</p>
             </div>
           </div>
         </footer>

@@ -171,16 +171,20 @@
   background: transparent;
   color: var(--primary-text);
   border: 2px solid var(--primary-text);
-  padding: 16px 32px;
+  width: 200px;           /* match width */
+  height: 56px;           /* match height */
   border-radius: 8px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  flex-direction: column; /* for stacked "Watch" and "Preview" */
+  gap: 2px;
   transition: all 0.3s ease;
 }
+
 
 .watch-btn:hover {
   background: var(--primary-text);

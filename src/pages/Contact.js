@@ -228,7 +228,7 @@ const ContactUs = () => {
             </div>
 
             {/* Support Options */}
-            <div className="support-options-wrapper">
+            {/* <div className="support-options-wrapper">
               <h2 className="section-title">How We Support You</h2>
               <div className="support-grid">
                 {supportOptions.map((option, index) => (
@@ -239,7 +239,7 @@ const ContactUs = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Right Side - Contact Form */}
@@ -408,7 +408,7 @@ const ContactUs = () => {
         </div>
 
         {/* FAQ Section */}
-        <div 
+        {/* <div 
           ref={faqAnimation.elementRef}
           className={`faq-section educational-fade ${faqAnimation.animationClass}`}
         >
@@ -426,7 +426,7 @@ const ContactUs = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Additional Support Section */}
         <div 

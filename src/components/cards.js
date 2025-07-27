@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-// import "./cards.css";
+// Enhanced CourseCard.js with improved dark theme support and unique class names
+import React, { useState, useEffect } from "react";
 import { useDynamicCSS } from "../hooks/DynamicCSSLoader";
 import { useNavigate } from "react-router-dom";
+
 const CourseCard = ({
   image,
   title,
@@ -10,185 +11,238 @@ const CourseCard = ({
   role,
   videoUrl,
   courseDetails,
+  index = 0, // For staggered animations
 }) => {
   useDynamicCSS("popup");
   const [showVideo, setShowVideo] = useState(false);
   const [referralCode, setReferralCode] = useState("");
+  const [isLoaded, setIsLoaded] = useState(false);
+  const navigate = useNavigate();
 
-  const handleCardClick = () => {
+  // Simulate loading state for better UX
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100 + (index * 150)); // Staggered loading
+
+    return () => clearTimeout(timer);
+  }, [index]);
+
+  const handleCardClick = (e) => {
+    // Prevent card click when clicking on enroll button
+    if (e.target.closest('.main-enroll-btn')) return;
     setShowVideo(true);
   };
 
   const closeVideo = () => {
     setShowVideo(false);
   };
-  const navigate = useNavigate();
 
-  const handleEnrollClick = () => {
+  const handleEnrollClick = (e) => {
+    e.stopPropagation();
     console.log("Enrolling with referral code:", referralCode);
-    navigate('/courseEnroll')
-    // Handle enrollment logic here
-    // Navigate to payment page or show enrollment modal
+    navigate('/coursespage');
   };
+
+  // Loading skeleton
+  if (!isLoaded) {
+    return (
+      <div className="main-course-card loading">
+        <div className="main-card-image-container">
+          <div className="main-card-image"></div>
+        </div>
+        <div className="main-card-content">
+          <div className="main-card-title"></div>
+          <div className="main-card-description"></div>
+          <div className="main-author-info">
+            <div className="main-author-details">
+              <div className="main-author-name"></div>
+              <div className="main-author-role"></div>
+            </div>
+            <div className="main-enroll-btn"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
-      <div className="course-card" onClick={handleCardClick}>
-        <div className="card-image-container">
-          <img src={image} alt={title} className="card-image" />
-          <div className="play-overlay">
-            <div className="play-button">
-              <span className="play-icon">▶</span>
+      <div 
+        className="main-course-card" 
+        onClick={handleCardClick}
+        style={{ 
+          animationDelay: `${0.1 + (index * 0.1)}s`,
+          '--card-index': index 
+        }}
+      >
+        <div className="main-card-image-container">
+          <img 
+            src={image} 
+            alt={title} 
+            className="main-card-image"
+            onError={(e) => {
+              e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjMjAyMDIwIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTAwIiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iMC4zZW0iPkNvdXJzZSBJbWFnZTwvdGV4dD4KPC9zdmc+';
+            }}
+          />
+          <div className="main-play-overlay">
+            <div className="main-play-button">
+              <span className="main-play-icon">▶</span>
             </div>
           </div>
         </div>
 
-        <div className="card-content">
-          <h3 className="card-title">{title}</h3>
-          <p className="card-description">{description}</p>
+        <div className="main-card-content">
+          <h3 className="main-card-title">{title}</h3>
+          <p className="main-card-description">{description}</p>
 
-          <div className="author-info">
-            <div className="author-details">
-              <p className="author-name">By {author}</p>
-              <p className="author-role">{role}</p>
+          <div className="main-author-info">
+            <div className="main-author-details">
+              <p className="main-author-name">By {author}</p>
+              <p className="main-author-role">{role}</p>
             </div>
-            <button className="enroll-btn" onClick={(e) => e.stopPropagation()}>
+            <button 
+              className="main-enroll-btn" 
+              onClick={handleEnrollClick}
+              aria-label={`Enroll in ${title}`}
+            >
               Enroll Now
             </button>
           </div>
         </div>
       </div>
 
-      {/* Video Popup with Course Details Layout */}
+      {/* Enhanced Video Popup Modal */}
       {showVideo && (
-        <div className="video-popup" onClick={closeVideo}>
+        <div className="main-video-popup" onClick={closeVideo}>
           <div
-            className="video-container-detailed"
+            className="main-video-container-detailed"
             onClick={(e) => e.stopPropagation()}
           >
-            <button className="close-btn" onClick={closeVideo}>
+            <button 
+              className="main-close-btn" 
+              onClick={closeVideo}
+              aria-label="Close video popup"
+            >
               ×
             </button>
 
-            {/* Course Detail Container Inside Popup */}
-            <div className="course-detail-container">
+            <div className="main-course-detail-container">
               {/* Left Side - Course Details */}
-              <div className="course-details-left">
-                <h1>{title}</h1>
+              <div className="main-course-details-left">
+                <h1 className="main-course-popup-title">{title}</h1>
 
-                <h2>Course Overview</h2>
-                <p>{description}</p>
+                <section className="main-course-section">
+                  <h2>Course Overview</h2>
+                  <p>{description}</p>
+                </section>
 
-                <h2>What You'll Learn</h2>
-                <ul>
-                  {courseDetails?.learningPoints?.map((point, index) => (
-                    <li key={index}>{point}</li>
-                  )) || [
-                    "Industry-relevant practical skills",
-                    "Hands-on project experience",
-                    "Expert mentorship and guidance",
-                    "Real-world problem solving",
-                    "Portfolio development",
-                    "Career preparation",
-                  ]}
-                </ul>
+                <section className="main-course-section">
+                  <h2>What You'll Learn</h2>
+                  <ul className="main-learning-points">
+                    {courseDetails?.learningPoints?.map((point, index) => (
+                      <li key={index}>{point}</li>
+                    )) || [
+                      "Industry-relevant practical skills",
+                      "Hands-on project experience",
+                      "Expert mentorship and guidance",
+                      "Real-world problem solving",
+                      "Portfolio development",
+                      "Career preparation",
+                    ]}
+                  </ul>
+                </section>
 
-                <h2>Key Features</h2>
-                <ul>
-                  <li>Expert instruction from {author}</li>
-                  <li>Hands-on practical projects</li>
-                  <li>Industry-standard tools and techniques</li>
-                  <li>Certificate of completion</li>
-                  <li>Lifetime access to course materials</li>
-                  <li>Community support and networking</li>
-                </ul>
+                <section className="main-course-section">
+                  <h2>Key Features</h2>
+                  <ul className="main-key-features">
+                    <li>Expert instruction from {author}</li>
+                    <li>Hands-on practical projects</li>
+                    <li>Industry-standard tools and techniques</li>
+                    <li>Certificate of completion</li>
+                    <li>Lifetime access to course materials</li>
+                    <li>Community support and networking</li>
+                  </ul>
+                </section>
 
-                <h2>Course Content</h2>
-                <p>
-                  This comprehensive module covers all essential topics with
-                  practical implementations, real-world examples, and industry
-                  best practices. You'll work on projects that demonstrate your
-                  skills and build a portfolio that showcases your expertise to
-                  potential employers.
-                </p>
+                <section className="main-course-section">
+                  <h2>Course Content</h2>
+                  <p>
+                    This comprehensive module covers all essential topics with
+                    practical implementations, real-world examples, and industry
+                    best practices. You'll work on projects that demonstrate your
+                    skills and build a portfolio that showcases your expertise to
+                    potential employers.
+                  </p>
+                </section>
 
-                <h3>Prerequisites</h3>
-                <p>
-                  Basic understanding of programming concepts is helpful but not
-                  required. This course is designed for beginners and
-                  intermediate learners looking to advance their skills in the
-                  field.
-                </p>
+                <section className="main-course-section">
+                  <h3>Prerequisites</h3>
+                  <p>
+                    Basic understanding of programming concepts is helpful but not
+                    required. This course is designed for beginners and
+                    intermediate learners looking to advance their skills in the
+                    field.
+                  </p>
+                </section>
 
-                <h3>Learning Outcomes</h3>
-                <p>
-                  By the end of this module, you'll have the confidence and
-                  skills to tackle real-world challenges and build impressive
-                  projects that demonstrate your expertise.
-                </p>
+                <section className="main-course-section">
+                  <h3>Learning Outcomes</h3>
+                  <p>
+                    By the end of this module, you'll have the confidence and
+                    skills to tackle real-world challenges and build impressive
+                    projects that demonstrate your expertise.
+                  </p>
+                </section>
               </div>
 
               {/* Right Side - Video + Enrollment Section */}
-              <div className="course-enrollment-right">
+              <div className="main-course-enrollment-right">
                 {/* Course Preview Video */}
-                <div className="course-preview-video">
+                <div className="main-course-preview-video">
                   <iframe
                     src={videoUrl}
                     title="Course Preview"
                     allowFullScreen
+                    frameBorder="0"
                   ></iframe>
                 </div>
 
-                {/* Duration */}
-                <div className="course-info-card">
-                  <div className="info-label">Module Duration</div>
-                  <div className="info-value">
-                    {courseDetails?.duration || "4-6 Weeks"}
+                {/* Course Info Cards */}
+                <div className="main-course-info-cards">
+                  <div className="main-course-info-card">
+                    <div className="main-info-label">Module Duration</div>
+                    <div className="main-info-value">
+                      {courseDetails?.duration || "4-6 Weeks"}
+                    </div>
+                  </div>
+
+                  <div className="main-course-info-card">
+                    <div className="main-info-label">Weekly Sessions</div>
+                    <div className="main-info-value">
+                      {courseDetails?.schedule || "2-3 Sessions"}
+                    </div>
+                  </div>
+
+                  <div className="main-course-info-card">
+                    <div className="main-info-label">Module Access</div>
+                    <div className="main-price-value">
+                      Included
+                      <span className="main-price-subtitle">
+                        in Full Course
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="main-course-info-card">
+                    <div className="main-info-label">Instructor</div>
+                    <div className="main-info-value">{author}</div>
+                    <div className="main-instructor-role">{role}</div>
                   </div>
                 </div>
 
-                {/* Schedule */}
-                <div className="course-info-card">
-                  <div className="info-label">Weekly Sessions</div>
-                  <div className="info-value">
-                    {courseDetails?.schedule || "2-3 Sessions"}
-                  </div>
-                </div>
-
-                {/* Pricing */}
-                <div className="course-info-card">
-                  <div className="info-label">Module Access</div>
-                  <div className="price-value">
-                    Included
-                    <span
-                      style={{
-                        fontSize: "0.8rem",
-                        color: "var(--secondary-text)",
-                        display: "block",
-                      }}
-                    >
-                      in Full Course
-                    </span>
-                  </div>
-                </div>
-
-                {/* Instructor */}
-                <div className="course-info-card">
-                  <div className="info-label">Instructor</div>
-                  <div className="info-value">{author}</div>
-                  <div
-                    style={{
-                      fontSize: "0.9rem",
-                      color: "var(--secondary-text)",
-                      marginTop: "5px",
-                    }}
-                  >
-                    {role}
-                  </div>
-                </div>
-
-                {/* Benefits */}
-                <ul className="benefits-list">
+                {/* Benefits List */}
+                <ul className="main-benefits-list">
                   <li>Hands-on Projects</li>
                   <li>Industry Tools & Techniques</li>
                   <li>Expert Mentorship</li>
@@ -198,13 +252,13 @@ const CourseCard = ({
                 </ul>
 
                 {/* Referral Code Input */}
-                <div className="referral-section">
-                  <label className="referral-label">
+                <div className="main-referral-section">
+                  <label className="main-referral-label">
                     Have a Referral Code? (Optional)
                   </label>
                   <input
                     type="text"
-                    className="referral-input"
+                    className="main-referral-input"
                     placeholder="Enter referral code"
                     value={referralCode}
                     onChange={(e) => setReferralCode(e.target.value)}
@@ -212,19 +266,14 @@ const CourseCard = ({
                 </div>
 
                 {/* Enroll Button */}
-                <button className="enroll-main-btn" onClick={handleEnrollClick}>
+                <button 
+                  className="main-enroll-main-btn" 
+                  onClick={handleEnrollClick}
+                >
                   Enroll in Full Course
                 </button>
 
-                <p
-                  style={{
-                    fontSize: "0.85rem",
-                    color: "var(--secondary-text)",
-                    textAlign: "center",
-                    marginTop: "15px",
-                    opacity: 0.8,
-                  }}
-                >
+                <p className="main-enrollment-note">
                   Get access to all 9 modules + placement support
                 </p>
               </div>

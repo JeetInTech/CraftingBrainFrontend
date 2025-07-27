@@ -1,15 +1,16 @@
 /* About.css - Fixed Team Section with Better Spacing and Layout */
 
 :root {
-  --background: #000000;
-  --primary-text: #ffffff;
-  --secondary-text: #ffab91;
-  --accent: #ff6b35;
-  --accent-gradient: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffcc02 100%);
-  --brand-gold: #f7931e;
-  --warm-yellow: #ffa726;
-  --glow-color: rgba(247, 147, 30, 0.6);
+  --background: #0a0f1c; /* Deep navy black for a calm, academic vibe */
+  --primary-text: #f0f4f8; /* Soft white-blue for easy reading */
+  --secondary-text: #9db2bf; /* Cool gray-blue for subtext and labels */
+  --accent: #3ddc97; /* Vibrant teal for action and highlights */
+  --accent-gradient: linear-gradient(135deg, #3ddc97 0%, #00bcd4 50%, #2196f3 100%);
+  --brand-gold: #ffc107; /* Warm academic gold for trust and highlights */
+  --warm-yellow: #fdd835; /* Bright yellow for callouts or icons */
+  --glow-color: rgba(33, 150, 243, 0.4); /* Soft blue glow for focus states */
 }
+
 
 * {
   margin: 0;

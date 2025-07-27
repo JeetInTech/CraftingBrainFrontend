@@ -1,4 +1,4 @@
-/* Course Detail Page Layout CSS */
+/* Course Detail Page Layout CSS - Updated with main- prefixes */
 
 :root {
   --background: #1a0d0a;
@@ -11,7 +11,7 @@
 }
 
 /* Main course detail container */
-.course-detail-container {
+.main-course-detail-container {
   display: flex;
   gap: 40px;
   max-width: 1400px;
@@ -21,7 +21,7 @@
 }
 
 /* Left side - Course details */
-.course-details-left {
+.main-course-details-left {
   flex: 2;
   background: transparent;
   padding: 30px;
@@ -31,15 +31,15 @@
 }
 
 /* Glowing text effect for better visibility */
-.course-details-left h1,
-.course-details-left h2,
-.course-details-left h3 {
+.main-course-details-left h1,
+.main-course-details-left h2,
+.main-course-details-left h3 {
   color: var(--primary-text);
   text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
   margin-bottom: 20px;
 }
 
-.course-details-left h1 {
+.main-course-details-left h1 {
   font-size: 2.5rem;
   font-weight: 800;
   background: var(--accent-gradient);
@@ -49,31 +49,31 @@
   text-shadow: 0 0 15px var(--glow-color);
 }
 
-.course-details-left h2 {
+.main-course-details-left h2 {
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--brand-gold);
 }
 
-.course-details-left h3 {
+.main-course-details-left h3 {
   font-size: 1.4rem;
   font-weight: 600;
   color: var(--secondary-text);
 }
 
-.course-details-left p,
-.course-details-left li {
+.main-course-details-left p,
+.main-course-details-left li {
   color: var(--secondary-text);
   line-height: 1.8;
   margin-bottom: 15px;
   text-shadow: 0 0 5px rgba(255, 171, 145, 0.3);
 }
 
-.course-details-left ul {
+.main-course-details-left ul {
   padding-left: 20px;
 }
 
-.course-details-left ul li:before {
+.main-course-details-left ul li:before {
   content: '▶ ';
   color: var(--accent);
   font-weight: bold;
@@ -81,7 +81,7 @@
 }
 
 /* Right side - Pricing and enrollment */
-.course-enrollment-right {
+.main-course-enrollment-right {
   flex: 1;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(15px);
@@ -95,7 +95,7 @@
 }
 
 /* Course preview video */
-.course-preview-video {
+.main-course-preview-video {
   width: 100%;
   aspect-ratio: 16/9;
   border-radius: 15px;
@@ -104,14 +104,14 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
-.course-preview-video iframe {
+.main-course-preview-video iframe {
   width: 100%;
   height: 100%;
   border: none;
 }
 
 /* Course info cards */
-.course-info-card {
+.main-course-info-card {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 171, 145, 0.15);
   border-radius: 12px;
@@ -120,26 +120,26 @@
   transition: all 0.3s ease;
 }
 
-.course-info-card:hover {
+.main-course-info-card:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: var(--accent);
   transform: translateY(-2px);
 }
 
-.info-label {
+.main-info-label {
   font-size: 0.9rem;
   color: var(--secondary-text);
   margin-bottom: 8px;
   font-weight: 500;
 }
 
-.info-value {
+.main-info-value {
   font-size: 1.3rem;
   color: var(--primary-text);
   font-weight: 700;
 }
 
-.price-value {
+.main-price-value {
   font-size: 2rem;
   background: var(--accent-gradient);
   background-clip: text;
@@ -148,7 +148,7 @@
   font-weight: 800;
 }
 
-.original-price {
+.main-original-price {
   font-size: 1rem;
   color: #888;
   text-decoration: line-through;
@@ -156,11 +156,11 @@
 }
 
 /* Referral input section */
-.referral-section {
+.main-referral-section {
   margin: 25px 0;
 }
 
-.referral-label {
+.main-referral-label {
   font-size: 1rem;
   color: var(--primary-text);
   margin-bottom: 10px;
@@ -168,7 +168,7 @@
   font-weight: 600;
 }
 
-.referral-input {
+.main-referral-input {
   width: 100%;
   padding: 12px 15px;
   background: rgba(255, 255, 255, 0.05);
@@ -179,19 +179,19 @@
   transition: all 0.3s ease;
 }
 
-.referral-input:focus {
+.main-referral-input:focus {
   outline: none;
   border-color: var(--accent);
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 15px rgba(255, 107, 53, 0.3);
 }
 
-.referral-input::placeholder {
+.main-referral-input::placeholder {
   color: rgba(255, 171, 145, 0.6);
 }
 
 /* Enroll button */
-.enroll-main-btn {
+.main-enroll-main-btn {
   width: 100%;
   background: var(--accent-gradient);
   color: var(--primary-text);
@@ -208,24 +208,24 @@
   margin-top: 20px;
 }
 
-.enroll-main-btn:hover {
+.main-enroll-main-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 15px 35px rgba(255, 107, 53, 0.6);
   background: linear-gradient(135deg, #ff8a5b 0%, #ffa500 50%, #ffd700 100%);
 }
 
-.enroll-main-btn:active {
+.main-enroll-main-btn:active {
   transform: translateY(-1px);
 }
 
 /* Benefits list */
-.benefits-list {
+.main-benefits-list {
   list-style: none;
   padding: 0;
   margin: 20px 0;
 }
 
-.benefits-list li {
+.main-benefits-list li {
   color: var(--secondary-text);
   margin-bottom: 12px;
   display: flex;
@@ -233,7 +233,7 @@
   font-size: 0.95rem;
 }
 
-.benefits-list li:before {
+.main-benefits-list li:before {
   content: '✓';
   color: #4ade80;
   font-weight: bold;
@@ -248,11 +248,10 @@
   justify-content: center;
 }
 
-
 /* Additional styles for the course detail popup modal */
 
 /* Popup modal container */
-.course-detail-popup {
+.main-course-detail-popup {
   position: relative;
   width: 95%;
   max-width: 1200px;
@@ -267,7 +266,7 @@
 }
 
 /* Close button positioning for popup */
-.course-detail-popup .close-btn {
+.main-course-detail-popup .main-close-btn {
   position: absolute;
   top: 15px;
   right: 15px;
@@ -287,40 +286,40 @@
   box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
 }
 
-.course-detail-popup .close-btn:hover {
+.main-course-detail-popup .main-close-btn:hover {
   transform: scale(1.1);
   box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
 }
 
 /* Adjust course detail container for popup */
-.course-detail-popup .course-detail-container {
+.main-course-detail-popup .main-course-detail-container {
   padding: 30px;
   gap: 30px;
   min-height: auto;
 }
 
 /* Adjust left side for popup */
-.course-detail-popup .course-details-left {
+.main-course-detail-popup .main-course-details-left {
   padding: 20px;
   border: none;
   background: transparent;
 }
 
-.course-detail-popup .course-details-left h1 {
+.main-course-detail-popup .main-course-details-left h1 {
   font-size: 2rem;
   margin-top: 20px; /* Space for close button */
 }
 
-.course-detail-popup .course-details-left h2 {
+.main-course-detail-popup .main-course-details-left h2 {
   font-size: 1.5rem;
 }
 
-.course-detail-popup .course-details-left h3 {
+.main-course-detail-popup .main-course-details-left h3 {
   font-size: 1.2rem;
 }
 
 /* Adjust right side for popup */
-.course-detail-popup .course-enrollment-right {
+.main-course-detail-popup .main-course-enrollment-right {
   position: static;
   top: auto;
   max-width: none;
@@ -329,67 +328,66 @@
 
 /* Responsive adjustments for popup */
 @media (max-width: 1024px) {
-  .course-detail-popup {
+  .main-course-detail-popup {
     width: 98%;
     max-height: 95vh;
   }
   
-  .course-detail-popup .course-detail-container {
+  .main-course-detail-popup .main-course-detail-container {
     flex-direction: column;
     padding: 20px;
   }
 }
 
 @media (max-width: 768px) {
-  .course-detail-popup {
+  .main-course-detail-popup {
     width: 100%;
     height: 100vh;
     max-height: 100vh;
     border-radius: 0;
   }
   
-  .course-detail-popup .course-detail-container {
+  .main-course-detail-popup .main-course-detail-container {
     padding: 15px;
   }
   
-  .course-detail-popup .course-details-left,
-  .course-detail-popup .course-enrollment-right {
+  .main-course-detail-popup .main-course-details-left,
+  .main-course-detail-popup .main-course-enrollment-right {
     padding: 15px;
   }
   
-  .course-detail-popup .course-details-left h1 {
+  .main-course-detail-popup .main-course-details-left h1 {
     font-size: 1.8rem;
   }
 }
 
 /* Smooth scrolling for popup content */
-.course-detail-popup {
+.main-course-detail-popup {
   scrollbar-width: thin;
   scrollbar-color: var(--accent) transparent;
 }
 
-.course-detail-popup::-webkit-scrollbar {
+.main-course-detail-popup::-webkit-scrollbar {
   width: 8px;
 }
 
-.course-detail-popup::-webkit-scrollbar-track {
+.main-course-detail-popup::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.course-detail-popup::-webkit-scrollbar-thumb {
+.main-course-detail-popup::-webkit-scrollbar-thumb {
   background: var(--accent);
   border-radius: 4px;
 }
 
-.course-detail-popup::-webkit-scrollbar-thumb:hover {
+.main-course-detail-popup::-webkit-scrollbar-thumb:hover {
   background: var(--brand-gold);
 }
-
 
 /* Add this to your popup.css file */
 
 /* Detailed video container for the popup */
-.video-container-detailed {
+.main-video-container-detailed {
   position: relative;
   width: 95%;
   max-width: 1400px;
@@ -404,7 +402,7 @@
 }
 
 /* Close button for detailed popup */
-.video-container-detailed .close-btn {
+.main-video-container-detailed .main-close-btn {
   position: absolute;
   top: 15px;
   right: 15px;
@@ -424,41 +422,41 @@
   box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
 }
 
-.video-container-detailed .close-btn:hover {
+.main-video-container-detailed .main-close-btn:hover {
   transform: scale(1.1);
   box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
 }
 
 /* Adjust course detail container inside popup */
-.video-container-detailed .course-detail-container {
+.main-video-container-detailed .main-course-detail-container {
   padding: 30px;
   gap: 30px;
   min-height: auto;
 }
 
 /* Adjust left side for popup */
-.video-container-detailed .course-details-left {
+.main-video-container-detailed .main-course-details-left {
   padding: 20px;
   border: 1px solid rgba(255, 171, 145, 0.1);
   background: transparent;
   backdrop-filter: blur(5px);
 }
 
-.video-container-detailed .course-details-left h1 {
+.main-video-container-detailed .main-course-details-left h1 {
   font-size: 2rem;
   margin-top: 20px; /* Space for close button */
 }
 
-.video-container-detailed .course-details-left h2 {
+.main-video-container-detailed .main-course-details-left h2 {
   font-size: 1.5rem;
 }
 
-.video-container-detailed .course-details-left h3 {
+.main-video-container-detailed .main-course-details-left h3 {
   font-size: 1.2rem;
 }
 
 /* Adjust right side for popup */
-.video-container-detailed .course-enrollment-right {
+.main-video-container-detailed .main-course-enrollment-right {
   position: static;
   top: auto;
   max-width: none;
@@ -467,88 +465,89 @@
 
 /* Responsive adjustments for detailed popup */
 @media (max-width: 1024px) {
-  .video-container-detailed {
+  .main-video-container-detailed {
     width: 98%;
     max-height: 95vh;
   }
   
-  .video-container-detailed .course-detail-container {
+  .main-video-container-detailed .main-course-detail-container {
     flex-direction: column;
     padding: 20px;
   }
 }
 
 @media (max-width: 768px) {
-  .video-container-detailed {
+  .main-video-container-detailed {
     width: 100%;
     height: 100vh;
     max-height: 100vh;
     border-radius: 0;
   }
   
-  .video-container-detailed .course-detail-container {
+  .main-video-container-detailed .main-course-detail-container {
     padding: 15px;
   }
   
-  .video-container-detailed .course-details-left,
-  .video-container-detailed .course-enrollment-right {
+  .main-video-container-detailed .main-course-details-left,
+  .main-video-container-detailed .main-course-enrollment-right {
     padding: 15px;
   }
   
-  .video-container-detailed .course-details-left h1 {
+  .main-video-container-detailed .main-course-details-left h1 {
     font-size: 1.8rem;
   }
 }
 
 /* Smooth scrolling for detailed popup content */
-.video-container-detailed {
+.main-video-container-detailed {
   scrollbar-width: thin;
   scrollbar-color: var(--accent) transparent;
 }
 
-.video-container-detailed::-webkit-scrollbar {
+.main-video-container-detailed::-webkit-scrollbar {
   width: 8px;
 }
 
-.video-container-detailed::-webkit-scrollbar-track {
+.main-video-container-detailed::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.video-container-detailed::-webkit-scrollbar-thumb {
+.main-video-container-detailed::-webkit-scrollbar-thumb {
   background: var(--accent);
   border-radius: 4px;
 }
 
-.video-container-detailed::-webkit-scrollbar-thumb:hover {
+.main-video-container-detailed::-webkit-scrollbar-thumb:hover {
   background: var(--brand-gold);
 }
+
 /* Responsive design */
 @media (max-width: 1024px) {
-  .course-detail-container {
+  .main-course-detail-container {
     flex-direction: column;
     gap: 30px;
   }
   
-  .course-enrollment-right {
+  .main-course-enrollment-right {
     position: static;
   }
 }
 
 @media (max-width: 768px) {
-  .course-detail-container {
+  .main-course-detail-container {
     padding: 20px 15px;
   }
   
-  .course-details-left,
-  .course-enrollment-right {
+  .main-course-details-left,
+  .main-course-enrollment-right {
     padding: 20px;
   }
   
-  .course-details-left h1 {
+  .main-course-details-left h1 {
     font-size: 2rem;
   }
   
-  .course-details-left h2 {
+  .main-course-details-left h2 {
     font-size: 1.5rem;
   }
 }

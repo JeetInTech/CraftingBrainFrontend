@@ -1,9 +1,16 @@
 // src/components/Enroll.jsx
-import React, { useState } from 'react';
-import './Enroll.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import "./Enroll.css";
 
 const Enroll = () => {
   const [expandedModule, setExpandedModule] = useState(1);
+  const navigate = useNavigate();
+
+  const handleEnrollClick = () => {
+    navigate("/payment");
+  };
 
   const moduleData = [
     {
@@ -19,27 +26,27 @@ const Enroll = () => {
           type: "LIVE LESSON",
           icon: "📚",
           title: "History of GenAI, How to Research and Intro to Playground AI",
-          locked: false
+          locked: false,
         },
         {
-          type: "LIVE LESSON", 
+          type: "LIVE LESSON",
           icon: "⚙️",
           title: "How Diffusion Models Work and Playground AI",
-          locked: false
+          locked: false,
         },
         {
           type: "ASSIGNMENT",
           icon: "💯",
           title: "Practice Set - 1",
-          locked: false
+          locked: false,
         },
         {
           type: "LIVE LESSON",
           icon: "💬",
           title: "Prompt Engineering for Various Outputs",
-          locked: false
-        }
-      ]
+          locked: false,
+        },
+      ],
     },
     {
       id: 2,
@@ -55,21 +62,21 @@ const Enroll = () => {
           type: "LIVE LESSON",
           icon: "🎨",
           title: "Advanced Prompt Engineering Techniques",
-          locked: true
+          locked: true,
         },
         {
           type: "VIDEO LESSON",
           icon: "📹",
           title: "Setting up Stable Diffusion Locally",
-          locked: true
+          locked: true,
         },
         {
           type: "VIDEO LESSON",
-          icon: "📹", 
+          icon: "📹",
           title: "Understanding Parameters and Settings",
-          locked: true
-        }
-      ]
+          locked: true,
+        },
+      ],
     },
     {
       id: 3,
@@ -80,13 +87,11 @@ const Enroll = () => {
       videoLessons: 8,
       assignments: 2,
       expanded: false,
-      lessons: []
-    }
+      lessons: [],
+    },
   ];
 
-  const toggleModule = (moduleId) => {
-    setExpandedModule(expandedModule === moduleId ? null : moduleId);
-  };
+  const toggleModule = (moduleId) => {};
 
   return (
     <div className="course-enrollment">
@@ -129,7 +134,7 @@ const Enroll = () => {
               <div className="original-price">₹9,999</div>
               <div className="discount-badge">25% OFF</div>
             </div>
-            
+
             <div className="course-features">
               <div className="feature">
                 <span className="feature-icon">📅</span>
@@ -149,7 +154,7 @@ const Enroll = () => {
               </div>
             </div>
 
-            <button className="enroll-btn">
+            <button className="enroll-btn" onClick={handleEnrollClick}>
               <span>Enroll Now</span>
               <span className="btn-icon">→</span>
             </button>
@@ -177,7 +182,7 @@ const Enroll = () => {
 
           <div className="timeline-container">
             <div className="timeline-line"></div>
-            
+
             {moduleData.map((module) => (
               <div key={module.id} className="module-container">
                 <div className="week-indicator">
@@ -186,7 +191,7 @@ const Enroll = () => {
                 </div>
 
                 <div className="module-card">
-                  <div 
+                  <div
                     className="module-header"
                     onClick={() => toggleModule(module.id)}
                   >
@@ -195,7 +200,7 @@ const Enroll = () => {
                         {module.id === 1 ? "🔥" : module.id === 2 ? "🎯" : "⚡"}
                       </div>
                     </div>
-                    
+
                     <div className="module-info">
                       <div className="module-label">MODULE {module.id}</div>
                       <div className="module-title-section">
@@ -264,18 +269,15 @@ const Enroll = () => {
           <h2 className="section-title">
             Meet Your <span className="gradient-text"> Mentor</span>
           </h2>
-          
+
           <div className="mentor-card">
             <div className="mentor-avatar">
-              <img 
-                src="/amansir1.png" 
-                alt="Aman"
-              />
+              <img src="/amansir1.png" alt="Aman" />
               <div className="mentor-badge">
                 <span>⭐</span>
               </div>
             </div>
-            
+
             <div className="mentor-info">
               <h3 className="mentor-name">Aman Sir</h3>
               <p className="mentor-title">Senior AI Engineer</p>
@@ -290,7 +292,8 @@ const Enroll = () => {
                 </div>
               </div>
               <blockquote className="mentor-quote">
-                "Learn with logic. Build with intuition. That's the INikola way."
+                "Learn with logic. Build with intuition. That's the INikola
+                way."
               </blockquote>
               <button className="linkedin-btn">
                 <span className="linkedin-icon">💼</span>
@@ -307,7 +310,7 @@ const Enroll = () => {
           <h2 className="section-title">
             What You <span className="gradient-text">Get</span>
           </h2>
-          
+
           <div className="benefits-grid">
             <div className="benefit-card">
               <div className="benefit-icon">💡</div>

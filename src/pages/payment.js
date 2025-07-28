@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
-import "./PaymentPage.css";
+import { useDynamicCSS } from '../hooks/DynamicCSSLoader';
+
+// import "./PaymentPage.css";
 
 const PaymentPage = () => {
+  useDynamicCSS('PaymentPage');
+  
   const [selectedMethod, setSelectedMethod] = useState("upi");
   const [showForm, setShowForm] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -48,17 +52,6 @@ const PaymentPage = () => {
       ],
     },
     {
-      id: "cards",
-      name: "Credit/Debit Cards",
-      icon: "💳",
-      logos: [
-        { name: "Visa", class: "visa", text: "V" },
-        { name: "Mastercard", class: "mastercard", text: "M" },
-        { name: "Amex", class: "amex", text: "A" },
-        { name: "RuPay", class: "rupay", text: "R" },
-      ],
-    },
-    {
       id: "netbanking",
       name: "Net Banking",
       icon: "🏦",
@@ -69,6 +62,18 @@ const PaymentPage = () => {
         { name: "Axis", class: "axis", text: "A" },
       ],
     },
+    {
+      id: "cards",
+      name: "Credit/Debit Cards",
+      icon: "💳",
+      logos: [
+        { name: "Visa", class: "visa", text: "V" },
+        { name: "Mastercard", class: "mastercard", text: "M" },
+        { name: "Amex", class: "amex", text: "A" },
+        { name: "RuPay", class: "rupay", text: "R" },
+      ],
+    },
+    
     {
       id: "wallet",
       name: "Digital Wallet",
@@ -519,7 +524,7 @@ const PaymentPage = () => {
 
           <div className="price-summary">
             <h3>Course Fee</h3>
-            <div className="price-amount">₹4,500</div>
+            <div className="price-amount">₹45000.0</div>
 
             <div className="user-info">
               <div className="user-avatar">👤</div>

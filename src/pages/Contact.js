@@ -8,13 +8,15 @@ const ContactUs = () => {
 
   // Animation hooks
   const headerAnimation = useScrollAnimation({ threshold: 0.3 });
+  const introAnimation = useScrollAnimation({ threshold: 0.2, delay: 200 });
   const contactMethodsAnimation = useStaggeredAnimation(4, { 
     threshold: 0.2, 
-    staggerDelay: 150,
+    staggerDelay: 200,
     rootMargin: '0px 0px -50px 0px'
   });
-  const formAnimation = useScrollAnimation({ threshold: 0.3, delay: 200 });
-  const faqAnimation = useScrollAnimation({ threshold: 0.3, delay: 300 });
+  const formAnimation = useScrollAnimation({ threshold: 0.3, delay: 300 });
+  const faqAnimation = useScrollAnimation({ threshold: 0.3, delay: 400 });
+  const supportAnimation = useScrollAnimation({ threshold: 0.3, delay: 500 });
 
   const [formData, setFormData] = useState({
     name: '',
@@ -87,46 +89,87 @@ const ContactUs = () => {
   const contactMethods = [
     {
       icon: "📧",
-      title: "Email Us",
+      title: "Email Support",
       info: "contact@craftingbrain.com",
-      subtext: "We'll respond within 24 hours"
+      subtext: "24-hour response guarantee",
+      description: "Send us detailed questions about courses, enrollment, or technical support."
     },
     {
       icon: "📞",
-      title: "Call Us",
-      info: "+91 98765 43210",
-      subtext: "Mon-Fri, 9:00 AM - 6:00 PM IST"
+      title: "Academic Helpline",
+      info: "+91##########",
+      subtext: "Monday to Friday, 9:00 AM - 6:00 PM IST",
+      description: "Speak directly with our academic counselors for personalized guidance."
     },
     {
       icon: "📍",
-      title: "Location",
+      title: "India ",
       info: "Hyderabad, Telangana",
-      subtext: "Visit us by appointment"
+      subtext: "Schedule your visit",
+      description: "Visit our modern learning facility and experience our teaching environment."
     },
     {
       icon: "💬",
-      title: "Quick Contact",
-      info: "Available 24/7",
-      subtext: "Instant support"
+      title: "Live Chat Support",
+      info: "Instant Assistance",
+      subtext: "Available 24/7",
+      description: "Get immediate answers to your questions through our live chat system."
     }
   ];
 
   const faqItems = [
     {
-      question: "How long is the course?",
-      answer: "Our comprehensive AI & Data Science program is 6 months long with placement support starting from the 2nd month."
+      question: "What is the duration of the AI & Data Science program?",
+      answer: "Our comprehensive program spans 6 months with intensive hands-on training. We provide placement support starting from the 2nd month, ensuring you're job-ready by completion.",
+      category: "Program Details"
     },
     {
-      question: "Do I need prior experience?",
-      answer: "Basic familiarity with programming is helpful but not required. We start from fundamentals and build up gradually."
+      question: "What prerequisites do I need to join the course?",
+      answer: "While basic programming knowledge is helpful, it's not mandatory. We start with fundamentals and progressively build advanced concepts. A passion for learning and problem-solving is the most important requirement.",
+      category: "Eligibility"
     },
     {
-      question: "What's the class schedule?",
-      answer: "We have 5 sessions per week, 2.5 hours each, with flexible timing options to accommodate working professionals."
+      question: "How are the classes structured and scheduled?",
+      answer: "We conduct 5 comprehensive sessions per week, each lasting 2.5 hours. Classes are available in multiple time slots including evening batches for working professionals.",
+      category: "Schedule"
     },
     {
-      question: "Is placement guaranteed?",
-      answer: "Yes! We provide 100% placement assurance with a guaranteed stipend starting from the end of the 2nd month."
+      question: "What makes your placement guarantee unique?",
+      answer: "We offer 100% placement assurance with guaranteed stipend starting from the 2nd month. Our industry partnerships and dedicated placement team ensure successful career transitions.",
+      category: "Placement"
+    },
+    {
+      question: "What learning resources and support do you provide?",
+      answer: "Students receive comprehensive study materials, access to industry-standard tools, 1-on-1 mentoring sessions, project guidance, and lifetime access to our learning platform.",
+      category: "Learning Support"
+    },
+    {
+      question: "Can I balance this course with my current job?",
+      answer: "Absolutely! Our flexible scheduling includes evening and weekend batches specifically designed for working professionals. We also provide recorded sessions for review.",
+      category: "Flexibility"
+    }
+  ];
+
+  const supportOptions = [
+    {
+      title: "Academic Counseling",
+      description: "Get personalized guidance on course selection and career planning",
+      icon: "🎓"
+    },
+    {
+      title: "Technical Support",
+      description: "Assistance with platform access, software installation, and technical issues",
+      icon: "⚙️"
+    },
+    {
+      title: "Career Guidance", 
+      description: "Professional mentoring for interview preparation and job placement",
+      icon: "🚀"
+    },
+    {
+      title: "Learning Resources",
+      description: "Access to additional materials, practice sessions, and study groups",
+      icon: "📚"
     }
   ];
 
@@ -139,36 +182,63 @@ const ContactUs = () => {
           ref={headerAnimation.elementRef}
           className={`contact-header section-title-animate ${headerAnimation.animationClass}`}
         >
-          <h1 className="contact-title">Get In Touch</h1>
+          <h1 className="contact-title">Connect With Our Learning Community</h1>
           <p className="contact-subtitle">
-            Have questions about our AI & Data Science program? We're here to help you start your journey.
+            Have questions about our AI & Data Science program? Our education specialists are here to guide you on your learning journey.
           </p>
+        </div>
+
+        {/* Introduction Section */}
+        <div 
+          ref={introAnimation.elementRef}
+          className={`contact-intro educational-fade ${introAnimation.animationClass}`}
+          >
+        
         </div>
 
         <div className="contact-content">
           
           {/* Left Side - Contact Information */}
           <div className="contact-info-section">
+            
             {/* Contact Methods Grid */}
-            <div 
-              ref={contactMethodsAnimation.containerRef}
-              className="contact-methods stagger-container"
-            >
-              {contactMethods.map((method, index) => (
-                <div 
-                  key={index}
-                  className={`contact-method info-card-animate ${contactMethodsAnimation.getItemAnimationClass(index)}`}
-                >
-                  <div className="contact-icon">
-                    <span>{method.icon}</span>
+            <div className="contact-methods-wrapper">
+              <h2 className="section-title">Get in Touch</h2>
+              <div 
+                ref={contactMethodsAnimation.containerRef}
+                className="contact-methods stagger-container"
+              >
+                {contactMethods.map((method, index) => (
+                  <div 
+                    key={index}
+                    className={`contact-method info-card-animate ${contactMethodsAnimation.getItemAnimationClass(index)}`}
+                  >
+                    <div className="contact-icon">
+                      <span>{method.icon}</span>
+                    </div>
+                    <div className="contact-details">
+                      <h3>{method.title}</h3>
+                      <p className="contact-info">{method.info}</p>
+                      <span className="contact-hours">{method.subtext}</span>
+                      <p className="contact-description">{method.description}</p>
+                    </div>
                   </div>
-                  <div className="contact-details">
-                    <h3>{method.title}</h3>
-                    <p>{method.info}</p>
-                    <span>{method.subtext}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Support Options */}
+            <div className="support-options-wrapper">
+              <h2 className="section-title">How We Support You</h2>
+              <div className="support-grid">
+                {supportOptions.map((option, index) => (
+                  <div key={index} className="support-option">
+                    <div className="support-icon">{option.icon}</div>
+                    <h4>{option.title}</h4>
+                    <p>{option.description}</p>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
@@ -178,126 +248,147 @@ const ContactUs = () => {
               ref={formAnimation.elementRef}
               className={`form-container form-animate ${formAnimation.animationClass}`}
             >
-              <h2>Send us a Message</h2>
-              <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+              <div className="form-header">
+                <h2>Start Your Learning Journey</h2>
+                <p>Complete the form below and our education specialists will contact you within 24 hours to discuss your goals and how we can help you achieve them.</p>
+              </div>
 
               <form onSubmit={handleSubmit} className="contact-form">
                 
                 {/* Inquiry Type */}
-                <div className="form-group">
-                  <label htmlFor="inquiryType">What can we help you with?</label>
-                  <select
-                    id="inquiryType"
-                    name="inquiryType"
-                    value={formData.inquiryType}
-                    onChange={handleInputChange}
-                    className="form-select"
-                    required
-                  >
-                    <option value="general">General Inquiry</option>
-                    <option value="course">Course Information</option>
-                    <option value="enrollment">Enrollment Support</option>
-                    <option value="technical">Technical Support</option>
-                    <option value="partnership">Partnership</option>
-                    <option value="career">Career Guidance</option>
-                  </select>
-                </div>
-
-                {/* Name and Email Row */}
-                <div className="form-row">
+                <div className="form-section">
+                  <label className="form-label">What brings you here today?</label>
                   <div className="form-group">
-                    <label htmlFor="name">Full Name *</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
+                    <select
+                      id="inquiryType"
+                      name="inquiryType"
+                      value={formData.inquiryType}
                       onChange={handleInputChange}
-                      className="form-input"
-                      placeholder="Enter your full name"
+                      className="form-select"
                       required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="email">Email Address *</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="form-input"
-                      placeholder="your.email@example.com"
-                      required
-                    />
+                    >
+                      <option value="general">General Information</option>
+                      <option value="course">Course Details & Curriculum</option>
+                      <option value="enrollment">Enrollment Process</option>
+                      <option value="technical">Technical Support</option>
+                      <option value="partnership">Business Partnership</option>
+                      <option value="career">Career Guidance</option>
+                    </select>
                   </div>
                 </div>
 
-                {/* Phone and Subject Row */}
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="phone">Phone Number</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="form-input"
-                      placeholder="+91 98765 43210"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="subject">Subject *</label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      className="form-input"
-                      placeholder="Brief subject line"
-                      required
-                    />
+                {/* Personal Information Section */}
+                <div className="form-section">
+                  <label className="form-label">Personal Information</label>
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="name">Full Name *</label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        className="form-input"
+                        placeholder="Enter your full name"
+                        required
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="email">Email Address *</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className="form-input"
+                        placeholder="your.email@example.com"
+                        required
+                      />
+                    </div>
                   </div>
                 </div>
 
-                {/* Message */}
-                <div className="form-group">
-                  <label htmlFor="message">Message *</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    className="form-textarea"
-                    placeholder="Tell us more about your inquiry or how we can help you..."
-                    rows="5"
-                    required
-                  ></textarea>
+                {/* Contact Information Section */}
+                <div className="form-section">
+                  <label className="form-label">Contact & Subject</label>
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="phone">Phone Number</label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        className="form-input"
+                        placeholder="+91 98765 43210"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="subject">Subject *</label>
+                      <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        className="form-input"
+                        placeholder="Brief subject line"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Message Section */}
+                <div className="form-section">
+                  <label className="form-label">Your Message</label>
+                  <div className="form-group">
+                    <label htmlFor="message">Tell us more about your goals *</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className="form-textarea"
+                      placeholder="Share your learning objectives, current background, career goals, or any specific questions you have about our program..."
+                      rows="6"
+                      required
+                    ></textarea>
+                  </div>
                 </div>
 
                 {/* Submit Button */}
-                <button 
-                  type="submit" 
-                  className={`submit-btn ${isSubmitting ? 'submitting' : ''}`}
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <span className="loading-spinner"></span>
-                      Sending Message...
-                    </>
-                  ) : (
-                    'Send Message'
-                  )}
-                </button>
+                <div className="form-section">
+                  <button 
+                    type="submit" 
+                    className={`submit-btn ${isSubmitting ? 'submitting' : ''}`}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <span className="loading-spinner"></span>
+                        Sending Your Message...
+                      </>
+                    ) : (
+                      <>
+                        <span>📩</span>
+                        Send Message & Start Your Journey
+                      </>
+                    )}
+                  </button>
+                </div>
 
                 {/* Success Message */}
                 {submitStatus === 'success' && (
                   <div className="success-message">
                     <span>✅</span>
-                    <p>Thank you! Your message has been sent successfully. We'll get back to you soon.</p>
+                    <div>
+                      <p><strong>Thank you for reaching out!</strong></p>
+                      <p>Your message has been sent successfully. Our education specialists will contact you within 24 hours to discuss your learning goals.</p>
+                    </div>
                   </div>
                 )}
 
@@ -305,7 +396,10 @@ const ContactUs = () => {
                 {submitStatus === 'error' && (
                   <div className="error-message">
                     <span>❌</span>
-                    <p>{errorMessage}</p>
+                    <div>
+                      <p><strong>Message not sent</strong></p>
+                      <p>{errorMessage}</p>
+                    </div>
                   </div>
                 )}
               </form>
@@ -318,14 +412,44 @@ const ContactUs = () => {
           ref={faqAnimation.elementRef}
           className={`faq-section educational-fade ${faqAnimation.animationClass}`}
         >
-          <h2>Frequently Asked Questions</h2>
+          <div className="faq-header">
+            <h2>Frequently Asked Questions</h2>
+            <p>Find answers to common questions about our AI & Data Science program. Can't find what you're looking for? Contact us directly!</p>
+          </div>
+          
           <div className="faq-grid">
             {faqItems.map((item, index) => (
               <div key={index} className="faq-item">
+                <div className="faq-category">{item.category}</div>
                 <h3>{item.question}</h3>
                 <p>{item.answer}</p>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Additional Support Section */}
+        <div 
+          ref={supportAnimation.elementRef}
+          className={`additional-support educational-fade ${supportAnimation.animationClass}`}
+        >
+          <div className="support-content">
+            <h2>Need Immediate Assistance?</h2>
+            <p>Our support team is available to help you with any questions or concerns. Whether you need technical help, course information, or career guidance, we're here for you.</p>
+            <div className="support-actions">
+              <button className="support-btn primary">
+                <span>💬</span>
+                Start Live Chat
+              </button>
+              <button className="support-btn secondary">
+                <span>📞</span>
+                Schedule a Call
+              </button>
+              {/* <button className="support-btn secondary">
+                <span>📍</span>
+                Visit Campus
+              </button> */}
+            </div>
           </div>
         </div>
       </div>

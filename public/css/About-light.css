@@ -61,19 +61,11 @@
   opacity: 0.2;
   filter: brightness(1.2);
 }
-
 .hero1-content {
   text-align: center;
   z-index: 2;
-  max-width: 800px;
-  padding: 0 2rem;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 3rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  border: 1px solid var(--border-color);
 }
+
 
 .hero1-title {
   font-size: 3rem;

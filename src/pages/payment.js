@@ -1,260 +1,16 @@
-import React, { useState } from "react";
-import styled, { keyframes } from "styled-components";
+import React, { useState, useEffect } from "react";
+import { useDynamicCSS } from '../hooks/DynamicCSSLoader';
 
-const colors = {
-  background: "#0a0a0a",
-  sectionBackground: "#181818",
-  accent: "#ffe600",
-  primaryText: "#ffffff",
-  secondaryText: "#ffd966",
-  success: "#28a745",
-  error: "#dc3545",
-};
+// import "./PaymentPage.css";
 
-// Keyframes
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
+const PaymentPage = () => {
+  useDynamicCSS('PaymentPage');
+  
+  const [selectedMethod, setSelectedMethod] = useState("upi");
+  const [showForm, setShowForm] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-const fadeOut = keyframes`
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-`;
-
-const rotate = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-`;
-
-// Styled components
-const Popup = styled.div`
-  position: fixed;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: ${({ $success }) => ($success ? colors.success : colors.error)};
-  color: ${colors.primaryText};
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  animation: ${({ $show }) => ($show ? fadeIn : fadeOut)} 0.5s ease-out;
-  display: ${({ $show }) => ($show ? "block" : "none")};
-  z-index: 1000;
-`;
-
-const Loader = styled.div`
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid ${colors.accent};
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: ${rotate} 1s linear infinite;
-  margin: 0 auto 1rem;
-`;
-
-const Container = styled.div`
-  width: 40%;
-  margin: 2rem auto;
-  padding: 3rem;
-  background: ${colors.sectionBackground};
-  color: ${colors.primaryText};
-  border-radius: 12px;
-  box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.7);
-
-  @media (max-width: 768px) {
-    width: 90%;
-    padding: 2rem;
-  }
-
-  @media (max-width: 480px) {
-    width: 95%;
-    padding: 1.5rem;
-  }
-`;
-
-const Title = styled.h1`
-  text-align: center;
-  color: ${colors.accent};
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-
-  @media (max-width: 768px) {
-    font-size: 1.3rem;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 1.2rem;
-  }
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  animation: ${fadeIn} 0.5s ease-in-out;
-`;
-
-const Input = styled.input`
-  padding: 1rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  border: 1px solid #333;
-  outline: none;
-  background: #2c2c2c;
-  color: ${colors.primaryText};
-  transition: all 0.3s ease;
-
-  &:focus {
-    border: 1px solid ${colors.accent};
-    background: #1c1c1c;
-    transform: scale(1.02);
-  }
-
-  @media (max-width: 768px) {
-    font-size: 0.9rem;
-    padding: 0.8rem;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 0.8rem;
-    padding: 0.7rem;
-  }
-`;
-
-const Button = styled.button`
-  padding: 0.7rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: ${colors.background};
-  background: ${colors.accent};
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
-
-  &:hover {
-    background: #ffe600;
-    transform: scale(1.05);
-    box-shadow: 0px 4px 10px rgba(84, 160, 255, 0.6);
-  }
-
-  @media (max-width: 768px) {
-    font-size: 1rem;
-    padding: 0.6rem;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 0.9rem;
-    padding: 0.5rem;
-  }
-`;
-
-const InputGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  label {
-    margin-bottom: 5px;
-    font-size: 0.9rem;
-    color: ${colors.secondaryText};
-
-    @media (max-width: 768px) {
-      font-size: 0.8rem;
-    }
-
-    @media (max-width: 480px) {
-      font-size: 0.7rem;
-    }
-  }
-
-  input {
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #555;
-    outline: none;
-    background-color: #2c2c2c;
-    color: ${colors.primaryText};
-  }
-`;
-
-const QRWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 2rem;
-
-  img {
-    width: 200px;
-
-    @media (max-width: 768px) {
-      width: 150px;
-    }
-
-    @media (max-width: 480px) {
-      width: 120px;
-    }
-  }
-
-  p {
-    font-size: 1rem;
-
-    @media (max-width: 768px) {
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 480px) {
-      font-size: 0.8rem;
-    }
-  }
-`;
-
-const Footer = styled.div`
-  margin-top: 1.5rem;
-  text-align: center;
-  color: ${colors.secondaryText};
-
-  @media (max-width: 768px) {
-    font-size: 0.9rem;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 0.8rem;
-  }
-`;
-
-const PageWrapper = styled.div`
-  min-height: 100vh;
-  background-color: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-family: 'Poppins', sans-serif;
-  color: ${colors.primaryText};
-
-  @media (max-width: 768px) {
-    padding: 1rem;
-  }
-`;
-
-const ScanAndPayPage = () => {
-  // Form Data
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -264,36 +20,122 @@ const ScanAndPayPage = () => {
     date: "",
   });
 
-  // Popup and Loader states
-  const [popup, setPopup] = useState({ show: false, success: false, message: "" });
-  const [loading, setLoading] = useState(false);
+  // Generate floating particles
+  const generateParticles = () => {
+    const particles = [];
+    for (let i = 0; i < 20; i++) {
+      particles.push(
+        <div
+          key={i}
+          className="particle"
+          style={{
+            left: `${Math.random() * 100}vw`,
+            animationDelay: `${Math.random() * 8}s`,
+            animationDuration: `${8 + Math.random() * 4}s`,
+          }}
+        />
+      );
+    }
+    return particles;
+  };
 
-  // Payment method selection (QR by default)
-  const [paymentMethod, setPaymentMethod] = useState("qr");
+  const paymentMethods = [
+    {
+      id: "upi",
+      name: "UPI Payment",
+      icon: "📱",
+      logos: [
+        { name: "GPay", class: "gpay", text: "G" },
+        { name: "PhonePe", class: "phonepe", text: "P" },
+        { name: "Paytm", class: "paytm", text: "₹" },
+        { name: "BHIM", class: "bhim", text: "B" },
+      ],
+    },
+    {
+      id: "netbanking",
+      name: "Net Banking",
+      icon: "🏦",
+      logos: [
+        { name: "ICICI", class: "icici", text: "I" },
+        { name: "HDFC", class: "hdfc", text: "H" },
+        { name: "SBI", class: "sbi", text: "S" },
+        { name: "Axis", class: "axis", text: "A" },
+      ],
+    },
+    {
+      id: "cards",
+      name: "Credit/Debit Cards",
+      icon: "💳",
+      logos: [
+        { name: "Visa", class: "visa", text: "V" },
+        { name: "Mastercard", class: "mastercard", text: "M" },
+        { name: "Amex", class: "amex", text: "A" },
+        { name: "RuPay", class: "rupay", text: "R" },
+      ],
+    },
+    
+    {
+      id: "wallet",
+      name: "Digital Wallet",
+      icon: "💰",
+      logos: [
+        { name: "Mobikwik", class: "mobikwik", text: "M" },
+        { name: "Freecharge", class: "freecharge", text: "F" },
+        { name: "Amazon Pay", class: "amazonpay", text: "A" },
+        { name: "Ola Money", class: "ola", text: "O" },
+      ],
+    },
+  ];
 
-  const handleChange = (e) => {
+  const copyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      // Add some visual feedback for copy action
+      console.log("Copied:", text);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
+
+  const handleMethodSelect = (methodId) => {
+    setSelectedMethod(methodId);
+    setShowForm(false);
+  };
+
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handlePaymentSubmit = () => {
+    if (selectedMethod === "upi" || selectedMethod === "netbanking") {
+      setShowForm(true);
+    }
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setIsProcessing(true);
 
-    const { fullName, email, phoneNumber, amount, transaction_id, date } = formData;
+    const { fullName, email, phoneNumber, amount, transaction_id, date } =
+      formData;
 
-    // Basic validation
-    if (!fullName || !email || !phoneNumber || !amount || !transaction_id || !date) {
-      setPopup({
-        show: true,
-        success: false,
-        message: "All fields are required. Please fill in all the details.",
-      });
-      setLoading(false);
+    if (
+      !fullName ||
+      !email ||
+      !phoneNumber ||
+      !amount ||
+      !transaction_id ||
+      !date
+    ) {
+      alert("⚠ Please fill in all required fields to continue");
+      setIsProcessing(false);
       return;
     }
 
-    // Prepare data for backend
     const payment_data = {
       fullName,
       email,
@@ -301,10 +143,8 @@ const ScanAndPayPage = () => {
       amount,
       transaction_id,
       date,
-      paymentMethod,
+      paymentMethod: selectedMethod,
     };
-
-    console.log("[DEBUG] Sending the following payment data:", payment_data);
 
     try {
       const response = await fetch(
@@ -316,182 +156,492 @@ const ScanAndPayPage = () => {
         }
       );
 
-      // Check for HTTP errors (e.g. 500, 404, etc.)
       if (!response.ok) {
-        const errorText = await response.text();
-        console.error("[DEBUG] Server returned an error response:", response.status, errorText);
-        throw new Error(
-          `Server Error (${response.status}): ${
-            response.statusText
-          }\nDetails: ${errorText || "No additional error text"}`
-        );
+        throw new Error(`Payment processing error (${response.status})`);
       }
 
-      // Parse JSON response
       const result = await response.json();
-      console.log("[DEBUG] Server response JSON:", result);
 
-      // Check if the backend signals success or failure
-      if (result.status === "success") {
-        setPopup({
-          show: true,
-          success: true,
-          message: result.message || "Payment submitted successfully!",
-        });
-      } else {
-        setPopup({
-          show: true,
-          success: false,
-          message: result.message || "Failed to process payment.",
-        });
-      }
+      setTimeout(() => {
+        setIsProcessing(false);
+        setShowModal(true);
+      }, 2000);
     } catch (error) {
-      console.error("[DEBUG] Error submitting form:", error);
-      setPopup({
-        show: true,
-        success: false,
-        // Show the actual error message if available
-        message: error.message || "Something went wrong. Please try again later.",
-      });
-    } finally {
-      setLoading(false);
-      // Hide popup after 3 seconds
-      setTimeout(() => setPopup({ show: false, success: false, message: "" }), 3000);
+      console.error("Payment processing error:", error);
+      setIsProcessing(false);
+      alert(
+        "❌ Payment processing failed. Please try again or contact support."
+      );
     }
   };
 
+  const renderPaymentDetails = () => {
+    if (selectedMethod === "upi") {
+      return (
+        <div className="payment-details">
+          <div className="qr-section">
+            <div className="section-header">
+              <h3 className="qr-title">UPI QR Code</h3>
+              <button className="refresh-qr">↻ Refresh</button>
+            </div>
+
+            <div className="qr-container">
+              <div className="qr-code">
+                <img
+                  src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=braincraft@upi&pn=BrainCraft%20AI%20(OPC)%20Private%20Limited&mc=0&tid=1234567890&am=BrainCraft%20AI%20(OPC)%20Private%20Limited&tid=1234567890&cu=INR&url=https://braincraftai.com"
+                  alt="UPI QR Code"
+                  className="qr-image"
+                />  
+              </div>
+            </div>
+
+            <p className="qr-instruction">Scan with any UPI app to pay</p>
+
+            <div className="upi-apps">
+              <div className="upi-app phonepe">P</div>
+              <div className="upi-app bhim">B</div>
+              <div className="upi-app gpay">G</div>
+              <div className="upi-app paytm">₹</div>
+              <div className="upi-app">📱</div>
+            </div>
+          </div>
+
+          <div className="recommended-section">
+            <div className="recommended-header">Recommended Option</div>
+            <div className="recommended-option" onClick={handlePaymentSubmit}>
+              <div className="option-left">
+                <div className="option-icon">P</div>
+                <span className="option-name">PhonePe Payment</span>
+              </div>
+              <span className="option-chevron">→</span>
+            </div>
+          </div>
+
+          {showForm && (
+            <form className="payment-form" onSubmit={handleFormSubmit}>
+              <div className="form-group">
+                <label className="form-label">Full Name</label>
+                <input
+                  type="text"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  className="form-input"
+                  placeholder="Enter your full name"
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="form-input"
+                  placeholder="your.email@example.com"
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Phone Number</label>
+                <input
+                  type="tel"
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
+                  onChange={handleInputChange}
+                  className="form-input"
+                  placeholder="+91-XXXX-XXXXXX"
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Amount</label>
+                <input
+                  type="number"
+                  name="amount"
+                  value={formData.amount}
+                  onChange={handleInputChange}
+                  className="form-input"
+                  placeholder="Enter amount"
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Transaction ID</label>
+                <input
+                  type="text"
+                  name="transaction_id"
+                  value={formData.transaction_id}
+                  onChange={handleInputChange}
+                  className="form-input"
+                  placeholder="Enter transaction reference ID"
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Transaction Date</label>
+                <input
+                  type="date"
+                  name="date"
+                  value={formData.date}
+                  onChange={handleInputChange}
+                  className="form-input"
+                  required
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="submit-btn"
+                disabled={isProcessing}
+              >
+                {isProcessing ? (
+                  <>
+                    <div className="spinner"></div>
+                    Processing Payment...
+                  </>
+                ) : (
+                  "Complete Payment"
+                )}
+              </button>
+            </form>
+          )}
+        </div>
+      );
+    }
+
+    if (selectedMethod === "netbanking") {
+      return (
+        <div className="payment-details">
+          <div className="bank-details">
+            <h3 className="bank-details-header">Bank Transfer Details</h3>
+
+            <div className="bank-info">
+              <div className="bank-detail">
+                <span className="detail-label">Account Name</span>
+                <div className="detail-value">
+                  BRAINCRAFT AI (OPC) PRIVATE LIMITED
+                  <button
+                    className="copy-btn"
+                    onClick={() =>
+                      copyToClipboard("BRAINCRAFT AI (OPC) PRIVATE LIMITED")
+                    }
+                  >
+                    📋
+                  </button>
+                </div>
+              </div>
+
+              <div className="bank-detail">
+                <span className="detail-label">Account Number</span>
+                <div className="detail-value">
+                  10226606034
+                  <button
+                    className="copy-btn"
+                    onClick={() => copyToClipboard("10226606034")}
+                  >
+                    📋
+                  </button>
+                </div>
+              </div>
+
+              <div className="bank-detail">
+                <span className="detail-label">IFSC Code</span>
+                <div className="detail-value">
+                  IDFB0080231
+                  <button
+                    className="copy-btn"
+                    onClick={() => copyToClipboard("IDFB0080231")}
+                  >
+                    📋
+                  </button>
+                </div>
+              </div>
+
+              <div className="bank-detail">
+                <span className="detail-label">Bank Name</span>
+                <div className="detail-value">
+                  IDFC FIRST BANK
+                  <button
+                    className="copy-btn"
+                    onClick={() => copyToClipboard("IDFC FIRST BANK")}
+                  >
+                    📋
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="bank-note">
+              <strong>💡 Important:</strong> After completing the bank transfer, 
+              please allow 24 hours for verification before your course access 
+              is activated. Keep your transaction receipt for reference.
+            </div>
+
+            <button className="submit-btn" onClick={handlePaymentSubmit}>
+              I Have Completed Transfer
+            </button>
+
+            {showForm && (
+              <form className="payment-form" onSubmit={handleFormSubmit}>
+                <div className="form-group">
+                  <label className="form-label">Full Name</label>
+                  <input
+                    type="text"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleInputChange}
+                    className="form-input"
+                    placeholder="Enter your full name"
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Email Address</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="form-input"
+                    placeholder="your.email@example.com"
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Phone Number</label>
+                  <input
+                    type="tel"
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
+                    onChange={handleInputChange}
+                    className="form-input"
+                    placeholder="+91-XXXX-XXXXXX"
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Amount</label>
+                  <input
+                    type="number"
+                    name="amount"
+                    value={formData.amount}
+                    onChange={handleInputChange}
+                    className="form-input"
+                    placeholder="Enter transfer amount"
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Transaction Reference</label>
+                  <input
+                    type="text"
+                    name="transaction_id"
+                    value={formData.transaction_id}
+                    onChange={handleInputChange}
+                    className="form-input"
+                    placeholder="Bank transaction reference number"
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Transfer Date</label>
+                  <input
+                    type="date"
+                    name="date"
+                    value={formData.date}
+                    onChange={handleInputChange}
+                    className="form-input"
+                    required
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="submit-btn"
+                  disabled={isProcessing}
+                >
+                  {isProcessing ? (
+                    <>
+                      <div className="spinner"></div>
+                      Verifying Transfer...
+                    </>
+                  ) : (
+                    "Submit Transfer Details"
+                  )}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="payment-details">
+        <div
+          style={{
+            textAlign: "center",
+            padding: "3rem",
+            color: "#4a5568",
+            fontFamily: "Inter, sans-serif",
+          }}
+        >
+          <h3 style={{ marginBottom: "1rem", fontSize: "1.4rem", color: "#2d3748" }}>
+            📋 Payment Method Selection
+          </h3>
+          <p style={{ color: "#68d391", fontSize: "1rem" }}>
+            Please select a payment method from the menu to continue
+          </p>
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <PageWrapper>
-      {/* Popup */}
-      {popup.show && (
-        <Popup $success={popup.success} $show={popup.show}>
-          {popup.message}
-        </Popup>
-      )}
+    <div className="payment-page">
+      <div className="payment-container">
+        {/* Floating Particles */}
+        <div className="particles">{generateParticles()}</div>
 
-      <Container>
-        <Title>Payment Collection</Title>
+        {/* Left Panel */}
+        <div className="left-panel">
+          <div className="brand-section">
+            <div className="brand-logo">🧠</div>
+            <div className="brand-name">Crafting Brain</div>
+          </div>
 
-        {/* Payment Method Selection */}
-        <InputGroup>
-          <label>Choose Payment Method</label>
-          <div style={{ display: "flex", gap: "1rem", marginTop: "0.5rem" }}>
-            <div>
-              <input
-                type="radio"
-                id="qrMethod"
-                name="paymentMethod"
-                value="qr"
-                checked={paymentMethod === "qr"}
-                onChange={() => setPaymentMethod("qr")}
-              />
-              <label htmlFor="qrMethod" style={{ marginLeft: "0.3rem" }}>
-                QR Code
-              </label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="bankMethod"
-                name="paymentMethod"
-                value="bank"
-                checked={paymentMethod === "bank"}
-                onChange={() => setPaymentMethod("bank")}
-              />
-              <label htmlFor="bankMethod" style={{ marginLeft: "0.3rem" }}>
-                Direct Bank Transfer
-              </label>
+          <div className="price-summary">
+            <h3>Course Fee</h3>
+            <div className="price-amount">₹45000.0</div>
+
+            <div className="user-info">
+              <div className="user-avatar">👤</div>
+              <div className="user-details">Contact: +91 93050 09726</div>
+              <div className="chevron">→</div>
             </div>
           </div>
-        </InputGroup>
 
-        {/* If user selects QR Code */}
-        {paymentMethod === "qr" && (
-          <QRWrapper>
-            <img
-              src={require("../assets/PaymentQRCode.jpg")}
-              type="image/png"
-              alt="QR Code for Payment"
-              width="200"
-            />
-            <p>Scan and Pay</p>
-            <p>Fill in the details below after payment</p>
-          </QRWrapper>
-        )}
+          <div className="illustration">
+            <div className="illustration-image">
+              <img
+                src="https://scitechdaily.com/images/Left-Right-Brain-Signals.gif"
+                alt="Educational Animation"
+                style={{ width: "100%", height: "auto" }}
+              />
+            </div>
 
-        {/* If user selects Direct Bank Transfer */}
-        {paymentMethod === "bank" && (
-          <div
-            style={{
-              marginBottom: "2rem",
-              border: "1px solid #555",
-              borderRadius: "8px",
-              padding: "1rem",
-              background: "#2c2c2c",
-            }}
-          >
-            <p style={{ color: colors.secondaryText }}>
-              <strong style={{ color: colors.primaryText }}>Account Name:</strong> BRAINCRAFT AI (OPC) PRIVATE LIMITED
-            </p>
-            <p style={{ color: colors.secondaryText }}>
-              <strong style={{ color: colors.primaryText }}>Account Number:</strong> 10226606034
-            </p>
-            <p style={{ color: colors.secondaryText }}>
-              <strong style={{ color: colors.primaryText }}>IFSC:</strong> IDFB0080231
-            </p>
-            <p style={{ color: colors.secondaryText }}>
-              <strong style={{ color: colors.primaryText }}>Bank Name:</strong> IDFC FIRST
-            </p>
-            <p style={{ marginTop: "1rem", color: "#f0ad4e" }}>
-              <em>
-                *Note: After adding the account as a beneficiary, you may have to wait for 24 hours
-                before you can transfer the amount.*
-              </em>
-            </p>
+            <div className="security-text">
+              Secure & Encrypted Payment
+            </div>
+          </div>
+        </div>
+
+        {/* Right Panel */}
+        <div className="right-panel">
+          <div className="payment-header">
+            <h2 className="payment-title">Secure Payment Gateway</h2>
+            <button className="close-btn">−</button>
+            <button className="close-btn">×</button>
+          </div>
+
+          <div className="payment-content">
+            {/* Payment Methods List */}
+            <div className="payment-methods-list">
+              <div className="method-section">
+                <div className="section-label">Recommended</div>
+
+                {paymentMethods.slice(0, 2).map((method) => (
+                  <button
+                    key={method.id}
+                    className={`payment-method ${
+                      selectedMethod === method.id ? "active" : ""
+                    }`}
+                    onClick={() => handleMethodSelect(method.id)}
+                  >
+                    <div className="method-icon">{method.icon}</div>
+                    <div>
+                      <div className="method-name">{method.name}</div>
+                      <div className="method-logos">
+                        {method.logos.map((logo) => (
+                          <div
+                            key={logo.name}
+                            className={`method-logo ${logo.class}`}
+                          >
+                            {logo.text}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              <div className="method-section">
+                <div className="section-label">Other Options</div>
+                {paymentMethods.slice(2).map((method) => (
+                  <button
+                    key={method.id}
+                    className={`payment-method ${
+                      selectedMethod === method.id ? "active" : ""
+                    }`}
+                    onClick={() => handleMethodSelect(method.id)}
+                  >
+                    <div className="method-icon">{method.icon}</div>
+                    <div>
+                      <div className="method-name">{method.name}</div>
+                      <div className="method-logos">
+                        {method.logos.map((logo) => (
+                          <div
+                            key={logo.name}
+                            className={`method-logo ${logo.class}`}
+                          >
+                            {logo.text}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Payment Details Panel */}
+            {renderPaymentDetails()}
+          </div>
+        </div>
+
+        {/* Success Modal */}
+        {showModal && (
+          <div className="modal-overlay" onClick={() => setShowModal(false)}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <div className="success-icon">✓</div>
+              <h2 className="modal-title">Payment Successful!</h2>
+              <p className="modal-message">
+                Your payment has been successfully processed. You will receive 
+                a confirmation email shortly with your course access details. 
+                Thank you for choosing Crafting Brain!
+              </p>
+              <button className="modal-close" onClick={() => setShowModal(false)}>
+                Continue to Dashboard
+              </button>
+            </div>
           </div>
         )}
-
-        {/* Loader when submitting */}
-        {loading && <Loader />}
-
-        {/* Payment Form */}
-        <Form onSubmit={handleFormSubmit}>
-          {["fullName", "email", "phoneNumber", "amount", "transaction_id", "date"].map((field) => (
-            <InputGroup key={field}>
-              <label htmlFor={field}>
-                {field
-                  .replace(/_/g, " ")
-                  .replace(/^./, (str) => str.toUpperCase())}
-              </label>
-              <Input
-                type={field === "email" ? "email" : field === "date" ? "date" : "text"}
-                id={field}
-                name={field}
-                placeholder={
-                  field === "date"
-                    ? "Select the date"
-                    : `Enter your ${field.replace(/_/g, " ")}`
-                }
-                value={formData[field]}
-                onChange={handleChange}
-                required
-              />
-            </InputGroup>
-          ))}
-
-          <Button type="submit" disabled={loading}>
-            {loading ? "Submitting..." : "Submit"}
-          </Button>
-        </Form>
-
-        {/* Footer */}
-        <Footer>
-          <p>Bill will be sent to your mail.</p>
-          <p>&copy; 2024 Payment Platform </p>
-        </Footer>
-      </Container>
-    </PageWrapper>
+      </div>
+    </div>
   );
 };
 
-export default ScanAndPayPage;
+export default PaymentPage;

@@ -38,7 +38,7 @@ export const ThemeProvider = ({ children }) => {
 
   // Theme configuration object
   const themeConfig = {
-    dark: {
+    dark: { 
       // CSS file mappings for dark theme
       header: "/css/Header.css",
       hero: "/css/Hero.css",
@@ -50,6 +50,8 @@ export const ThemeProvider = ({ children }) => {
       footer: "/css/Footer.css",
       courseOverview:"/css/CourseOverview.css",
       workshop:"/css/workshop-dark.css",
+      PaymentPage: "/css/PaymentPage-dark.css",
+
     },
     light: {
       // CSS file mappings for light theme
@@ -63,6 +65,9 @@ export const ThemeProvider = ({ children }) => {
       footer: "/css/Footer-light.css", 
       courseOverview:"/css/CourseOverview-light.css",
       workshop:"/css/workshop-light.css",
+      PaymentPage: "/css/PaymentPage.css",
+
+
     },
   };
 

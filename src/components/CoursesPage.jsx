@@ -9,131 +9,153 @@ const CoursesPage = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const navigate = useNavigate(); // Add this hook
 
-  // Course data with unique slugs for routing
+  // Course data with unique slugs for routing - Updated from Excel file
   const courses = [
+    // Main Courses
     {
       id: 1,
-      slug: "Enroll",
+      slug: "advanced-ai-agentic-systems",
       image:
-        "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=250&fit=crop",
-      category: "UI/UX DESIGN",
-      title: "User Experience Design Fundamentals",
-      instructor: "Sarah Mitchell",
-      sessions: "16 Sessions",
-      price: "₹19.00",
-      originalPrice: "₹25.00",
-      featured: false,
+        "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop",
+      category: "ARTIFICIAL INTELLIGENCE",
+      title: "Advanced Artificial Intelligence & Agentic Systems Program",
+      duration: "(12-14) weeks / (3-3.5) months",
+      details: "ML-1, ML2(deep learning), NLP, transformer models, LLM models, agentic AI",
+      value: "₹45,000",
+      stipend: "₹5,000",
+      certificate: true,
+      placement: true,
+      featured: true,
+      isMainCourse: true,
     },
     {
       id: 2,
-      slug: "graphic-design-intro",
+      slug: "data-engineering-analytics",
       image:
-        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop",
-      category: "GRAPHIC DESIGN",
-      title: "Introduction to Graphic Design",
-      instructor: "Liam Garcia",
-      sessions: "12 Sessions",
-      price: "₹30.00",
-      originalPrice: "₹35.00",
-      featured: true,
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
+      category: "DATA ENGINEERING",
+      title: "Advanced Data Engineering & Analytics Program",
+      duration: "(15-16) weeks / (3.5-4) months",
+      details: "Python, data engineering, cloud, SQL, advanced data analysis, ML-1, Tableau",
+      value: "₹39,000",
+      stipend: "₹3,000",
+      certificate: true,
+      placement: true,
+      placementFee: "₹5,000",
+      featured: false,
+      isMainCourse: true,
     },
     {
       id: 3,
-      slug: "frontend-bootcamp",
+      slug: "gen-ai-professional",
       image:
-        "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=400&h=250&fit=crop",
-      category: "WEB DEVELOPMENT",
-      title: "Frontend Web Development Bootcamp",
-      instructor: "Emma Wilson",
-      sessions: "20 Sessions",
-      price: "₹30.00",
-      originalPrice: "₹45.00",
-      featured: false,
+        "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=250&fit=crop",
+      category: "GEN-AI PROFESSIONAL",
+      title: "Gen-AI Professional Course - Complete Package",
+      duration: "(24-25) weeks / (6-6.5) months",
+      details: "Comprehensive program combining AI, ML, Data Engineering - All together",
+      value: "₹79,000",
+      stipend: "₹10,000",
+      certificate: true,
+      placement: true,
+      featured: true,
+      isMainCourse: true,
+      allInclusive: true,
     },
+    // Sub Courses (Crash Courses)
     {
       id: 4,
-      slug: "react-native-mobile",
+      slug: "python-data-engineering-bootcamp",
       image:
-        "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=250&fit=crop",
-      category: "MOBILE DEV",
-      title: "React Native Mobile Development",
-      instructor: "John Doe",
-      sessions: "18 Sessions",
-      price: "₹35.00",
-      originalPrice: "₹50.00",
+        "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400&h=250&fit=crop",
+      category: "BOOTCAMP",
+      title: "Python Programming & Data Engineering Bootcamp",
+      duration: "(6-7) weeks / (1.5-2) months",
+      details: "Python programming fundamentals + Data engineering principles",
+      value: "₹16,499",
+      stipend: "₹2,000",
+      certificate: true,
+      placement: false,
       featured: false,
+      isMainCourse: false,
     },
     {
       id: 5,
-      slug: "python-data-analytics",
+      slug: "sql-data-analysis",
       image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
-      category: "DATA SCIENCE",
-      title: "Data Analytics with Python",
-      instructor: "Jane Smith",
-      sessions: "15 Sessions",
-      price: "₹40.00",
-      originalPrice: "₹55.00",
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop",
+      category: "DATA ANALYSIS",
+      title: "SQL Mastery & Advanced Data Analysis",
+      duration: "(4-5) weeks / (1-1.5) months",
+      details: "SQL fundamentals to advanced + comprehensive data analysis techniques",
+      value: "₹13,999",
+      stipend: "₹1,500",
+      certificate: true,
+      placement: false,
       featured: false,
+      isMainCourse: false,
     },
     {
       id: 6,
-      slug: "social-media-marketing",
+      slug: "ml-deep-learning-sprint",
       image:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop",
-      category: "DIGITAL MARKETING",
-      title: "Social Media Marketing Mastery",
-      instructor: "Mike Johnson",
-      sessions: "14 Sessions",
-      price: "₹25.00",
-      originalPrice: "₹35.00",
+        "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=250&fit=crop",
+      category: "MACHINE LEARNING",
+      title: "Advanced Machine Learning & Deep Learning Sprint",
+      duration: "(9-10) weeks / (2.5-3) months",
+      details: "ML-1 fundamentals + ML-2 (deep learning) advanced concepts",
+      value: "₹24,999",
+      stipend: "₹3,500",
+      certificate: true,
+      placement: false,
       featured: false,
+      isMainCourse: false,
     },
   ];
 
   // Categories data
   const categories = [
     {
-      title: "UI/UX Design",
-      description: "Master the principles of user-centered design...",
+      title: "Artificial Intelligence",
+      description: "Master AI, ML, and cutting-edge agentic systems...",
       number: "1.",
-      featured: false,
-      icon: "🎨",
-    },
-    {
-      title: "Web Development",
-      description: "Build responsive websites and modern web...",
-      number: "2.",
-      featured: true,
-      icon: "💻",
-    },
-    {
-      title: "Mobile Development",
-      description: "Learn how to create stunning mobile...",
-      number: "3.",
-      featured: false,
-      icon: "📱",
-    },
-    {
-      title: "Digital Marketing",
-      description: "Grow businesses with effective marketing...",
-      number: "4.",
-      featured: false,
-      icon: "📈",
-    },
-    {
-      title: "Data & Artificial Intelligence",
-      description: "Understand data analytics, machine learning, and AI...",
-      number: "5.",
       featured: false,
       icon: "🤖",
     },
     {
-      title: "Creative & Multimedia",
-      description: "Unleash your creativity with courses in graphic...",
+      title: "Data Engineering",
+      description: "Build robust data pipelines and analytics...",
+      number: "2.",
+      featured: true,
+      icon: "📊",
+    },
+    {
+      title: "Gen-AI Professional",
+      description: "Complete AI professional development...",
+      number: "3.",
+      featured: false,
+      icon: "⚡",
+    },
+    {
+      title: "Python Programming",
+      description: "Master Python for data science and engineering...",
+      number: "4.",
+      featured: false,
+      icon: "🐍",
+    },
+    {
+      title: "SQL & Data Analysis",
+      description: "Advanced database management and analysis...",
+      number: "5.",
+      featured: false,
+      icon: "📈",
+    },
+    {
+      title: "Machine Learning",
+      description: "Deep learning and advanced ML algorithms...",
       number: "6.",
       featured: false,
-      icon: "🎬",
+      icon: "🧠",
     },
   ];
 
@@ -152,7 +174,7 @@ const CoursesPage = () => {
     {
       question: "What types of courses are available?",
       answer:
-        "We offer courses in web development, mobile development, UI/UX design, data science, digital marketing, and more.",
+        "We offer courses in AI, machine learning, data engineering, Python programming, SQL, and comprehensive Gen-AI professional programs.",
     },
     {
       question: "Are the courses beginner-friendly?",
@@ -160,9 +182,9 @@ const CoursesPage = () => {
         "Yes! We have courses for all levels, from complete beginners to advanced professionals.",
     },
     {
-      question: "Can I control my smart home when I'm away?",
+      question: "Do you provide certificates and placement assistance?",
       answer:
-        "This seems to be a misplaced question. Please contact support for smart home related queries.",
+        "Yes! All courses include certificates upon completion. Main courses also include guaranteed placement assistance and performance-based stipends.",
     },
     {
       question: "Can I access Relearn from my phone or tablet?",
@@ -181,25 +203,25 @@ const CoursesPage = () => {
     [
       {
         name: "Olivia Brown",
-        role: "Software Engineer",
+        role: "AI Engineer",
         rating: 5,
-        text: '"I never thought online learning could feel this personal. Relearn helped me switch careers with confidence!"',
+        text: '"The AI program helped me transition into cutting-edge technology. The stipend was a great bonus!"',
         avatar:
           "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=50&h=50&fit=crop&crop=face",
       },
       {
         name: "Liam Garcia",
-        role: "UI/UX Designer",
+        role: "Data Engineer",
         rating: 5,
-        text: "\"Relearn made it easy for me to balance work and study. I can't believe how much I've grown!\"",
+        text: "\"The data engineering course was comprehensive and the placement assistance was excellent!\"",
         avatar:
           "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face",
       },
       {
         name: "Emma Hanasui",
-        role: "Data Analyst",
+        role: "ML Specialist",
         rating: 5,
-        text: '"The interactive projects in Relearn were a game changer. I felt like I was in a real classroom."',
+        text: '"The machine learning sprint gave me exactly what I needed to advance my career."',
         avatar:
           "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop&crop=face",
       },
@@ -207,52 +229,52 @@ const CoursesPage = () => {
     [
       {
         name: "James Carter",
-        role: "Digital Marketing Specialist",
+        role: "Gen-AI Developer",
         rating: 5,
-        text: '"Thanks to Relearn, I landed my dream job within 3 months of starting! The support was incredible!"',
+        text: '"The comprehensive Gen-AI program was worth every penny. Got placed within 2 months!"',
         avatar:
           "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=face",
       },
       {
         name: "Olivia Brown",
-        role: "UI/UX Designer",
+        role: "Python Developer",
         rating: 5,
-        text: '"The interactive projects in Relearn were a game changer. I felt like I was in a real classroom."',
+        text: '"The Python bootcamp was intensive and practical. Perfect for career switching!"',
         avatar:
           "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=50&h=50&fit=crop&crop=face",
         featured: true,
       },
       {
         name: "Noah Smith",
-        role: "Software Engineer",
+        role: "Data Analyst",
         rating: 5,
-        text: '"I never thought online learning could feel this personal. Relearn helped me switch careers with confidence!"',
+        text: '"SQL mastery course transformed my data analysis skills completely!"',
         avatar:
           "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=50&h=50&fit=crop&crop=face",
       },
     ],
     [
       {
-        name: "Shopia Thomson",
-        role: "Junior Front-End Developer",
+        name: "Sophia Thomson",
+        role: "AI Research Associate",
         rating: 5,
-        text: '"I never thought online learning could feel this personal. Relearn helped me switch careers with confidence!"',
+        text: '"The agentic AI systems module was groundbreaking. Highly recommend!"',
         avatar:
           "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=50&h=50&fit=crop&crop=face",
       },
       {
-        name: "Liam Garcia",
-        role: "UI/UX Designer",
+        name: "Michael Chen",
+        role: "Senior Data Engineer",
         rating: 5,
-        text: '"I never thought online learning could feel this personal. Relearn helped me switch careers with confidence!"',
+        text: '"Best investment in my career. The hands-on projects were amazing!"',
         avatar:
           "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face",
       },
       {
-        name: "Hanna Simpson",
-        role: "Data Analyst",
+        name: "Anna Rodriguez",
+        role: "ML Engineer",
         rating: 5,
-        text: '"I never thought online learning could feel this personal. Relearn helped me switch careers with confidence!"',
+        text: '"From theory to practice, this program covers everything you need!"',
         avatar:
           "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=50&h=50&fit=crop&crop=face",
       },
@@ -279,15 +301,12 @@ const CoursesPage = () => {
 
   // Add function to handle course enrollment
   const handleJoinCourse = (course) => {
-    // Option 1: Navigate to individual course page
-    // navigate(`/course/₹{course.slug}`);
-    navigate(`/enroll/₹{course.slug}`, { state: { course } });
-    // Option 2: Navigate to enrollment page with course data
-    // navigate(`/enroll/₹{course.slug}`, { state: { course } });
-
-    // Option 3: Navigate to a general enrollment page
-    // navigate('/enrollment');
+    navigate(`/enroll/${course.slug}`, { state: { course } });
   };
+
+  // Filter main courses and sub courses
+  const mainCourses = courses.filter(course => course.isMainCourse);
+  const subCourses = courses.filter(course => !course.isMainCourse);
 
   return (
     <div className="courses-page">
@@ -295,31 +314,48 @@ const CoursesPage = () => {
       <section className="hero-section">
         <div className="hero-container">
           <div className="hero-content">
-            
             <h1 className="hero-title">
               Relearn empowers your growth—{" "}
               <span className="text-purple">anytime, anywhere.</span>
             </h1>
             
-          </div>
-          <div className="hero-image">
-            <img
-              src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=500&h=400&fit=crop&crop=face"
-              alt="Happy learner"
-            />
+            {/* Key Features */}
+            <div className="hero-features">
+              <div className="feature-item">
+                <div className="feature-icon">🎓</div>
+                <div className="feature-text">
+                  <h3>Certificate</h3>
+                  <p>Industry-recognized certification</p>
+                </div>
+              </div>
+              <div className="feature-item">
+                <div className="feature-icon">💰</div>
+                <div className="feature-text">
+                  <h3><strong>Stipend up to ₹10K</strong></h3>
+                  <p>Performance-based rewards</p>
+                </div>
+              </div>
+              <div className="feature-item">
+                <div className="feature-icon">🎯</div>
+                <div className="feature-text">
+                  <h3>Guaranteed Placements</h3>
+                  <p>100% placement assistance</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Courses Section */}
+      {/* Main Courses Section */}
       <section className="courses-section">
         <div className="section-header">
           <div className="section-badge">
-            <span className="badge-icon">📚</span>
-            OUR COURSES
+            <span className="badge-icon">🎯</span>
+            MAIN COURSES
           </div>
           <h2 className="section-title">
-            Explore our Best <span className="text-purple">Courses</span>
+            Professional <span className="text-purple">Programs</span>
           </h2>
           <div className="search-container">
             <input
@@ -329,17 +365,82 @@ const CoursesPage = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
               className="search-input"
             />
-            <button onClick={handleSearch} className="search-btn">
+            {/* <button onClick={handleSearch} className="search-btn">
               Search 🔍
-            </button>
+            </button> */}
           </div>
         </div>
 
         <div className="courses-grid">
-          {courses.map((course) => (
+          {mainCourses.map((course) => (
             <div
               key={course.id}
-              className={`course-card ₹{course.featured ? "featured" : ""}`}
+              className={`course-card ${course.featured ? "featured" : ""}`}
+            >
+              <div className="course-image" style={{ position: "relative" }}>
+                <img src={course.image} alt={course.title} />
+                <div className="course-category">{course.category}</div>
+                {course.allInclusive && (
+                  <div className="all-inclusive-badge">ALL INCLUSIVE</div>
+                )}
+              </div>
+
+              <div className="course-content">
+                <h3 className="course-title">{course.title}</h3>
+                <div className="course-duration">
+                  <span className="duration">{course.duration}</span>
+                </div>
+                <div className="course-details">
+                  <p>{course.details}</p>
+                </div>
+                
+                <div className="course-benefits">
+                  <div className="benefit-item">
+                    <span className="benefit-icon">🎓</span>
+                    <span>Certificate</span>
+                  </div>
+                
+                  <div className="benefit-item">
+                    <span className="benefit-icon">🎯</span>
+                    <span>Placement</span>
+                  </div>
+                </div>
+
+                <div className="course-footer">
+                  <div className="stipend-highlight">
+                    <span className="stipend-label">Earn Stipend:</span>
+                    <span className="stipend-amount">{course.stipend}</span>
+                  </div>
+                  <button
+                    className={`join-btn ${course.featured ? "featured" : ""}`}
+                    onClick={() => handleJoinCourse(course)}
+                  >
+                    Join Course
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Sub Courses Section */}
+      <section className="courses-section sub-courses">
+        <div className="section-header">
+          <div className="section-badge">
+            <span className="badge-icon">⚡</span>
+            CRASH COURSES
+          </div>
+          <h2 className="section-title">
+            Quick <span className="text-purple">Skill Boosters</span>
+          </h2>
+        </div>
+
+        <div className="courses-grid">
+          {subCourses.map((course) => (
+            <div
+              key={course.id}
+              className={`course-card ${course.featured ? "featured" : ""}`}
             >
               <div className="course-image" style={{ position: "relative" }}>
                 <img src={course.image} alt={course.title} />
@@ -348,24 +449,31 @@ const CoursesPage = () => {
 
               <div className="course-content">
                 <h3 className="course-title">{course.title}</h3>
-                <div className="course-instructor">
-                  <img
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=30&h=30&fit=crop&crop=face"
-                    alt={course.instructor}
-                  />
-                  <span>{course.instructor}</span>
-                  <span className="sessions">{course.sessions}</span>
+                <div className="course-duration">
+                  <span className="duration">{course.duration}</span>
                 </div>
-                <div className="course-footer">
-                  <div className="course-price">
-                    <span className="current-price">{course.price}</span>
-                    <span className="original-price">
-                      {course.originalPrice}
-                    </span>
+                <div className="course-details">
+                  <p>{course.details}</p>
+                </div>
+                
+                <div className="course-benefits">
+                  <div className="benefit-item">
+                    <span className="benefit-icon">🎓</span>
+                    <span>Certificate</span>
                   </div>
-                  {/* Updated Join Course Button with Navigation */}
+                  <div className="benefit-item">
+                    <span className="benefit-icon">💰</span>
+                    <span><strong>Stipend: {course.stipend}</strong></span>
+                  </div>
+                </div>
+
+                <div className="course-footer">
+                  <div className="stipend-highlight">
+                    <span className="stipend-label">Earn Stipend:</span>
+                    <span className="stipend-amount">{course.stipend}</span>
+                  </div>
                   <button
-                    className={`join-btn ₹{course.featured ? "featured" : ""}`}
+                    className={`join-btn ${course.featured ? "featured" : ""}`}
                     onClick={() => handleJoinCourse(course)}
                   >
                     Join Course
@@ -400,8 +508,7 @@ const CoursesPage = () => {
             </div>
             <h3>Pick Your Course</h3>
             <p>
-              Browse top-quality courses in various categories tailored to your
-              goals.
+              Choose from main professional programs or quick crash courses tailored to your goals.
             </p>
           </div>
           <div className="step">
@@ -409,10 +516,9 @@ const CoursesPage = () => {
               <span className="step-number">03</span>
               <div className="icon">⏰</div>
             </div>
-            <h3>Learn at Your Own Pace</h3>
+            <h3>Learn & Earn</h3>
             <p>
-              Access lessons anytime, anywhere. Enjoy flexible learning with
-              videos, quizzes, and assignments.
+              Study at your pace, complete projects, and earn performance-based stipends up to ₹10K.
             </p>
           </div>
           <div className="step">
@@ -420,53 +526,11 @@ const CoursesPage = () => {
               <span className="step-number">04</span>
               <div className="icon">🏆</div>
             </div>
-            <h3>Earn Your Certificate</h3>
+            <h3>Get Certified & Placed</h3>
             <p>
-              Complete the course and receive an official digital certificate to
-              boost your resume and career.
+              Receive your certificate and benefit from our guaranteed placement assistance program.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* Categories Section */}
-      <section className="categories-section">
-        <div className="categories-header">
-          <h2 className="section-title">
-            Choose Your Favourite Course from Top{" "}
-            <span className="text-purple">Categories</span>
-          </h2>
-          <p className="section-description">
-            Discover a variety of in-demand learning categories designed to
-            elevate your skills and boost your career.
-          </p>
-          <button className="browse-btn">Browse All Categories →</button>
-        </div>
-
-        <div className="categories-grid">
-          {categories.map((category, index) => (
-            <div
-              key={index}
-              className={`category-card ₹{category.featured ? "featured" : ""}`}
-            >
-              <div className="category-content">
-                <h3>{category.title}</h3>
-                <p>{category.description}</p>
-                <button className="show-more-btn">Show More →</button>
-              </div>
-              <div className="category-icon">
-                <div className="icon-circle">
-                  <span className="category-icon-symbol">{category.icon}</span>
-                </div>
-              </div>
-              <div className="category-number">{category.number}</div>
-            </div>
-          ))}
-        </div>
-
-        <div className="categories-nav">
-          <button className="nav-arrow">←</button>
-          <button className="nav-arrow">→</button>
         </div>
       </section>
 
@@ -500,7 +564,7 @@ const CoursesPage = () => {
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className={`faq-item ₹{openFaq === faq.question ? "open" : ""}`}
+                className={`faq-item ${openFaq === faq.question ? "open" : ""}`}
               >
                 <button
                   className="faq-question"
@@ -537,7 +601,7 @@ const CoursesPage = () => {
             {testimonials[currentTestimonial].map((testimonial, index) => (
               <div
                 key={index}
-                className={`testimonial-card ₹{
+                className={`testimonial-card ${
                   testimonial.featured ? "featured" : ""
                 }`}
               >

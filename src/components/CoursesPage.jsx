@@ -2,12 +2,18 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Add this import
 import "./CoursesPage.css";
+import JoinCourseModal from "../components/JoinCourseModal"; 
 
 const CoursesPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [openFaq, setOpenFaq] = useState("What is Relearn?");
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const navigate = useNavigate(); // Add this hook
+  const [selectedCourse, setSelectedCourse] = useState(null);
+
+    const handleJoinCourse = (course) => {
+      setSelectedCourse(course);
+    };
 
   // Course data with unique slugs for routing
   const courses = [
@@ -278,16 +284,16 @@ const CoursesPage = () => {
   };
 
   // Add function to handle course enrollment
-  const handleJoinCourse = (course) => {
-    // Option 1: Navigate to individual course page
-    // navigate(`/course/₹{course.slug}`);
-    navigate(`/enroll/₹{course.slug}`, { state: { course } });
-    // Option 2: Navigate to enrollment page with course data
-    // navigate(`/enroll/₹{course.slug}`, { state: { course } });
+  // const handleJoinCourse = (course) => {
+  //   // Option 1: Navigate to individual course page
+  //   // navigate(`/course/₹{course.slug}`);
+  //   navigate(`/enroll/₹{course.slug}`, { state: { course } });
+  //   // Option 2: Navigate to enrollment page with course data
+  //   // navigate(`/enroll/₹{course.slug}`, { state: { course } });
 
-    // Option 3: Navigate to a general enrollment page
-    // navigate('/enrollment');
-  };
+  //   // Option 3: Navigate to a general enrollment page
+  //   // navigate('/enrollment');
+  // };
 
   return (
     <div className="courses-page">
@@ -365,11 +371,11 @@ const CoursesPage = () => {
                   </div>
                   {/* Updated Join Course Button with Navigation */}
                   <button
-                    className={`join-btn ₹{course.featured ? "featured" : ""}`}
-                    onClick={() => handleJoinCourse(course)}
-                  >
-                    Join Course
-                  </button>
+                  className={`join-btn ${course.featured ? "featured" : ""}`}
+                  onClick={() => handleJoinCourse(course)}
+                >
+                  Join Course
+                </button>
                 </div>
               </div>
             </div>
@@ -571,6 +577,11 @@ const CoursesPage = () => {
           </div>
         </div>
       </section>
+      <JoinCourseModal
+      isOpen={!!selectedCourse}
+      onClose={() => setSelectedCourse(null)}
+      course={selectedCourse}
+    />
     </div>
   );
 };

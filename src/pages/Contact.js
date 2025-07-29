@@ -489,15 +489,28 @@ const ContactUs = () => {
                 <span>💬</span>
                 Start WhatsApp Chat
               </button>
+              <button
+                className="support-btn secondary"
+                onClick={() => {
+                  const subject = "Schedule a Call - Course Enquiry";
+                  const body = `Hi Crafting Brain,
 
-              <button className="support-btn secondary">
+I hope you're doing well. I'd like to schedule a quick call to enquire about your course details. Please let me know a convenient time for you this week.
+
+Looking forward to connecting.
+
+Best regards,
+[Your Name]`;
+
+                  const mailtoLink = `mailto:business@craftingbrain.com?subject=${encodeURIComponent(
+                    subject
+                  )}&body=${encodeURIComponent(body)}`;
+                  window.location.href = mailtoLink;
+                }}
+              >
                 <span>📞</span>
                 Schedule a Call
               </button>
-              {/* <button className="support-btn secondary">
-                <span>📍</span>
-                Visit Campus
-              </button> */}
             </div>
           </div>
         </div>

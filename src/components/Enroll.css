@@ -120,6 +120,47 @@ body {
   font-weight: 500;
 }
 
+/* Show More Button Styles */
+.show-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  position: relative;
+}
+
+.show-more-btn {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(125, 211, 252, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.show-more-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(125, 211, 252, 0.4);
+  background: linear-gradient(135deg, var(--accent-color), var(--tertiary-color));
+}
+
+.show-more-btn .btn-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.show-more-btn:hover .btn-icon {
+  transform: translateY(2px);
+}
+
 /* Enrollment Card */
 .enrollment-card {
   background: rgba(255, 255, 255, 0.02);

@@ -17,7 +17,6 @@ import {
   // Eye,
 } from "lucide-react";
 import { useDynamicCSS } from "../hooks/DynamicCSSLoader";
-import "./workshop-styles.css";
 
 const WorkshopPage = () => {
   useDynamicCSS("workshop");
@@ -54,7 +53,7 @@ const WorkshopPage = () => {
     subtitle: "WORKSHOP",
     date: "Sunday 28 July 2024",
     time: "2 - 6 PM",
-    instructor: "Jeet",
+    instructor: "Aman Sir",
     instructorTitle: "Senior ai Developer",
     instructorImage:
       "https://upload.wikimedia.org/wikipedia/en/d/d5/Professor_%28Money_Heist%29.jpg",
@@ -196,12 +195,7 @@ const WorkshopPage = () => {
     <div className="page-wrapper">
       <div className="workshop-page">
         {/* Admin Toggle Button */}
-        <button
-          className="admin-toggle-btn"
-          onClick={() => setIsAdminPanelOpen(true)}
-        >
-          <Settings />
-        </button>
+       
 
         {/* Hero Section */}
         <section className="hero">

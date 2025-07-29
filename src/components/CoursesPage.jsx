@@ -324,16 +324,16 @@ const CoursesPage = () => {
               <div className="feature-item">
                 <div className="feature-icon">🎓</div>
                 <div className="feature-text">
-                  <h3>Certificate</h3>
+                  <h3>Experience certificate from INIKOLA</h3>
                   <p>Industry-recognized certification</p>
                 </div>
               </div>
               <div className="feature-item">
                 <div className="feature-icon">💰</div>
                 <div className="feature-text">
-                  <h3><strong>Stipend up to ₹10K</strong></h3>
+                  <h3><strong>Stipend up to ₹10k every month</strong></h3>
                   <p>Performance-based rewards</p>
-                </div>
+                </div>  
               </div>
               <div className="feature-item">
                 <div className="feature-icon">🎯</div>
@@ -415,7 +415,7 @@ const CoursesPage = () => {
                     className={`join-btn ${course.featured ? "featured" : ""}`}
                     onClick={() => handleJoinCourse(course)}
                   >
-                    Join Course
+                    Course Details → 
                   </button>
                 </div>
               </div>
@@ -476,7 +476,7 @@ const CoursesPage = () => {
                     className={`join-btn ${course.featured ? "featured" : ""}`}
                     onClick={() => handleJoinCourse(course)}
                   >
-                    Join Course
+                    Course Details →
                   </button>
                 </div>
               </div>

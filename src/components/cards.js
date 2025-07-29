@@ -153,17 +153,7 @@ const CourseCard = ({
                   </ul>
                 </section>
 
-                <section className="main-course-section">
-                  <h2>Key Features</h2>
-                  <ul className="main-key-features">
-                    <li>Expert instruction from {author}</li>
-                    <li>Hands-on practical projects</li>
-                    <li>Industry-standard tools and techniques</li>
-                    <li>Certificate of completion</li>
-                    <li>Lifetime access to course materials</li>
-                    <li>Community support and networking</li>
-                  </ul>
-                </section>
+              
 
                 <section className="main-course-section">
                   <h2>Course Content</h2>
@@ -210,19 +200,7 @@ const CourseCard = ({
 
                 {/* Course Info Cards */}
                 <div className="main-course-info-cards">
-                  <div className="main-course-info-card">
-                    <div className="main-info-label">Module Duration</div>
-                    <div className="main-info-value">
-                      {courseDetails?.duration || "4-6 Weeks"}
-                    </div>
-                  </div>
-
-                  <div className="main-course-info-card">
-                    <div className="main-info-label">Weekly Sessions</div>
-                    <div className="main-info-value">
-                      {courseDetails?.schedule || "2-3 Sessions"}
-                    </div>
-                  </div>
+                  
 
                   <div className="main-course-info-card">
                     <div className="main-info-label">Module Access</div>
@@ -253,16 +231,7 @@ const CourseCard = ({
 
                 {/* Referral Code Input */}
                 <div className="main-referral-section">
-                  <label className="main-referral-label">
-                    Have a Referral Code? (Optional)
-                  </label>
-                  <input
-                    type="text"
-                    className="main-referral-input"
-                    placeholder="Enter referral code"
-                    value={referralCode}
-                    onChange={(e) => setReferralCode(e.target.value)}
-                  />
+                  
                 </div>
 
                 {/* Enroll Button */}

@@ -73,7 +73,7 @@ const CoursesPage = () => {
       duration: "(6-7) weeks / (1.5-2) months",
       details: "Python programming fundamentals + Data engineering principles",
       value: "₹16,499",
-      stipend: "₹2,000",
+      stipend: "No Stipend",
       certificate: true,
       placement: false,
       featured: false,
@@ -89,7 +89,7 @@ const CoursesPage = () => {
       duration: "(4-5) weeks / (1-1.5) months",
       details: "SQL fundamentals to advanced + comprehensive data analysis techniques",
       value: "₹13,999",
-      stipend: "₹1,500",
+      stipend: "No Stipend",
       certificate: true,
       placement: false,
       featured: false,
@@ -105,7 +105,7 @@ const CoursesPage = () => {
       duration: "(9-10) weeks / (2.5-3) months",
       details: "ML-1 fundamentals + ML-2 (deep learning) advanced concepts",
       value: "₹24,999",
-      stipend: "₹3,500",
+      stipend: "No Stipend",
       certificate: true,
       placement: false,
       featured: false,
@@ -338,7 +338,7 @@ const CoursesPage = () => {
               <div className="feature-item">
                 <div className="feature-icon">🎯</div>
                 <div className="feature-text">
-                  <h3>Guaranteed Placements</h3>
+                  <h3>Experience letter from INIKOLA</h3>
                   <p>100% placement assistance</p>
                 </div>
               </div>

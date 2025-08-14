@@ -362,6 +362,10 @@ const Enroll = () => {
                 <span className="stat-label">Live Sessions</span>
               </div>
               <div className="stat">
+                <span className="stat-number">{totalModules * 2}</span>
+                <span className="stat-label">Inikola Classes</span>
+              </div>
+              <div className="stat">
                 <span className="stat-number">{totalModules * 2}+</span>
                 <span className="stat-label">Projects</span>
               </div>

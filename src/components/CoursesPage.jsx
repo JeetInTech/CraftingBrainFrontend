@@ -20,7 +20,7 @@ const CoursesPage = () => {
       category: "ARTIFICIAL INTELLIGENCE",
       title: "Advanced Artificial Intelligence & Agentic Systems Program",
       duration: "(12-14) weeks / (3-3.5) months",
-      details: "ML-1, ML2(deep learning), NLP, transformer models, LLM models, agentic AI",
+      details: "Machine Learning, Deep learning - Neural Networks, NLP, transformer models, LLM models, agentic AI",
       value: "₹45,000",
       stipend: "₹5,000",
       certificate: true,
@@ -28,12 +28,31 @@ const CoursesPage = () => {
       featured: true,
       isMainCourse: true,
     },
+    
     {
       id: 2,
+      slug: "gen-ai-professional",
+      image:
+        "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=250&fit=crop",
+      category: "GEN-AI PROFESSIONAL",
+      title: "Gen-AI Professional Course - Complete Package",
+      duration: "(24-25) weeks / (6-6.5) months",
+      details: "Comprehensive program combining Advanced Data Engineering , Data analysis, Data Science - All together",
+      value: "₹79,000",
+      stipend: "₹10,000",
+      certificate: true,
+      placement: true,
+      featured: true,
+      isMainCourse: true,
+      allInclusive: true,
+    },
+
+    {
+      id: 3,
       slug: "data-engineering-analytics",
       image:
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
-      category: "DATA ENGINEERING",
+      category: "ADVANCE DATA ANALYSIS",
       title: "Advanced Data Engineering & Analytics Program",
       duration: "(15-16) weeks / (3.5-4) months",
       details: "Python, data engineering, cloud, SQL, advanced data analysis, ML-1, Tableau",
@@ -45,30 +64,14 @@ const CoursesPage = () => {
       featured: false,
       isMainCourse: true,
     },
-    {
-      id: 3,
-      slug: "gen-ai-professional",
-      image:
-        "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=250&fit=crop",
-      category: "GEN-AI PROFESSIONAL",
-      title: "Gen-AI Professional Course - Complete Package",
-      duration: "(24-25) weeks / (6-6.5) months",
-      details: "Comprehensive program combining AI, ML, Data Engineering - All together",
-      value: "₹79,000",
-      stipend: "₹10,000",
-      certificate: true,
-      placement: true,
-      featured: true,
-      isMainCourse: true,
-      allInclusive: true,
-    },
+    
     // Sub Courses (Crash Courses)
     {
       id: 4,
       slug: "python-data-engineering-bootcamp",
       image:
         "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400&h=250&fit=crop",
-      category: "BOOTCAMP",
+      category: "Data-Engineering",
       title: "Python Programming & Data Engineering Bootcamp",
       duration: "(6-7) weeks / (1.5-2) months",
       details: "Python programming fundamentals + Data engineering principles",
@@ -85,7 +88,7 @@ const CoursesPage = () => {
       image:
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop",
       category: "DATA ANALYSIS",
-      title: "SQL Mastery & Advanced Data Analysis",
+      title: "SQL Mastery & Advanced Data Analysis Bootcamp",
       duration: "(4-5) weeks / (1-1.5) months",
       details: "SQL fundamentals to advanced + comprehensive data analysis techniques",
       value: "₹13,999",
@@ -324,8 +327,8 @@ const CoursesPage = () => {
               <div className="feature-item">
                 <div className="feature-icon">🎓</div>
                 <div className="feature-text">
-                  <h3>Experience certificate from INIKOLA</h3>
-                  <p>Industry-recognized certification</p>
+                  <h3>Experience Letter from INIKOLA</h3>
+                  <p>Oppertunity to work on Ai home  Automation products at inikola</p>
                 </div>
               </div>
               <div className="feature-item">
@@ -338,8 +341,8 @@ const CoursesPage = () => {
               <div className="feature-item">
                 <div className="feature-icon">🎯</div>
                 <div className="feature-text">
-                  <h3>Experience letter from INIKOLA</h3>
-                  <p>100% placement assistance</p>
+                  <h3>Placement assistance</h3>
+                  <p>50-100 job acpplications everyday</p>
                 </div>
               </div>
             </div>

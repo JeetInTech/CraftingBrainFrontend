@@ -6,7 +6,7 @@ import JoinCourseModal from "../components/JoinCourseModal";
 
 const CoursesPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [openFaq, setOpenFaq] = useState("What is Relearn?");
+  const [openFaq, setOpenFaq] = useState("What is CraftingBrain?");
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const navigate = useNavigate(); // Add this hook
   const [selectedCourse, setSelectedCourse] = useState(null);
@@ -118,6 +118,10 @@ const CoursesPage = () => {
       isMainCourse: false,
     },
   ];
+
+  // Filter courses into main and sub courses
+  const mainCourses = courses.filter(course => course.isMainCourse);
+  const subCourses = courses.filter(course => !course.isMainCourse);
 
   // Categories data
   const categories = [
@@ -305,17 +309,8 @@ const CoursesPage = () => {
     );
   };
 
-  // Add function to handle course enrollment
-  // const handleJoinCourse = (course) => {
-  //   // Option 1: Navigate to individual course page
-  //   // navigate(`/course/₹{course.slug}`);
-  //   navigate(`/enroll/₹{course.slug}`, { state: { course } });
-  //   // Option 2: Navigate to enrollment page with course data
-  //   // navigate(`/enroll/₹{course.slug}`, { state: { course } });
 
-  //   // Option 3: Navigate to a general enrollment page
-  //   // navigate('/enrollment');
-  // };
+  
 
   return (
     <div className="courses-page">

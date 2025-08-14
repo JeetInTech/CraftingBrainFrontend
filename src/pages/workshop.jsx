@@ -16,6 +16,27 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { useDynamicCSS } from "../hooks/DynamicCSSLoader";
+import "./workshop-styles.css";
+
+// Error Boundary Component
+class ErrorBoundary extends React.Component {
+  state = { hasError: false };
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error("ErrorBoundary caught:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <div>Something went wrong. Please try again later.</div>;
+    }
+    return this.props.children;
+  }
+}
 
 const WorkshopPage = () => {
   useDynamicCSS("workshop");
@@ -48,24 +69,66 @@ const WorkshopPage = () => {
     videoUrl: "",
     liveVideoUrl: "",
   });
+  const [featuredWorkshop, setFeaturedWorkshop] = useState(null);
 
-  // Mock current workshop data
-  const [featuredWorkshop, setFeaturedWorkshop] = useState({
-    id: 1,
-    title: "ADVANCED AGENTIC AI Techniques",
-    subtitle: "WORKSHOP",
-    date: "Sunday 28 July 2024",
-    time: "2 - 6 PM",
-    instructor: "Aman Sir",
-    instructorTitle: "Senior ai Developer",
-    instructorImage:
-      "https://upload.wikimedia.org/wikipedia/en/d/d5/Professor_%28Money_Heist%29.jpg",
-    description:
-      "Join our comprehensive Ai workshop and master modern web development techniques",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    liveVideoUrl: "https://www.youtube.com/embed/live_stream_id",
-    isLive: false,
-  });
+  // Fetch workshops from AWS API
+  const fetchWorkshops = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const response = await fetch(
+        "https://8zrj1t4nx2.execute-api.us-east-1.amazonaws.com/wk/getWk",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("API Response:", data);
+
+      // Normalize API response and add IDs
+      const workshopsData = (data.workshops || data || []).map(
+        (workshop, index) => ({
+          ...workshop,
+          id: workshop.id || `workshop-${index}-${workshop.Name || "unknown"}-${workshop.Date || "unknown"}`,
+          title: workshop.Name || "Untitled Workshop",
+          date: workshop.Date || new Date().toISOString().split("T")[0],
+          instructor: workshop.author || "Unknown Instructor",
+          time: workshop.time || "TBD",
+          image:
+            workshop.image ||
+            "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=300&h=200&fit=crop",
+          participants: workshop.participants || 0,
+          rating: workshop.rating || 0,
+          instructorTitle: workshop.instructorTitle || "Instructor",
+          instructorImage:
+            workshop.instructorImage ||
+            "https://upload.wikimedia.org/wikipedia/en/d/d5/Professor_%28Money_Heist%29.jpg",
+          isLive: workshop.isLive || false,
+          liveVideoUrl: workshop.liveVideoUrl || workshop.registerLink || "",
+          description: workshop.description || "No description available",
+          place: workshop.place || "Online",
+        })
+      );
+
+      setWorkshops(workshopsData);
+      categorizeWorkshops(workshopsData);
+    } catch (err) {
+      console.error("Error fetching workshops:", err);
+      setError("Failed to load workshops. Please try again later.");
+      loadMockData();
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Categorize workshops into ongoing and previous
   const categorizeWorkshops = (workshopsData) => {
@@ -351,10 +414,16 @@ const WorkshopPage = () => {
   }
 
   return (
-    <div className="page-wrapper">
-      <div className="workshop-page">
-        {/* Admin Toggle Button */}
-       
+    <ErrorBoundary>
+      <div className="page-wrapper">
+        <div className="workshop-page">
+          {/* Admin Toggle Button */}
+          <button
+            className="admin-toggle-btn"
+            onClick={() => setIsAdminPanelOpen(true)}
+          >
+            <Settings />
+          </button>
 
           {/* Hero Section */}
           {featuredWorkshop && (

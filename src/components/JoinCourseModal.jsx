@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./JoinCourseModal.css";
-
+import { useNavigate } from "react-router-dom";
 const JoinCourseModal = ({ isOpen, onClose, course }) => {
+    const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -18,7 +19,16 @@ const JoinCourseModal = ({ isOpen, onClose, course }) => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+const handleJoinCourseReg = (course) => {
+    // Option 1: Navigate to individual course page
+    // navigate(`/course/${course.slug}`);
+    navigate(`/enroll/${course.slug}`, { state: { course } });
+    // Option 2: Navigate to enrollment page with course data
+    // navigate(`/enroll/${course.slug}`, { state: { course } });
 
+    // Option 3: Navigate to a general enrollment page
+    // navigate('/enrollment');
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -29,6 +39,7 @@ const JoinCourseModal = ({ isOpen, onClose, course }) => {
       };
       await axios.post("https://u3je1y4ty7.execute-api.us-east-1.amazonaws.com/visitors/visitors", payload);
       alert("Successfully submitted!");
+      navigate(`/enroll/${course.slug}`, { state: { course } });
       onClose();
     } catch (error) {
       alert("Submission failed. Please try again.");

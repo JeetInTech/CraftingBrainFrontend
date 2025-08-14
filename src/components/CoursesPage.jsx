@@ -35,6 +35,24 @@ const CoursesPage = () => {
       isMainCourse: true,
     },
     
+     {
+      id: 3,
+      slug: "data-engineering-analytics",
+      image:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
+      category: "ADVANCE DATA ANALYSIS",
+      title: "Advanced Data Engineering & Analytics Program",
+      duration: "(15-16) weeks / (3.5-4) months",
+      details: "Python, data engineering, cloud, SQL, advanced data analysis, ML-1, Tableau",
+      value: "₹39,000",
+      stipend: "₹3,000",
+      certificate: true,
+      placement: true,
+      placementFee: "₹5,000",
+      featured: false,
+      isMainCourse: true,
+    },
+    
     {
       id: 2,
       slug: "gen-ai-professional",
@@ -53,24 +71,7 @@ const CoursesPage = () => {
       allInclusive: true,
     },
 
-    {
-      id: 3,
-      slug: "data-engineering-analytics",
-      image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
-      category: "ADVANCE DATA ANALYSIS",
-      title: "Advanced Data Engineering & Analytics Program",
-      duration: "(15-16) weeks / (3.5-4) months",
-      details: "Python, data engineering, cloud, SQL, advanced data analysis, ML-1, Tableau",
-      value: "₹39,000",
-      stipend: "₹3,000",
-      certificate: true,
-      placement: true,
-      placementFee: "₹5,000",
-      featured: false,
-      isMainCourse: true,
-    },
-    
+   
     // Sub Courses (Crash Courses)
     {
       id: 4,

@@ -1,61 +1,68 @@
 import React from "react";
-import { useDynamicCSS } from '../hooks/DynamicCSSLoader';
-import { useScrollAnimation, useStaggeredAnimation } from '../hooks/ScrollAnimation';
-import '../styles/ScrollAnimations.css';
+import { useDynamicCSS } from "../hooks/DynamicCSSLoader";
+import {
+  useScrollAnimation,
+  useStaggeredAnimation,
+} from "../hooks/ScrollAnimation";
+import "../styles/ScrollAnimations.css";
 
 const AboutCraftingBrain = () => {
-  useDynamicCSS('about');
+  useDynamicCSS("about");
 
   // Animation hooks for different sections
   const heroAnimation = useScrollAnimation({ threshold: 0.3 });
   const missionAnimation = useScrollAnimation({ threshold: 0.3, delay: 200 });
-  const partnershipAnimation = useScrollAnimation({ threshold: 0.3, delay: 300 });
+  const partnershipAnimation = useScrollAnimation({
+    threshold: 0.3,
+    delay: 300,
+  });
   const valuesAnimation = useScrollAnimation({ threshold: 0.3, delay: 400 });
   const teamTitleAnimation = useScrollAnimation({ threshold: 0.3, delay: 100 });
   const founderAnimation = useScrollAnimation({ threshold: 0.3, delay: 200 });
-  const teamMembersAnimation = useStaggeredAnimation(3, { 
-    threshold: 0.2, 
+  const teamMembersAnimation = useStaggeredAnimation(3, {
+    threshold: 0.2,
     staggerDelay: 200,
-    rootMargin: '0px 0px -50px 0px'
+    rootMargin: "0px 0px -50px 0px",
   });
 
   const teamMembers = [
     {
-      name: "Manager",
-      role: "Chief Technology Officer",
-      image:
-        "https://img.freepik.com/premium-photo/3d-cartoon-avatar-man-minimal-3d-character-avatar-profile_652053-2067.jpg",
+      name: "Satya Sai Karthik Maradani",
+      role: "Gen AI Data Scientist",
+      image: "/karthik.jpg",
       description:
-        "AI researcher and former Google engineer, leading our technical innovations and curriculum development.",
-      position: "left",
-    },
-    {
-      name: "Manager",
-      role: "Head of Partnerships",
-      image:
-        "https://img.freepik.com/premium-photo/3d-cartoon-avatar-man-minimal-3d-character-avatar-profile_652053-2067.jpg",
-      description:
-        "Strategic partnerships expert, connecting students with top-tier companies for placement opportunities.",
-      position: "right",
-    },
-    {
-      name: "Manager",
-      role: "Director of Education",
-      image:
-        "https://img.freepik.com/premium-photo/3d-cartoon-avatar-man-minimal-3d-character-avatar-profile_652053-2067.jpg",
-      description:
-        "Educational specialist ensuring our programs meet industry standards and student success metrics.",
+        "Specializes in Python, Data Analytics, AWS, Machine Learning, " +
+        "and Deep Learning to craft AI-driven solutions",
       position: "bottom-left",
+    },
+    {
+      name: "Maharaj",
+      role: "Gen AI Data Scientist",
+      image: "/maharaj.jpg",
+      description:
+        "Focuses on building intelligent, automation-first systems using " +
+        "ML and DL, enhancing operational efficiency and driving innovation " +
+        "across diverse industries.",
+      position: "bottom-right",
+    },
+    {
+      name: "Dr.jeet&Bilal",
+      role: "Director of Education",
+      image: "/avatar.png",
+      description:
+        "Ensures programs meet evolving industry needs while guiding students " +
+        "towards academic excellence and professional readiness.",
+      position: "bottom-center",
     },
   ];
 
   const founder = {
     name: "Aman Kasaudhan",
     role: "Founder & CEO",
-    image:
-      "https://img.freepik.com/premium-photo/3d-cartoon-avatar-man-minimal-3d-character-avatar-profile_652053-2068.jpg",
+    image: "/amansir1.png",
     description:
-      "Visionary leader with 10+ years in AI and Data Science, dedicated to transforming education through innovative technology solutions.",
+      "Visionary leader with over a decade of experience in AI and Data Science, " +
+      "committed to transforming education through innovative technology.",
   };
 
   return (
@@ -68,7 +75,7 @@ const AboutCraftingBrain = () => {
             alt="AI Background"
           />
         </div>
-        <div 
+        <div
           ref={heroAnimation.elementRef}
           className={`hero1-content slide-up ${heroAnimation.animationClass}`}
         >
@@ -83,7 +90,7 @@ const AboutCraftingBrain = () => {
       {/* Mission Section */}
       <section className="mission-section">
         <div className="container">
-          <div 
+          <div
             ref={missionAnimation.elementRef}
             className={`mission-content slide-right ${missionAnimation.animationClass}`}
           >
@@ -114,7 +121,7 @@ const AboutCraftingBrain = () => {
       {/* Partnership Section */}
       <section className="partnership-section">
         <div className="container">
-          <div 
+          <div
             ref={partnershipAnimation.elementRef}
             className={`partnership-content slide-left ${partnershipAnimation.animationClass}`}
           >
@@ -154,7 +161,7 @@ const AboutCraftingBrain = () => {
       {/* Values Section */}
       <section className="values-section">
         <div className="container">
-          <div 
+          <div
             ref={valuesAnimation.elementRef}
             className={`values-content fade-in ${valuesAnimation.animationClass}`}
           >
@@ -216,7 +223,7 @@ const AboutCraftingBrain = () => {
       {/* Team Section with Semi-Circle Layout */}
       <section className="team-section">
         <div className="container">
-          <div 
+          <div
             ref={teamTitleAnimation.elementRef}
             className={`section-title-animate ${teamTitleAnimation.animationClass}`}
           >
@@ -228,7 +235,7 @@ const AboutCraftingBrain = () => {
 
           <div className="team-layout">
             {/* Founder in Center */}
-            <div 
+            <div
               ref={founderAnimation.elementRef}
               className={`founder-card scale-up ${founderAnimation.animationClass}`}
             >
@@ -242,14 +249,16 @@ const AboutCraftingBrain = () => {
             </div>
 
             {/* Team Members in Horizontal Row */}
-            <div 
+            <div
               ref={teamMembersAnimation.containerRef}
               className="team-members-row stagger-container"
             >
               {teamMembers.map((member, index) => (
                 <div
                   key={index}
-                  className={`team-member team-member-animate ${teamMembersAnimation.getItemAnimationClass(index)}`}
+                  className={`team-member team-member-animate ${teamMembersAnimation.getItemAnimationClass(
+                    index
+                  )}`}
                   style={{
                     animationDelay: `${index * 0.2}s`,
                   }}

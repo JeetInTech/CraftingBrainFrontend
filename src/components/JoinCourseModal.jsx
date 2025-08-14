@@ -6,6 +6,7 @@ import "./JoinCourseModal.css";
 import { useNavigate } from "react-router-dom";
 const JoinCourseModal = ({ isOpen, onClose, course }) => {
     const navigate = useNavigate();
+    
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -39,7 +40,8 @@ const handleJoinCourseReg = (course) => {
       };
       await axios.post("https://u3je1y4ty7.execute-api.us-east-1.amazonaws.com/visitors/visitors", payload);
       alert("Successfully submitted!");
-      navigate(`/enroll/${course.slug}`, { state: { course } });
+      navigate('/payment');
+
       onClose();
     } catch (error) {
       alert("Submission failed. Please try again.");
@@ -85,6 +87,7 @@ const handleJoinCourseReg = (course) => {
           <button type="submit" className="submit-btn">Submit</button>
         </form>
       </div>
+      
     </div>
   );
 };

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Enroll.css";
+import JoinCourseModal from "../components/JoinCourseModal"; 
 
 const Enroll = () => {
   const [expandedModule, setExpandedModule] = useState(1);
@@ -9,9 +10,12 @@ const Enroll = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const courseData = location.state?.course;
+  const [selectedCourse, setSelectedCourse] = useState(null);
+
 
   const handleEnrollClick = () => {
-    navigate("/payment");
+    // navigate("/payment");
+    setSelectedCourse(courseData);
   };
 
   // Complete 24-week curriculum data
@@ -611,6 +615,11 @@ const Enroll = () => {
           </div>
         </div>
       </section>
+      <JoinCourseModal
+      isOpen={!!selectedCourse}
+      onClose={() => setSelectedCourse(null)}
+      course={selectedCourse}
+    />
     </div>
   );
 };

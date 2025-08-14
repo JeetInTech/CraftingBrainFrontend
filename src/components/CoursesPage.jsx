@@ -2,12 +2,18 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Add this import
 import "./CoursesPage.css";
+import JoinCourseModal from "../components/JoinCourseModal"; 
 
 const CoursesPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [openFaq, setOpenFaq] = useState("What is Relearn?");
+  const [openFaq, setOpenFaq] = useState("What is CraftingBrain?");
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const navigate = useNavigate(); // Add this hook
+  const [selectedCourse, setSelectedCourse] = useState(null);
+
+    const handleJoinCourse = (course) => {
+      setSelectedCourse(course);
+    };
 
   // Course data with unique slugs for routing - Updated from Excel file
   const courses = [
@@ -115,6 +121,10 @@ const CoursesPage = () => {
       isMainCourse: false,
     },
   ];
+
+  // Filter courses into main and sub courses
+  const mainCourses = courses.filter(course => course.isMainCourse);
+  const subCourses = courses.filter(course => !course.isMainCourse);
 
   // Categories data
   const categories = [
@@ -302,14 +312,8 @@ const CoursesPage = () => {
     );
   };
 
-  // Add function to handle course enrollment
-  const handleJoinCourse = (course) => {
-    navigate(`/enroll/${course.slug}`, { state: { course } });
-  };
 
-  // Filter main courses and sub courses
-  const mainCourses = courses.filter(course => course.isMainCourse);
-  const subCourses = courses.filter(course => !course.isMainCourse);
+  
 
   return (
     <div className="courses-page">
@@ -476,11 +480,11 @@ const CoursesPage = () => {
                     <span className="stipend-amount">{course.stipend}</span>
                   </div>
                   <button
-                    className={`join-btn ${course.featured ? "featured" : ""}`}
-                    onClick={() => handleJoinCourse(course)}
-                  >
-                    Course Details →
-                  </button>
+                  className={`join-btn ${course.featured ? "featured" : ""}`}
+                  onClick={() => handleJoinCourse(course)}
+                >
+                  Join Course
+                </button>
                 </div>
               </div>
             </div>
@@ -638,6 +642,11 @@ const CoursesPage = () => {
           </div>
         </div>
       </section>
+      <JoinCourseModal
+      isOpen={!!selectedCourse}
+      onClose={() => setSelectedCourse(null)}
+      course={selectedCourse}
+    />
     </div>
   );
 };

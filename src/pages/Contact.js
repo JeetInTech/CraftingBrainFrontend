@@ -51,7 +51,7 @@ const ContactUs = () => {
 
     try {
       // Replace with your actual backend URL
-      const response = await fetch("http://localhost:3001/api/contact", {
+      const response = await fetch("https://x9bek381o0.execute-api.us-east-1.amazonaws.com/con/con", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -61,7 +61,7 @@ const ContactUs = () => {
 
       const result = await response.json();
 
-      if (result.success) {
+      if (result['message'] == "Sent successfully!") {
         setSubmitStatus("success");
         console.log("Form submitted successfully:", result);
 

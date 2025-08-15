@@ -27,14 +27,15 @@ const AboutCraftingBrain = () => {
 
   const teamMembers = [
     {
-      name: "Satya Sai Karthik Maradani",
-      role: "Gen AI Data Scientist",
-      image: "/karthik.jpg",
+      name: "Aman Kasaudhan",
+      role: "Founder & CEO",
+      image: "/amansir1.png",
       description:
-        "Specializes in Python, Data Analytics, AWS, Machine Learning, " +
-        "and Deep Learning to craft AI-driven solutions",
-      position: "bottom-left",
+        "Visionary leader with over a decade of experience in AI and Data Science, " +
+        "committed to transforming education through innovative technology.",
+      position: "bottom-center",
     },
+    
     {
       name: "Maharaj",
       role: "Gen AI Data Scientist",
@@ -46,24 +47,24 @@ const AboutCraftingBrain = () => {
       position: "bottom-right",
     },
     {
-      name: "Dr.jeet&Bilal",
-      role: "Director of Education",
-      image: "/avatar.png",
+      name: "Satya Sai Karthik Maradani",
+      role: "Gen AI Data Scientist",
+      image: "/karthik.jpg",
       description:
-        "Ensures programs meet evolving industry needs while guiding students " +
-        "towards academic excellence and professional readiness.",
-      position: "bottom-center",
+        "Specializes in Python, Data Analytics, AWS, Machine Learning, " +
+        "and Deep Learning to craft AI-driven solutions",
+      position: "bottom-right",
     },
   ];
 
-  const founder = {
-    name: "Aman Kasaudhan",
-    role: "Founder & CEO",
-    image: "/amansir1.png",
-    description:
-      "Visionary leader with over a decade of experience in AI and Data Science, " +
-      "committed to transforming education through innovative technology.",
-  };
+  // const founder = {
+  //   name: "Aman Kasaudhan",
+  //   role: "Founder & CEO",
+  //   image: "/amansir1.png",
+  //   description:
+  //     "Visionary leader with over a decade of experience in AI and Data Science, " +
+  //     "committed to transforming education through innovative technology.",
+  // };
 
   return (
     <div className="about-page">
@@ -235,7 +236,7 @@ const AboutCraftingBrain = () => {
 
           <div className="team-layout">
             {/* Founder in Center */}
-            <div
+            {/* <div
               ref={founderAnimation.elementRef}
               className={`founder-card scale-up ${founderAnimation.animationClass}`}
             >
@@ -246,7 +247,7 @@ const AboutCraftingBrain = () => {
                 <h3 className="member-name">{founder.name}</h3>
                 <p className="member-description">{founder.description}</p>
               </div>
-            </div>
+            </div> */}
 
             {/* Team Members in Horizontal Row */}
             <div

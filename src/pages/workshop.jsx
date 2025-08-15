@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
   Calendar,
   Clock,
@@ -57,6 +58,8 @@ const WorkshopPage = () => {
     phone: "",
     experience: "beginner",
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [toasts, setToasts] = useState([]);
   const [adminForm, setAdminForm] = useState({
     title: "",
     date: "",
@@ -70,8 +73,38 @@ const WorkshopPage = () => {
     liveVideoUrl: "",
   });
   const [featuredWorkshop, setFeaturedWorkshop] = useState(null);
+  const [isOpen, setIsOpen] = useState(true);
 
   // Fetch workshops from AWS API
+  function onClose() {
+  setIsOpen(false); // or setShowModal(false)
+}
+  const showToast = (message, type = 'success', duration = 4000) => {
+    const id = Date.now();
+    const newToast = { id, message, type, duration };
+    
+    setToasts(prev => [...prev, newToast]);
+    
+    setTimeout(() => {
+      removeToast(id);
+    }, duration);
+  };
+
+  const removeToast = (id) => {
+    setToasts(prev => prev.map(toast => 
+      toast.id === id ? { ...toast, removing: true } : toast
+    ));
+    
+    setTimeout(() => {
+      setToasts(prev => prev.filter(toast => toast.id !== id));
+    }, 300);
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    // Clear error when user starts typing
+    if (error) setError("");
+  };
   const fetchWorkshops = async () => {
     try {
       setLoading(true);
@@ -333,13 +366,75 @@ const WorkshopPage = () => {
       </div>
     );
   };
+  const validateForm = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[\d\s\-\+\(\)]{10,}$/;
+
+    if (!formData.name.trim()) {
+      setError("Name is required");
+      return false;
+    }
+    if (!formData.email.trim()) {
+      setError("Email is required");
+      return false;
+    }
+    if (!emailRegex.test(formData.email)) {
+      setError("Please enter a valid email address");
+      return false;
+    }
+    if (!formData.phone.trim()) {
+      setError("Phone number is required");
+      return false;
+    }
+    if (!phoneRegex.test(formData.phone)) {
+      setError("Please enter a valid phone number");
+      return false;
+    }
+    
+    return true;
+  };
 
   // Handle registration form submission
-  const handleRegistrationSubmit = () => {
-    console.log("Registration submitted:", formData);
-    setIsRegistrationOpen(false);
-    setFormData({ name: "", email: "", phone: "", experience: "beginner" });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!validateForm()) return;
+    
+    setIsLoading(true);
+    setError("");
+    
+    try {
+      const payload = {
+        ...formData,
+        workshop: featuredWorkshop?.title || "",
+      };
+      
+      await axios.post(
+        "https://h5kp0hj673.execute-api.us-east-1.amazonaws.com/wkr/wkr", 
+        payload,
+        {
+          timeout: 10000, // 10 second timeout
+        }
+      );
+      
+      // Success - show custom toast and navigate
+      showToast("🎉 Successfully Registered!", 'success', 3000);
+      
+
+      setTimeout(() => {
+        onClose();
+
+      }, 1500);
+      
+    } catch (error) {
+      console.error("Submission error:", error);
+      setError("Submission failed. Please check your connection and try again.");
+      showToast("❌ Submission failed. Please try again.", 'error', 5000);
+    } finally {
+      setIsLoading(false);
+    }
   };
+
 
   // Handle admin form submission
   const handleAdminSubmit = () => {
@@ -681,7 +776,7 @@ const WorkshopPage = () => {
                       <option value="advanced">Advanced</option>
                     </select>
                   </div>
-                  <button onClick={handleRegistrationSubmit} className="submit-btn">
+                  <button onClick={handleSubmit} className="submit-btn">
                     Complete Registration
                   </button>
                 </div>

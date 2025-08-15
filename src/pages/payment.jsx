@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useDynamicCSS } from '../hooks/DynamicCSSLoader';
-
-// import "./PaymentPage.css";
+import { useDynamicCSS } from "../hooks/DynamicCSSLoader";
 
 const PaymentPage = () => {
-  useDynamicCSS('PaymentPage');
-  
+  useDynamicCSS("PaymentPage");
+
   const [selectedMethod, setSelectedMethod] = useState("upi");
   const [showForm, setShowForm] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -45,10 +43,10 @@ const PaymentPage = () => {
       name: "UPI Payment",
       icon: "📱",
       logos: [
-        { name: "GPay", class: "gpay", text: "G" },
-        { name: "PhonePe", class: "phonepe", text: "P" },
-        { name: "Paytm", class: "paytm", text: "₹" },
-        { name: "BHIM", class: "bhim", text: "B" },
+        { name: "GPay", class: "gpay", logo: "/gpay.png" },
+        { name: "PhonePe", class: "phonepe", logo: "/ppay.jpeg" },
+        { name: "Paytm", class: "paytm", logo: "/paytm.jpeg" },
+        { name: "BHIM", class: "bhim", logo: "/BHIM.svg" },
       ],
     },
     {
@@ -56,10 +54,10 @@ const PaymentPage = () => {
       name: "Net Banking",
       icon: "🏦",
       logos: [
-        { name: "ICICI", class: "icici", text: "I" },
-        { name: "HDFC", class: "hdfc", text: "H" },
-        { name: "SBI", class: "sbi", text: "S" },
-        { name: "Axis", class: "axis", text: "A" },
+        { name: "ICICI", class: "icici", logo: "/ICICI.svg" },
+        { name: "HDFC", class: "hdfc", logo: "/HDFC.png" },
+        { name: "SBI", class: "sbi", logo: "/sbi.svg" },
+        { name: "Axis", class: "axis", logo: "/axis.svg" },
       ],
     },
     {
@@ -67,22 +65,21 @@ const PaymentPage = () => {
       name: "Credit/Debit Cards",
       icon: "💳",
       logos: [
-        { name: "Visa", class: "visa", text: "V" },
-        { name: "Mastercard", class: "mastercard", text: "M" },
-        { name: "Amex", class: "amex", text: "A" },
-        { name: "RuPay", class: "rupay", text: "R" },
+        { name: "Visa", class: "visa", logo: "/visa" },
+        { name: "Mastercard", class: "mastercard", logo: "/mastercard" },
+        { name: "Amex", class: "amex", logo: "/amex" },
+        { name: "RuPay", class: "rupay", logo: "/rupay" },
       ],
     },
-    
     {
       id: "wallet",
       name: "Digital Wallet",
       icon: "💰",
       logos: [
-        { name: "Mobikwik", class: "mobikwik", text: "M" },
-        { name: "Freecharge", class: "freecharge", text: "F" },
-        { name: "Amazon Pay", class: "amazonpay", text: "A" },
-        { name: "Ola Money", class: "ola", text: "O" },
+        { name: "Mobikwik", class: "mobikwik", logo: "/mobikwik" },
+        { name: "Freecharge", class: "freecharge", logo: "/freecharge" },
+        { name: "Amazon Pay", class: "amazonpay", logo: "/amazonpay" },
+        { name: "Ola Money", class: "ola", logo: "/ola" },
       ],
     },
   ];
@@ -187,21 +184,30 @@ const PaymentPage = () => {
 
             <div className="qr-container">
               <div className="qr-code">
+                {/* Replace this URL with your actual QR code image */}
                 <img
-                  src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=braincraft@upi&pn=BrainCraft%20AI%20(OPC)%20Private%20Limited&mc=0&tid=1234567890&am=BrainCraft%20AI%20(OPC)%20Private%20Limited&tid=1234567890&cu=INR&url=https://braincraftai.com"
+                  src="/PaymentQR.jpg"
                   alt="UPI QR Code"
                   className="qr-image"
-                />  
+                />
               </div>
             </div>
 
             <p className="qr-instruction">Scan with any UPI app to pay</p>
 
             <div className="upi-apps">
-              <div className="upi-app phonepe">P</div>
-              <div className="upi-app bhim">B</div>
-              <div className="upi-app gpay">G</div>
-              <div className="upi-app paytm">₹</div>
+              <div className="upi-app phonepe">
+                <img src="/ppay.jpeg" alt="PhonePe" />
+              </div>
+              <div className="upi-app bhim">
+                <img src="/BHIM.svg" alt="BHIM" />
+              </div>
+              <div className="upi-app gpay">
+                <img src="/gpay.png" alt="GPay" />
+              </div>
+              <div className="upi-app paytm">
+                <img src="/paytm.jpeg" alt="Paytm" />
+              </div>
               <div className="upi-app">📱</div>
             </div>
           </div>
@@ -210,7 +216,9 @@ const PaymentPage = () => {
             <div className="recommended-header">Recommended Option</div>
             <div className="recommended-option" onClick={handlePaymentSubmit}>
               <div className="option-left">
-                <div className="option-icon">P</div>
+                <div className="option-icon">
+                  <img src="/ppay.jpeg" alt="PhonePe" />
+                </div>
                 <span className="option-name">PhonePe Payment</span>
               </div>
               <span className="option-chevron">→</span>
@@ -379,8 +387,8 @@ const PaymentPage = () => {
             </div>
 
             <div className="bank-note">
-              <strong>💡 Important:</strong> After completing the bank transfer, 
-              please allow 24 hours for verification before your course access 
+              <strong>💡 Important:</strong> After completing the bank transfer,
+              please allow 24 hours for verification before your course access
               is activated. Keep your transaction receipt for reference.
             </div>
 
@@ -498,7 +506,13 @@ const PaymentPage = () => {
             fontFamily: "Inter, sans-serif",
           }}
         >
-          <h3 style={{ marginBottom: "1rem", fontSize: "1.4rem", color: "#2d3748" }}>
+          <h3
+            style={{
+              marginBottom: "1rem",
+              fontSize: "1.4rem",
+              color: "#2d3748",
+            }}
+          >
             📋 Payment Method Selection
           </h3>
           <p style={{ color: "#68d391", fontSize: "1rem" }}>
@@ -524,7 +538,9 @@ const PaymentPage = () => {
 
           <div className="price-summary">
             <h3>Course Fee</h3>
-            <div className="price-amount">₹45000.0</div>
+            <div className="contact-message">
+              📞 Please contact our authorized person for pricing details
+            </div>
 
             <div className="user-info">
               <div className="user-avatar">👤</div>
@@ -542,9 +558,7 @@ const PaymentPage = () => {
               />
             </div>
 
-            <div className="security-text">
-              Secure & Encrypted Payment
-            </div>
+            <div className="security-text">Secure & Encrypted Payment</div>
           </div>
         </div>
 
@@ -579,7 +593,15 @@ const PaymentPage = () => {
                             key={logo.name}
                             className={`method-logo ${logo.class}`}
                           >
-                            {logo.text}
+                            <img
+                              src={logo.logo}
+                              alt={logo.name}
+                              style={{
+                                width: "24px",
+                                height: "24px",
+                                objectFit: "contain",
+                              }}
+                            />
                           </div>
                         ))}
                       </div>
@@ -607,7 +629,15 @@ const PaymentPage = () => {
                             key={logo.name}
                             className={`method-logo ${logo.class}`}
                           >
-                            {logo.text}
+                            <img
+                              src={logo.logo}
+                              alt={logo.name}
+                              style={{
+                                width: "24px",
+                                height: "24px",
+                                objectFit: "contain",
+                              }}
+                            />
                           </div>
                         ))}
                       </div>
@@ -629,11 +659,14 @@ const PaymentPage = () => {
               <div className="success-icon">✓</div>
               <h2 className="modal-title">Payment Successful!</h2>
               <p className="modal-message">
-                Your payment has been successfully processed. You will receive 
-                a confirmation email shortly with your course access details. 
+                Your payment has been successfully processed. You will receive a
+                confirmation email shortly with your course access details.
                 Thank you for choosing Crafting Brain!
               </p>
-              <button className="modal-close" onClick={() => setShowModal(false)}>
+              <button
+                className="modal-close"
+                onClick={() => setShowModal(false)}
+              >
                 Continue to Dashboard
               </button>
             </div>

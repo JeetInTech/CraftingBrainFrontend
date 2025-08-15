@@ -1,111 +1,471 @@
-/* JoinCourseModal.css */
+/* JoinCourseModal.css - Complete with Toast */
 
-.modal-overlay {
+/* Modal Styles */
+.join-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(13, 15, 26, 0.9);
+  background: rgba(11, 15, 20, 0.95);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
+  padding: 20px;
 }
 
-.modal-box {
-  background: #0d0f1a;
-  border: 2px solid #ff00cc;
-  border-radius: 16px;
-  padding: 15px;
-  width: 90%;
-  max-width: 500px;
-  color: #e0f2f1;
-  box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+.join-modal-box {
+  background: linear-gradient(145deg, #1c1f2a 0%, #0d0f1a 100%);
+  border: 1px solid rgba(0, 255, 213, 0.3);
+  border-radius: 20px;
+  padding: 25px;
+  width: 100%;
+  max-width: 440px;
+  max-height: 85vh;
+  color: #f0f4f8;
+  box-shadow: 
+    0 20px 40px rgba(0, 255, 213, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
   position: relative;
-  animation: fadeIn 0.3s ease-in-out;
+  animation: joinModalFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
 }
 
-.modal-title {
-  font-size: 24px;
+.join-modal-title {
+  font-size: 20px;
   font-weight: 700;
-  color: #ffae00;
+  background: linear-gradient(135deg, #00ffd5, #7f5af0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   text-align: center;
   margin-bottom: 20px;
+  line-height: 1.3;
 }
 
-.close-btn {
+.join-modal-close-btn {
   position: absolute;
-  top: 14px;
-  right: 18px;
-  background: transparent;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.1);
   border: none;
-  font-size: 20px;
-  color: #ff5ef1;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-.close-btn:hover {
-  transform: scale(1.2);
-}
-
-.modal-form {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-label {
-  font-size: 14px;
-  margin-bottom: 6px;
-  color: #7f8fa6;
-  font-weight: 500;
-}
-
-.form-input {
-  padding: 10px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  background: #1c1f2e;
-  color: #e0f2f1;
-  outline: none;
-  transition: border 0.2s ease;
-}
-.form-input:focus {
-  border-color: #ff00cc;
-  box-shadow: 0 0 5px #ff00cc;
-}
-
-.submit-btn {
-  padding: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
   font-size: 16px;
-  font-weight: bold;
-  background: linear-gradient(135deg, #ff00cc, #ffae00);
-  color: #0d0f1a;
-  border: none;
-  border-radius: 8px;
+  color: #b0b8c1;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(255, 0, 213, 0.4);
-  transition: background 0.3s ease;
-}
-.submit-btn:hover {
-  background: linear-gradient(135deg, #ffae00, #ff00cc);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Optional animation */
-@keyframes fadeIn {
+.join-modal-close-btn:hover {
+  background: rgba(255, 84, 112, 0.2);
+  color: #ff5470;
+  transform: scale(1.1);
+}
+
+.join-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-row.single {
+  grid-template-columns: 1fr;
+}
+
+.join-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.join-form-label {
+  font-size: 12px;
+  margin-bottom: 6px;
+  color: #b0b8c1;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.join-form-input {
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  color: #f0f4f8;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.join-form-input::placeholder {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.join-form-input:focus {
+  border-color: #00ffd5;
+  box-shadow: 0 0 0 3px rgba(0, 255, 213, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.join-form-input:valid {
+  border-color: rgba(0, 255, 213, 0.3);
+}
+
+.join-submit-btn {
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00ffd5, #7f5af0, #ff007f);
+  color: #f0f4f8;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 8px 25px rgba(0, 255, 213, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.join-submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.join-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0, 255, 213, 0.35);
+}
+
+.join-submit-btn:hover::before {
+  left: 100%;
+}
+
+.join-submit-btn:active {
+  transform: translateY(0);
+}
+
+.course-info {
+  background: rgba(0, 255, 213, 0.05);
+  border: 1px solid rgba(0, 255, 213, 0.2);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.course-info-text {
+  font-size: 12px;
+  color: #b0b8c1;
+  margin-bottom: 4px;
+}
+
+.course-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #00ffd5;
+}
+
+/* Loading states */
+.join-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.join-submit-btn.loading {
+  pointer-events: none;
+}
+
+.join-submit-btn.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border: 2px solid transparent;
+  border-top: 2px solid #f0f4f8;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes joinModalFadeIn {
   from {
     opacity: 0;
-    transform: scale(0.96);
+    transform: scale(0.95) translateY(20px);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Toast Styles */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.toast {
+  background: linear-gradient(135deg, #1c1f2a 0%, #0d0f1a 100%);
+  border: 1px solid #00ffd5;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 10px;
+  min-width: 320px;
+  max-width: 400px;
+  color: #f0f4f8;
+  box-shadow: 
+    0 8px 25px rgba(0, 255, 213, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  pointer-events: auto;
+  position: relative;
+  overflow: hidden;
+  animation: toastSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toast.success {
+  border-color: #00ffd5;
+  box-shadow: 
+    0 8px 25px rgba(0, 255, 213, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.toast.error {
+  border-color: #ff5470;
+  box-shadow: 
+    0 8px 25px rgba(255, 84, 112, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.toast.warning {
+  border-color: #fbbf24;
+  box-shadow: 
+    0 8px 25px rgba(251, 191, 36, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.toast::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(135deg, #00ffd5, #7f5af0);
+}
+
+.toast.error::before {
+  background: #ff5470;
+}
+
+.toast.warning::before {
+  background: #fbbf24;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toast-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.toast.success .toast-icon {
+  color: #00ffd5;
+}
+
+.toast.error .toast-icon {
+  color: #ff5470;
+}
+
+.toast.warning .toast-icon {
+  color: #fbbf24;
+}
+
+.toast-message {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: #b0b8c1;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.toast-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f0f4f8;
+}
+
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00ffd5, #7f5af0);
+  border-radius: 0 0 12px 12px;
+  animation: toastProgress 4s linear forwards;
+}
+
+.toast.error .toast-progress {
+  background: #ff5470;
+}
+
+.toast.warning .toast-progress {
+  background: #fbbf24;
+}
+
+/* Toast Animations */
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes toastSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
+  }
+}
+
+@keyframes toastProgress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.toast.removing {
+  animation: toastSlideOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .join-modal-box {
+    max-width: 380px;
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .join-modal-title {
+    font-size: 18px;
+  }
+  
+  .join-form-input {
+    padding: 10px 12px;
+  }
+
+  .toast-container {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+  }
+  
+  .toast {
+    min-width: unset;
+    max-width: unset;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  
+  .toast-message {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .join-modal-overlay {
+    padding: 15px;
+  }
+  
+  .join-modal-box {
+    max-width: 100%;
+    padding: 18px;
+  }
+  
+  .join-modal-title {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  .join-form-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .toast {
+    padding: 14px 16px;
+  }
+  
+  .toast-content {
+    gap: 10px;
+  }
+  
+  .toast-icon {
+    font-size: 18px;
   }
 }

@@ -17,7 +17,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { useDynamicCSS } from "../hooks/DynamicCSSLoader";
-import "./workshop-styles.css";
+// import "./workshop-styles.css";
 
 // Error Boundary Component
 class ErrorBoundary extends React.Component {
@@ -144,7 +144,7 @@ const WorkshopPage = () => {
           instructorTitle: workshop.instructorTitle || "Instructor",
           instructorImage:
             workshop.instructorImage ||
-            "https://upload.wikimedia.org/wikipedia/en/d/d5/Professor_%28Money_Heist%29.jpg",
+            "/amansir1.png",
           isLive: workshop.isLive || false,
           liveVideoUrl: workshop.liveVideoUrl || workshop.registerLink || "",
           description: workshop.description || "No description available",
@@ -237,7 +237,7 @@ const WorkshopPage = () => {
       instructorTitle: workshop.instructorTitle || "Instructor",
       instructorImage:
         workshop.instructorImage ||
-        "https://upload.wikimedia.org/wikipedia/en/d/d5/Professor_%28Money_Heist%29.jpg",
+        "/amansir1.png",
       isLive: workshop.isLive || false,
       liveVideoUrl: workshop.liveVideoUrl || workshop.registerLink,
       description: workshop.description,
@@ -513,12 +513,7 @@ const WorkshopPage = () => {
       <div className="page-wrapper">
         <div className="workshop-page">
           {/* Admin Toggle Button */}
-          <button
-            className="admin-toggle-btn"
-            onClick={() => setIsAdminPanelOpen(true)}
-          >
-            <Settings />
-          </button>
+          
 
           {/* Hero Section */}
           {featuredWorkshop && (
